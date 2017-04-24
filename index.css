@@ -121,3 +121,12 @@ a{
 .mycontainer > .btn-group > button{
     width: 100px;
 }
+
+.panel, .panel-group .panel, .panel-group .panel+.panel{
+    border-radius: 0px;
+    margin-top: 0
+}
+
+.panel-collapse{
+    color: black;
+}

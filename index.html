@@ -1,0 +1,99 @@
+<html lang="en">
+    <head>
+        <title>Assessment App</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="dist/abn_tree.css">
+        <link rel="stylesheet" href="//cdn.quilljs.com/1.1.5/quill.snow.css">
+        <link rel="stylesheet" href="//cdn.quilljs.com/1.1.5/quill.bubble.css">
+        <link rel="stylesheet" href="index.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="http://turing.centre.edu/~michael.bradshaw/js/angular.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
+        <script src="dist/abn_tree_directive.js"></script>
+        <script src="dist/quill.js"></script>
+        <script src="dist/ng-quill.js"></script>
+        <script src="index.js"></script>
+    </head>
+    <body ng-app="assessment" ng-controller="mainController">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3 no-col-padding">
+                    <nav class="navbar nav-left">
+                      <div class="container-fluid">
+                        <div class="navbar-header">
+                          <a class="navbar-brand" href="#">Computer Science</a>
+                        </div>
+                      </div>
+                    </nav>
+                    <abn-tree 
+                        tree-data="treedata_avm"
+                        on-select="tree_handler(branch)"
+                        tree-control="my_tree"
+                        icon-leaf="fa fa-file"
+                        icon-expand="fa fa-caret-down"
+                        icon-collapse="fa fa-caret-up"
+                        expand-level= "3" class="dark_gray">
+                    </abn-tree>
+                </div>
+                <div class="col-md-9">
+                    <div class="row">
+                        <nav class="navbar navbar-default">
+                          <div class="container-fluid">
+                            <ul class="nav navbar-nav">
+                              <li class="active"><a href="#">Assess</a></li>
+                              <li><a href="#">Evaluate</a></li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                              <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Out</a></li>
+                            </ul>
+                          </div>
+                        </nav>
+                        <div class="col-md-9 no-col-padding">
+                            <div class="slo-header">
+                                Student Learning Objective
+                            </div>
+                            <div class="mycontainer">
+                                <p class="same_slo">Has your Student Learning Objective been revised from last year?</p>
+                                <div class="btn-group">
+                                  <button type="button" class="btn btn-default">Yes</button>
+                                  <button type="button" class="btn btn-default">No</button>
+                                </div>
+                                <h3>Name your SLO</h3>
+                                <input > <button class="btn btn-success">Save</button>
+                                <h3>Describe your SLO</h3>
+                                <ng-quill-editor ng-model="message"></ng-quill-editor>
+                            </div>
+                        </div>
+                        <div class="col-md-3 right-col no-col-padding">
+                            <ng-quill-editor theme="bubble" ng-model="message" read-only="true"></ng-quill-editor>
+                        </div>
+                    </div>
+                </div>    
+            </div>
+            
+<!--
+            <div>{{selected}}</div>
+            <button ng-click="my_tree.select_first_branch()" class="btn btn-default btn-sm">First Branch</button>
+            <br>
+            <button ng-click="my_tree.select_next_sibling()" class="btn btn-default btn-sm">Next Sibling</button>
+            <button ng-click="my_tree.select_prev_sibling()" class="btn btn-default btn-sm">Prev Sibling</button>
+            <br>
+            <button ng-click="my_tree.select_next_branch()" class="btn btn-default btn-sm">Next Branch</button>
+            <button ng-click="my_tree.select_prev_branch()" class="btn btn-default btn-sm">Prev Branch</button>
+            <br>
+            <button ng-click="my_tree.select_parent_branch()" class="btn btn-default btn-sm">Parent</button>
+            <hr>
+            <button ng-click="my_tree.expand_branch()" class="btn btn-default btn-sm">Expand</button>
+            <button ng-click="my_tree.collapse_branch()" class="btn btn-default btn-sm">Collapse</button>
+            <button ng-click="my_tree.expand_all()" class="btn btn-default btn-sm">Expand All</button>
+            <button ng-click="my_tree.collapse_all()" class="btn btn-default btn-sm">Collapse All</button>
+            <hr>
+            <button ng-click="add_branch()" class="btn btn-default btn-sm">Add Branch</button>
+-->
+        </div>
+    </body>
+</html>

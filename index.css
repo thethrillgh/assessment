@@ -1,0 +1,117 @@
+.tree-icon{
+    margin-right: 5px;
+}
+
+.navbar{
+    margin-bottom: 0;
+}
+
+[ng-quill-editor] { 
+    display: block;
+}
+
+ng-quill-editor > div:first-child{
+    height: 400px;
+    width: 90%;
+}
+
+ng-quill-editor.ng-invalid .ql-container {
+    border: 1px dashed red;
+}
+
+.nav-left{
+    background-color: #f2be35;
+    box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
+}
+
+.nav-left > div > div > a{
+    color: black !important;
+}
+
+.navbar{
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.navbar-brand{
+    color: white;
+}
+
+.no-col-padding{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.right-col{
+    background-color: #242424;
+    color: lightgray;
+}
+
+
+.yellow_bg{
+    background-color: #f2be35; 
+}
+
+.dark_gray{
+    background-color: #242424;
+}
+
+a{
+    color: lightgray;
+}
+
+.nav-pills>li>a {
+    border-radius: 0;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover{
+    color: inherit;
+    background-color: inherit;
+}
+
+.nav-list, .right-col{
+    height: 94.7%;
+}
+
+.slo-header{
+    height: 70px;
+    background-color: darkgray;
+    font-size: 36px;
+    letter-spacing: 3px;
+    padding-left: 15px;
+    padding-right: 15px;
+    line-height: 2;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.mycontainer{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.same_slo{
+    padding-left: 15px;
+    letter-spacing: 2px;
+    font-size: 24px;
+}
+
+.mycontainer > .btn-group{
+    margin-left: 33%;
+}
+
+.mycontainer > h3, .mycontainer > input{
+    margin-left: 10px;
+    margin-bottom: 15px;
+}
+
+.mycontainer > input{
+    width: 80%;
+    margin-right: 10px;
+}
+
+.mycontainer > .btn-group > button{
+    width: 100px;
+}

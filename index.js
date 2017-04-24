@@ -1,6 +1,6 @@
 ( function()
 {
-    angular.module("assessment", ['angularBootstrapNavTree', 'ngAnimate', 'ngQuill']);
+    angular.module("assessment", ['angularBootstrapNavTree', 'ngAnimate', 'ngQuill', 'ngRoute']);
     var genService = function(){
         return ["pizza", "pasta", "potatoes", "carrots"]
     };

@@ -11,7 +11,7 @@
 }
 
 ng-quill-editor > div:first-child{
-    height: 400px;
+    height: 350px;
     width: 90%;
 }
 
@@ -26,6 +26,10 @@ ng-quill-editor.ng-invalid .ql-container {
 
 .nav-left > div > div > a{
     color: black !important;
+}
+
+.middle-col{
+    padding-bottom: 20px;
 }
 
 .navbar{
@@ -72,7 +76,9 @@ a{
 }
 
 .nav-list, .right-col{
-    height: 94.7%;
+    min-height: 94.7%;
+    padding-bottom: 20px;
+/*    max-height: 100%;*/
 }
 
 .slo-header{

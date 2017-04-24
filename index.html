@@ -12,6 +12,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="http://turing.centre.edu/~michael.bradshaw/js/angular.js"></script>
+        <script src="http://turing.centre.edu/~michael.bradshaw/js/angular-route.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
         <script src="dist/abn_tree_directive.js"></script>
         <script src="dist/quill.js"></script>
@@ -52,7 +53,7 @@
                             </ul>
                           </div>
                         </nav>
-                        <div class="col-md-9 no-col-padding">
+                        <div class="col-md-9 no-col-padding middle-col">
                             <div class="slo-header">
                                 Student Learning Objective
                             </div>
@@ -69,7 +70,45 @@
                             </div>
                         </div>
                         <div class="col-md-3 right-col no-col-padding">
-                            <ng-quill-editor theme="bubble" ng-model="message" read-only="true"></ng-quill-editor>
+<!--                            <ng-quill-editor theme="bubble" ng-model="message" read-only="true"></ng-quill-editor>-->
+                            <div class="panel-group" id="accordion">
+                                <div class="panel panel-default">
+                                  <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Collapsible Group 1</a>
+                                    </h4>
+                                  </div>
+                                  <div id="collapse1" class="panel-collapse collapse in">
+                                    <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+                                  </div>
+                                </div>
+                                <div class="panel panel-default">
+                                  <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Collapsible Group 2</a>
+                                    </h4>
+                                  </div>
+                                  <div id="collapse2" class="panel-collapse collapse">
+                                    <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+                                  </div>
+                                </div>
+                                <div class="panel panel-default">
+                                  <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Collapsible Group 3</a>
+                                    </h4>
+                                  </div>
+                                  <div id="collapse3" class="panel-collapse collapse">
+                                    <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+                                  </div>
+                                </div>
+                              </div> 
                         </div>
                     </div>
                 </div>    

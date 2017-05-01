@@ -1,5 +1,9 @@
 var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
 var mongoose = require('mongoose');
+
+var strings = require('./strings');
 
 module.exports = function() {
 	var Assessment = mongoose.model('Assessment');
@@ -16,5 +20,26 @@ module.exports = function() {
 		});
 	});
 
-	require('./strategies/local');
+	passport.use(new LocalStrategy({
+		usernameField: 'department',
+		passwordField: 'password'
+	}, function (department, password, done) {
+		Assessment.findOne({
+			department: department
+		}, function (err, user) {
+			if (err) {
+				return done(err);
+			}
+
+			if (!user) {
+				return done(null, false, {message: strings.noUserFound});
+			}
+
+			if (!user.authenticate(password)) {
+				return done(null, false, {message: strings.incorrectPassword});
+			}
+
+			return done(null, user);
+		});
+	}));
 }

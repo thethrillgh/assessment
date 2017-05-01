@@ -1,0 +1,84 @@
+@font-face { font-family: RockoFLF; src: url('RockoFLF.ttf'); }
+
+body {
+    background-color: #4A4A4A;
+    font-family: RockoFLF;
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+.text-modal {
+    font-size: 16px;
+    background-color: #FFE066;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.text-modal > h1,h4 {
+    text-align: center;
+    padding: 5px;
+}
+
+html, body{height:100%; margin:0;padding:0}
+
+.container-fluid{
+    height:100%;
+    display:table;
+    width: 100%;
+    padding: 0;
+}
+
+.container-modal {
+    background-color: #9B9B9B;
+    border-radius: 15px;
+    padding: 50px;
+}
+
+.row-fluid {height: 100%; display:table-cell; vertical-align: middle;}
+
+.centering {
+    float:none;
+    margin:0 auto;
+}
+
+.btn-default {
+    border-radius: 15px;
+    color: white;
+}
+
+.btn-confirm {
+    background-color: #63BC81;
+    color: white;
+    padding: 10px 50px 10px 50px;
+    font-size: 16px;
+    border-color: #63BC81;
+}
+
+.signup {
+    text-decoration: underline;
+    color: #50514F;
+    padding-top: 10px;
+}
+
+.btn-selector {
+    padding: 10px 0px 10px 0px;
+}
+
+.btn-align {
+    display: flex;
+    flex-direction: row;
+}
+
+.btn-assess {
+    background-color: #247BA0;
+    border-color: #247BA0;
+}
+
+.btn-eval {
+    background-color: white;
+    color: grey;
+    border-color: #247BA0;
+}

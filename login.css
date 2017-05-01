@@ -82,3 +82,7 @@ html, body{height:100%; margin:0;padding:0}
     color: grey;
     border-color: #247BA0;
 }
+
+.dropdown-toggle, .dropdown-toggle {
+    margin-bottom: 10px;
+}

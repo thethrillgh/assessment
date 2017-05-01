@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var session = require('express-session');
 var passport = require('passport');
+var flash = require('connect-flash');
 
 module.exports = function () {
 	var app = express();
@@ -28,11 +29,13 @@ module.exports = function () {
 		secret: config.sessionSecret
 	}));
 
+	app.use(flash());
 	app.use(passport.initialize());
 	app.use(passport.session());
 
 	require('../app/routes/index.routes')(app);
 	require('../app/routes/assessment.routes')(app);
+	require('../app/routes/authentication.routes')(app);
 
 	app.use(express.static('./public'));
 

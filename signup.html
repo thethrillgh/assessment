@@ -14,7 +14,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
 </head>
 
-<body>
+<body ng-app="assessment" ng-controller="loginController">
 
 <div class="container-fluid">
     <div class="row-fluid">
@@ -37,10 +37,8 @@
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Choose your department . . . <span class="caret"></span>
                         </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Computer Science</a></li>
-                            <li><a href="#">History</a></li>
-                            <li><a href="#">Economics</a></li>
+                        <ul class="dropdown-menu" ng-repeat="dpt in departments">
+                            <li> {{dpt}} </li>
                         </ul>
                     </div>
                     <div class="form-group">

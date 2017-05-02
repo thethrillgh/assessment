@@ -105,8 +105,14 @@
           });
         };
     }
+
+    var loginController = function ($scope) {
+        $scope.departments = ['Computer Science', 'Economics'];
+    }
+
     angular.module("assessment")
         .controller("mainController", mainController)
+        .controller("loginController", loginController)
         .service("genService", genService)
         .config(['ngQuillConfigProvider', function(ngQuillConfigProvider){
             ngQuillConfigProvider.set(null, null, 'custom placeholder')

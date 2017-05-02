@@ -86,3 +86,12 @@ html, body{height:100%; margin:0;padding:0}
 .dropdown-toggle, .dropdown-toggle {
     margin-bottom: 10px;
 }
+
+.form-control {
+    border-radius: 15px;
+}
+
+.vertical-align {
+    display: flex;
+    align-items: center;
+}

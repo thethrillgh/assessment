@@ -105,10 +105,31 @@
           });
         };
     }
+    var sloDirective = function () {
+		return {
+			templateUrl: 'directives/sloDirective.html'
+		};
+	};
+    var goalDirective = function () {
+		return {
+			templateUrl: 'directives/goalDirective.html'
+		};
+	};
+    var toolDirective = function () {
+		return {
+			templateUrl: 'directives/toolDir.html'
+		};
+	};
     angular.module("assessment")
         .controller("mainController", mainController)
         .service("genService", genService)
         .config(['ngQuillConfigProvider', function(ngQuillConfigProvider){
             ngQuillConfigProvider.set(null, null, 'custom placeholder')
+    
         }])
-})();
+        .directive("sloDirective",sloDirective)
+        .directive("toolDirective", toolDirective)
+        .directive("goalDirective",goalDirective);
+     
+})
+();

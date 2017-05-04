@@ -4,7 +4,8 @@ exports.render = function (req, res, next) {
 	var pageData = {title: 'Home'};
 	if (req.user) {
 		pageData.loggedIn = true;
-		pageData.department = req.user.department;
+		pageData.user = req.user;
+		//pageData.department = req.user.department;
 	} else {
 		pageData.loggedIn = false;
 	}

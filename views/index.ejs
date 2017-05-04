@@ -5,8 +5,11 @@
 </head>
 <body>
 	<% if (loggedIn) { %>
-		Welcome back, <%=department %>
+		Welcome back, <%=user.department %>
 		<br>
+		<% for (var i in user.evaluations) { %>
+		<div><%=user.evaluations[i].year %></div>
+		<% } %>
 		<a href="logout">Logout</a>
 	<% } else { %>
 		<a href="signin">Login</a>

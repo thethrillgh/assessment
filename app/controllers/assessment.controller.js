@@ -1,14 +1,30 @@
 var Assessment = require('mongoose').model('Assessment');
 
 exports.create = function(req, res, next) {
-	var department = req.params.department;
-	Assessment.count({department: department}, function (err, count) {
-		if (err) {
-			next(err);
-		} else {
-			res.send(count);
-		}
-	});
+	//var years = req.params.year; TODO Get this working
+	var years = '2016-2017';
+	var evaluationObj = {year: years};
+
+	if (req.user) {
+		Assessment.findOne({
+			department: req.user.department
+		}, 'evaluations', function (err, assessment) {
+			if (err) {
+				next(err);
+			} else {
+				assessment.evaluations.push(evaluationObj);
+				assessment.save(function (err) {
+					if (err) {
+						next(err);
+					} else {
+						res.json({success: true});
+					}
+				});
+			}
+		});
+	} else {
+		res.json(error(strings.notLoggedIn))
+	}
 };
 
 exports.readAssessments = function (req, res, next) {

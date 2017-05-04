@@ -44,7 +44,8 @@ var AssessmentSchema = new Schema({
 
 AssessmentSchema.pre('save', function(next) {
 	if (this.password) {
-		this.salt = new Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
+		this.salt = crypto.randomBytes(16).toString('base64');
+		//this.salt = new Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
 		this.password = this.hashPassword(this.password);
 	}
 

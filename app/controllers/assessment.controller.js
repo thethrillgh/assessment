@@ -1,5 +1,10 @@
 var Assessment = require('mongoose').model('Assessment');
 
+var strings = require('../../config/strings');
+
+/**
+ * Creates a new evaluation for a given year
+ */
 exports.create = function(req, res, next) {
 	//var years = req.params.year; TODO Get this working
 	var years = '2016-2017';
@@ -27,15 +32,15 @@ exports.create = function(req, res, next) {
 	}
 };
 
+/**
+ * Gets the list of years for the logged in user's department
+ */
 exports.readAssessments = function (req, res, next) {
-	var department = req.params.department;
-	Assessment.findOne({department: department}, function(err, assessments) {
-		if (err) {
-			next(err);
-		} else {
-			res.json(assessments);
-		}
-	});
+	if (req.user) {
+		res.json(req.user.evaluations);
+	} else {
+		res.json(error(strings.notLoggedIn));
+	}
 };
 
 /**
@@ -68,3 +73,9 @@ exports.readAssessment = function (req, res, next) {
 	}
 };
 
+var error = function (message) {
+	return {
+		error: true,
+		message: message
+	}
+}

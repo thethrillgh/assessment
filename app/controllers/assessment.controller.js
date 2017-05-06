@@ -9,6 +9,8 @@ var strings = require('../../config/strings');
 exports.create = function(req, res, next) {
 	//var years = req.params.year; TODO Get this working
 	var years = '2016-2017';
+
+	//Init object for the evaluation with the given year
 	var evaluationObj = {year: years};
 
 	if (req.user) {

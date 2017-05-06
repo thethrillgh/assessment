@@ -5,11 +5,9 @@ module.exports = function (app) {
 	app.get('/assessment', assessment.readAssessment);
 	app.post('/newAssessment', assessment.create);
 
-	//app.route('/assessments').get(assessment.readAssessments);
-	
-	//app.route('/assessments')
+	app.get('/newGoal', assessment.createGoal);
+	app.get('/newSLO', assessment.createSLO);
 
-	//app.route('assessment/:assessmentId').get()
-
-	//app.param('')
+	//TODO These need to be changed to POST, and they need to be able to get the
+	//needed parameters
 };

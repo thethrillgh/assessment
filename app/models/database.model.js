@@ -12,7 +12,7 @@ var AssessmentSchema = new Schema({
 			year: String,
 			changedGoals: Boolean,
 			changedSLOs: Boolean,
-			evaluation: {
+			evaluation: { //This is what is passed to the angular tree
 				label: String, //Mission statement
 				data: {
 					info: String

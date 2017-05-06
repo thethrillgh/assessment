@@ -153,6 +153,21 @@
 		return {
 			templateUrl: 'directives/toolDir.html'
 		};
+	};  
+    var assessmentDirective = function () {
+		return {
+			templateUrl: 'directives/assessmentDir.html'
+		};
+	};
+    var resultsDirective = function () {
+		return {
+			templateUrl: 'directives/resultsDirective.html'
+		};
+	};
+     var apDirective = function () {
+		return {
+			templateUrl: 'directives/actionplanDirective.html'
+		};
 	};
     
     angular
@@ -164,9 +179,13 @@
             ngQuillConfigProvider.set(null, null, 'custom placeholder')
     
         }])
+        .directive("apDirective",apDirective)
+        .directive("resultsDirective",resultsDirective)
         .directive("sloDirective",sloDirective)
+        .directive("assessmentDirective",assessmentDirective)
         .directive("toolDirective", toolDirective)
         .directive("goalDirective",goalDirective);
+
      
 })
 ();

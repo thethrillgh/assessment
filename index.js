@@ -52,13 +52,13 @@
                     label: 'Student Learning Objective 5',
                     children: [
                       {
-                        label: 'Granny Smith',
+                        label: 'Process 4',
                         onSelect: $scope.tree_handler
                       }, {
-                        label: 'Red Delicous',
+                        label: 'Process 5',
                         onSelect: $scope.tree_handler
                       }, {
-                        label: 'Fuji',
+                        label: 'Process 6',
                         onSelect: $scope.tree_handler
                       }
                     ]
@@ -69,20 +69,20 @@
                 label: 'Goal 3',
                 children: [
                   {
-                    label: 'Rock',
-                    children: ['Igneous', 'Sedimentary', 'Metamorphic']
+                    label: 'Student Learning Objective 6',
+                    children: ['Process 7', 'Process 8', 'Process 9']
                   }, {
-                    label: 'Metal',
-                    children: ['Aluminum', 'Steel', 'Copper']
+                    label: 'Student Learning Objective 7',
+                    children: ['Process 10', 'Process 11', 'Process 12']
                   }, {
-                    label: 'Plastic',
+                    label: 'Student Learning Objective 8',
                     children: [
                       {
-                        label: 'Thermoplastic',
-                        children: ['polyethylene', 'polypropylene', 'polystyrene', ' polyvinyl chloride']
+                        label: 'Process 13',
+                        children: ['Results 1', 'Results 2', 'Results 3', ' Results 4']
                       }, {
-                        label: 'Thermosetting Polymer',
-                        children: ['polyester', 'polyurethane', 'vulcanized rubber', 'bakelite', 'urea-formaldehyde']
+                        label: 'Process 13',
+                        children: ['Results 5', 'Results 6', 'Results 7', 'Results 8']
                       }
                     ]
                   }
@@ -90,7 +90,7 @@
          },
          {
           label: 'Goal 4',
-          children: ['Jade','Less','Coffeescript']
+          children: ['Student Learning Objective 9','Student Learning Objective 10','Student Learning Objective 11']
          }
         ];
         $scope.add_branch = function() {

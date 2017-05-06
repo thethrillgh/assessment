@@ -1,6 +1,6 @@
 ( function()
 {
-    angular.module("assessment", ['angularBootstrapNavTree', 'ngAnimate', 'ngQuill', 'ngRoute']);
+    angular.module("assessment", ['angularBootstrapNavTree', 'ngAnimate', 'ngQuill', 'ngRoute']); /* add fileUpload later */
     var genService = function(){
         return ["pizza", "pasta", "potatoes", "carrots"]
     };
@@ -105,6 +105,40 @@
           });
         };
     }
+   
+     //created with the help of a tutrioal from https:ciphertrick.com/2015/12/07/file-upload-with-angularjs-and-nodejs/ 
+   /* var fileUploadController = function ($scope, Upload, $window) {
+    var controllerInstance = this;
+     controllerInstance.submit = function () {
+             controllerInstance.upload(controllerInstance.file);
+         }
+     }
+     controllerInstance.upload() = function (file) {
+         Upload.upload({
+             url: 'IN HERE WILL BE OUR SERVER', //change the url to the one that we implement
+             data: {
+                 file: file
+             } //pass file as data, should be user ng-model
+         }).then(function (resp) { //upload function returns a promise
+             if (resp.data.error_code === 0) { //validate success
+                 $window.alert('Success ' + resp.config.data.file.name + 'uploaded. Response: ');
+             } else {
+                 $window.alert('an error occured');
+             }
+         }, function (resp) { //catch error
+             console.log('Error status: ' + resp.status);
+             $window.alert('Error status: ' + resp.status);
+         }, function (evt) {
+             console.log(evt);
+             var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+             console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+             controllerInstance.progress = 'progress: ' + progressPercentage + '% '; // capture upload progress
+         });
+     };
+     */
+
+ 
+
     var sloDirective = function () {
 		return {
 			templateUrl: 'directives/sloDirective.html'
@@ -120,8 +154,11 @@
 			templateUrl: 'directives/toolDir.html'
 		};
 	};
-    angular.module("assessment")
+    
+    angular
+        .module("assessment")
         .controller("mainController", mainController)
+        
         .service("genService", genService)
         .config(['ngQuillConfigProvider', function(ngQuillConfigProvider){
             ngQuillConfigProvider.set(null, null, 'custom placeholder')

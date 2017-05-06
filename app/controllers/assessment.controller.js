@@ -89,6 +89,70 @@ exports.createGoal = function(req, res, next) {
 		res.json(error(strings.notLoggedIn));
 	}
 };
+
+exports.createSLO = function(req, res, next) {
+	var year = '2016-2017';
+	var goalId = '590b688e91a58394226e13c8';
+	//TODO Get these as parameters
+
+	var id = mongoose.Types.ObjectId();
+
+	var sloObj = {
+		_id: id,
+		label: '',
+		data: {
+			info: '',
+			tool: '',
+			target: '',
+			result: '',
+			targetAchieved: true
+		}
+	};
+
+	if (req.user) {
+		Assessment.findOne({
+			department: req.user.department
+		}, 'evaluations', function (err, department) {
+			var evaluations = department.evaluations;
+
+			var evaluationForYear = evaluations.find(function (elem) {
+				return elem.year === year;
+			});
+
+			if (evaluationForYear) {
+				var evaluationObj = evaluationForYear.evaluation;
+				var goals = evaluationObj.children;
+
+				var goal = goals.find(function (elem) {
+					return elem.id === goalId;
+				});
+
+				if (goal) {
+					var slos = goal.children;
+					slos.push(sloObj);
+
+					department.save(function (err) {
+						if (err) {
+							next(err);
+						} else {
+							res.json(success({sloId: id}));
+						}
+					});
+				} else {
+					res.json(error(strings.noGoalFound));
+				}
+			} else {
+				res.json(error(strings.noEvaluationFound));
+			}
+		});
+	} else {
+		res.json(error(strings.notLoggedIn));
+	}
+};
+
+
+
+/**
  * Gets the list of years for the logged in user's department
  */
 exports.readAssessments = function (req, res, next) {

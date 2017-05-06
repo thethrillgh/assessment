@@ -1,4 +1,3 @@
-var Assessment = require('mongoose').model('Assessment');
 var mongoose = require('mongoose');
 var Assessment = mongoose.model('Assessment');
 
@@ -24,7 +23,7 @@ exports.create = function(req, res, next) {
 					if (err) {
 						next(err);
 					} else {
-						res.json({success: true});
+						res.json(success());
 					}
 				});
 			}
@@ -128,9 +127,16 @@ exports.readAssessment = function (req, res, next) {
 	}
 };
 
+var success = function (data) {
+	return {
+		success: true,
+		data: data || null
+	};
+}
+
 var error = function (message) {
 	return {
-		error: true,
+		success: false,
 		message: message
-	}
+	};
 }

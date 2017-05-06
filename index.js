@@ -13,31 +13,31 @@
         $scope.message = $sce.trustAsHtml($scope.message);
         $scope.treedata_avm = [
             {
-                label: 'Animal',
+                label: 'Goal 1',
                 children: [
                   {
-                    label: 'Dog',
+                    label: 'Student Learning Objective 1',
                     data: {
                       description: "man's best friend"
                     }
                   }, {
-                    label: 'Cat',
+                    label: 'Student Learning Objective 2',
                     data: {
                       description: "Felis catus"
                     }
                   }, {
-                    label: 'Hippopotamus',
+                    label: 'Student Learning Objective 3',
                     data: {
                       description: "hungry, hungry"
                     }
                   }, {
-                    label: 'Chicken',
-                    children: ['White Leghorn', 'Rhode Island Red', 'Jersey Giant']
+                    label: 'Student Learning Objective 4',
+                    children: ['Process 1', 'Process 2', 'Process 3']
                   }
                 ]
             }, 
             {
-                label: 'Vegetable',
+                label: 'Goal 2',
                 data: {
                   definition: "A plant or part of a plant used as food, typically as accompaniment to meat or fish, such as a cabbage, potato, carrot, or bean.",
                   data_can_contain_anything: true
@@ -47,9 +47,9 @@
                 },
                 children: [
                   {
-                    label: 'Oranges'
+                    label: 'Student Learning Objective 4'
                   }, {
-                    label: 'Apples',
+                    label: 'Student Learning Objective 5',
                     children: [
                       {
                         label: 'Granny Smith',
@@ -66,7 +66,7 @@
                 ]
           }, 
           {
-                label: 'Mineral',
+                label: 'Goal 3',
                 children: [
                   {
                     label: 'Rock',
@@ -89,7 +89,7 @@
                 ]
          },
          {
-          label: 'Languages',
+          label: 'Goal 4',
           children: ['Jade','Less','Coffeescript']
          }
         ];

@@ -7,11 +7,8 @@ var strings = require('../../config/strings');
  * Creates a new evaluation for a given year
  */
 exports.create = function(req, res, next) {
-	//var years = req.params.year; TODO Get this working
-	var years = '2016-2017';
-
 	//Init object for the evaluation with the given year
-	var evaluationObj = {year: years};
+	var evaluationObj = req.body;
 
 	if (req.user) {
 		Assessment.findOne({
@@ -39,7 +36,7 @@ exports.create = function(req, res, next) {
  * Creates a new empty goal with an id for a given evaluation year
  */
 exports.createGoal = function(req, res, next) {
-	var year = '2016-2017'; //TODO get this as a parameter
+	var year = req.body.year;
 
 	//Go ahead and generate id for the goal
 	var id = mongoose.Types.ObjectId();
@@ -167,7 +164,7 @@ exports.readAssessments = function (req, res, next) {
  * Gets all the information for the evaluation for a specific year
  */
 exports.readAssessment = function (req, res, next) {
-	var year = '2015-2017'; //TODO Get this as request parameter
+	var id = req.params.id;
 
 	if (req.user) {
 		var department = req.user.department;
@@ -179,12 +176,12 @@ exports.readAssessment = function (req, res, next) {
 			} else {
 				var evaluations = assessment.evaluations;
 				var eval = evaluations.find(function (elem) {
-					return elem.year === year;
+					return elem.id === id;
 				});
 				if (eval) {
 					res.json(eval);
 				} else {
-					res.json(error('No evaluation found for the given year'));
+					res.json(error(strings.noEvaluationFound));
 				}
 			}
 		});

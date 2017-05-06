@@ -1,4 +1,6 @@
 var Assessment = require('mongoose').model('Assessment');
+var mongoose = require('mongoose');
+var Assessment = mongoose.model('Assessment');
 
 var strings = require('../../config/strings');
 

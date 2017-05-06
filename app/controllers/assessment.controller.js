@@ -88,9 +88,8 @@ exports.createGoal = function(req, res, next) {
 };
 
 exports.createSLO = function(req, res, next) {
-	var year = '2016-2017';
-	var goalId = '590b688e91a58394226e13c8';
-	//TODO Get these as parameters
+	var year = req.body.year;
+	var goalId = req.body.goalId;
 
 	var id = mongoose.Types.ObjectId();
 
@@ -146,8 +145,6 @@ exports.createSLO = function(req, res, next) {
 		res.json(error(strings.notLoggedIn));
 	}
 };
-
-
 
 /**
  * Gets the list of years for the logged in user's department

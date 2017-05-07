@@ -130,3 +130,7 @@ a{
 .panel-collapse{
     color: black;
 }
+
+.imagestuff{
+    word-wrap: break-word;
+}

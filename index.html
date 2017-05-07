@@ -66,7 +66,7 @@
                                 <h3>Name your SLO</h3>
                                 <input > <button class="btn btn-success">Save</button>
                                 <h3>Describe your SLO</h3>
-                                <ng-quill-editor ng-model="message"></ng-quill-editor>
+                                <ng-quill-editor ng-model="message" image-tooltip="true"></ng-quill-editor>
                             </div>
                         </div>
                         <div class="col-md-3 right-col no-col-padding">
@@ -109,6 +109,7 @@
                                   </div>
                                 </div>
                               </div> 
+                            <div class="imagestuff">{{message}}</div>
                         </div>
                     </div>
                 </div>    

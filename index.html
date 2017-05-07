@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="//cdn.quilljs.com/1.1.5/quill.snow.css">
         <link rel="stylesheet" href="//cdn.quilljs.com/1.1.5/quill.bubble.css">
         <link rel="stylesheet" href="index.css">
+      
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="http://turing.centre.edu/~michael.bradshaw/js/angular.js"></script>
@@ -18,6 +19,11 @@
         <script src="dist/quill.js"></script>
         <script src="dist/ng-quill.js"></script>
         <script src="index.js"></script>
+        <!--    <script src="angular/angular.min.js"></script>
+        <script src="ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
+        <script src="ng-file-upload/dist/ng-file-upload.min.js"></script>
+     -->
+    
     </head>
     <body ng-app="assessment" ng-controller="mainController">
         <div class="container-fluid">
@@ -54,20 +60,7 @@
                           </div>
                         </nav>
                         <div class="col-md-9 no-col-padding middle-col">
-                            <div class="slo-header">
-                                Student Learning Objective
-                            </div>
-                            <div class="mycontainer">
-                                <p class="same_slo">Has your Student Learning Objective been revised from last year?</p>
-                                <div class="btn-group">
-                                  <button type="button" class="btn btn-default">Yes</button>
-                                  <button type="button" class="btn btn-default">No</button>
-                                </div>
-                                <h3>Name your SLO</h3>
-                                <input > <button class="btn btn-success">Save</button>
-                                <h3>Describe your SLO</h3>
-                                <ng-quill-editor ng-model="message" image-tooltip="true"></ng-quill-editor>
-                            </div>
+                           <tool-directive></tool-directive>
                         </div>
                         <div class="col-md-3 right-col no-col-padding">
 <!--                            <ng-quill-editor theme="bubble" ng-model="message" read-only="true"></ng-quill-editor>-->
@@ -79,9 +72,8 @@
                                     </h4>
                                   </div>
                                   <div id="collapse1" class="panel-collapse collapse in">
-                                    <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+                                    <div class="panel-body">possesses the core content knowledge of the discipline as well as an awareness of the ethical and social implications of computing technology.
+</div>
                                   </div>
                                 </div>
                                 <div class="panel panel-default">
@@ -91,9 +83,7 @@
                                     </h4>
                                   </div>
                                   <div id="collapse2" class="panel-collapse collapse">
-                                    <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+                                    <div class="panel-body">We use several tools for measuring students’ knowledge in the core curriculum. The ETS exam gives us a method of evaluating our students’ knowledge of the core curriculum (except for the social and ethical issues) and of comparing their performance to a larger group.  Secondly, using an online anonymous survey, we ask the seniors to reflect on how much they have learned during their course of study to gauge their confidence in their preparation. (This includes a question on the social and ethical issues.)  The alumni evaluation of their experience in the computer science program is also relevant here.</div>
                                   </div>
                                 </div>
                                 <div class="panel panel-default">
@@ -103,13 +93,11 @@
                                     </h4>
                                   </div>
                                   <div id="collapse3" class="panel-collapse collapse">
-                                    <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+                                    <div class="panel-body">To assess the students’ ability to carry out a significant project, we first make sure that all students complete a project course at Centre (currently CSC 336, Software Engineering or CSC 410 Database Systems).  On the online senior survey, we ask questions about their preparation for the project course and their ability to carry out a project once they have completed the course.  Finally, we ask the instructor to complete an evaluation of the projects which addresses the interaction with clients, the adherence to an appropriate development process and the submission of a functional piece of software.
+</div>
                                   </div>
                                 </div>
                               </div> 
-                            <div class="imagestuff">{{message}}</div>
                         </div>
                     </div>
                 </div>    

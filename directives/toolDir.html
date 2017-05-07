@@ -1,0 +1,26 @@
+<div class="slo-header">
+    Tool
+</div>
+<div class="mycontainer">
+    <p class="same_slo">Has your Tool been revised from last year?</p>
+    <div class="btn-group">
+        <button type="button" class="btn btn-default">Yes</button>
+        <button type="button" class="btn btn-default">No</button>
+    </div>
+    <form action="ourserversidestuff" method= "post"> <!-- use ng click -->
+        
+        <input type="file" id="myFile"  multiple="multiple">
+        <input type="submit">
+    </form>
+  
+    <h3>Name your tool</h3>
+    <input>
+    
+    <h3>Who is your target?</h3>
+    <input>
+    <button class="btn btn-success">Save</button>
+    <h3>Describe your tool as well as it's target</h3>
+    <ng-quill-editor ng-model="message"></ng-quill-editor>
+    
+    
+</div>

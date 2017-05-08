@@ -456,6 +456,11 @@
 			templateUrl: 'directives/actionplanDirective.html'
 		};
 	};
+    var missionDirective = function () {
+		return {
+			templateUrl: 'directives/missionDirective.html'
+		};
+	};
     
     angular
         .module("assessment")
@@ -473,7 +478,7 @@
         .directive("sloDirective",sloDirective)
         .directive("assessmentDirective",assessmentDirective)
         .directive("toolDirective", toolDirective)
-
+        .directive("missionDirective", missionDirective)
         .directive("goalDirective",goalDirective)
         .config(["$routeProvider", routingConfig]);
 

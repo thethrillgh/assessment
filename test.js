@@ -19,7 +19,6 @@ describe("Project Tests",function()
 	}
     });
  });
-    
     it("module should be registered",function()
        {
 	 expect( assessmentProject).toBeDefined();	   

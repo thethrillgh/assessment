@@ -18,356 +18,45 @@
                         {
                             label: "Goal 1",
                             data: {
-                                info: "",
+                                info: "possesses the core content knowledge of the discipline as well as an awareness of the ethical and social implications of computing technology.",
                                 type: "goal"
                             },
                             children: [
                                 {
                                     label: "SLO1",
                                     data: {
-                                        info: ""
+                                        info: "possesses the core content knowledge of the discipline as well as an awareness of the ethical and social implications of computing technology.",
+                                        type: "slo"
                                     },
                                     children: [
                                         {
-                                            label: "Process 1",
+                                            label: "Tool 1",
                                             data: {
-                                                info: ""
+                                                info: "We use several tools for measuring students’ knowledge in the core curriculum. The ETS exam gives us a method of evaluating our students’ knowledge of the core curriculum (except for the social and ethical issues) and of comparing their performance to a larger group.  Secondly, using an online anonymous survey, we ask the seniors to reflect on how much they have learned during their course of study to gauge their confidence in their preparation. (This includes a question on the social and ethical issues.)  The alumni evaluation of their experience in the computer science program is also relevant here.",
+                                                type: "tool"
                                             },
                                             children: [
                                                 {
                                                     label: "Result",
                                                     data: {
-                                                        info: ""
+                                                        info: "possesses the core content knowledge of the discipline as well as an awareness of the ethical and social implications of computing technology.",
+                                                        type: "result"
                                                     }
                                                 }
                                             ]
                                         },
                                         {
-                                            label: "Process 2",
+                                            label: "Tool 2",
                                             data: {
-                                                info: ""
+                                                info: "possesses the core content knowledge of the discipline as well as an awareness of the ethical and social implications of computing technology.",
+                                                type: "tool"
                                             },
                                             children: [
                                                 {
                                                     label: "Result",
                                                     data: {
-                                                        info: ""
-                                                    }
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    label: "SLO2",
-                                    data: {
-                                        info: ""
-                                    },
-                                    children: [
-                                        {
-                                            label: "Process 1",
-                                            data: {
-                                                info: ""
-                                            },
-                                            children: [
-                                                {
-                                                    label: "Result",
-                                                    data: {
-                                                        info: ""
-                                                    }
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            label: "Process 2",
-                                            data: {
-                                                info: ""
-                                            },
-                                            children: [
-                                                {
-                                                    label: "Result",
-                                                    data: {
-                                                        info: ""
-                                                    }
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    label: "SLO3",
-                                    data: {
-                                        info: ""
-                                    },
-                                    children: [
-                                        {
-                                            label: "Process 1",
-                                            data: {
-                                                info: ""
-                                            },
-                                            children: [
-                                                {
-                                                    label: "Result",
-                                                    data: {
-                                                        info: ""
-                                                    }
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            label: "Process 2",
-                                            data: {
-                                                info: ""
-                                            },
-                                            children: [
-                                                {
-                                                    label: "Result",
-                                                    data: {
-                                                        info: ""
-                                                    }
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            label: "Goal 2",
-                            data: {
-                                info: ""
-                            },
-                            children: [
-                                {
-                                    label: "SLO1",
-                                    data: {
-                                        info: ""
-                                    },
-                                    children: [
-                                        {
-                                            label: "Process 1",
-                                            data: {
-                                                info: ""
-                                            },
-                                            children: [
-                                                {
-                                                    label: "Result",
-                                                    data: {
-                                                        info: ""
-                                                    }
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            label: "Process 2",
-                                            data: {
-                                                info: ""
-                                            },
-                                            children: [
-                                                {
-                                                    label: "Result",
-                                                    data: {
-                                                        info: ""
-                                                    }
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    label: "SLO2",
-                                    data: {
-                                        info: ""
-                                    },
-                                    children: [
-                                        {
-                                            label: "Process 1",
-                                            data: {
-                                                info: ""
-                                            },
-                                            children: [
-                                                {
-                                                    label: "Result",
-                                                    data: {
-                                                        info: ""
-                                                    }
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            label: "Process 2",
-                                            data: {
-                                                info: ""
-                                            },
-                                            children: [
-                                                {
-                                                    label: "Result",
-                                                    data: {
-                                                        info: ""
-                                                    }
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    label: "SLO3",
-                                    data: {
-                                        info: ""
-                                    },
-                                    children: [
-                                        {
-                                            label: "Process 1",
-                                            data: {
-                                                info: ""
-                                            },
-                                            children: [
-                                                {
-                                                    label: "Result",
-                                                    data: {
-                                                        info: ""
-                                                    }
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            label: "Process 2",
-                                            data: {
-                                                info: ""
-                                            },
-                                            children: [
-                                                {
-                                                    label: "Result",
-                                                    data: {
-                                                        info: ""
-                                                    }
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            label: "Goal 3",
-                            data: {
-                                info: ""
-                            },
-                            children: [
-                                {
-                                    label: "SLO1",
-                                    data: {
-                                        info: ""
-                                    },
-                                    children: [
-                                        {
-                                            label: "Process 1",
-                                            data: {
-                                                info: ""
-                                            },
-                                            children: [
-                                                {
-                                                    label: "Result",
-                                                    data: {
-                                                        info: ""
-                                                    }
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            label: "Process 2",
-                                            data: {
-                                                info: ""
-                                            },
-                                            children: [
-                                                {
-                                                    label: "Result",
-                                                    data: {
-                                                        info: ""
-                                                    }
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    label: "SLO2",
-                                    data: {
-                                        info: ""
-                                    },
-                                    children: [
-                                        {
-                                            label: "Process 1",
-                                            data: {
-                                                info: ""
-                                            },
-                                            children: [
-                                                {
-                                                    label: "Result 1",
-                                                    data: {
-                                                        info: ""
-                                                    }
-                                                },
-                                                {
-                                                    label: "Result 2",
-                                                    data: {
-                                                        info: ""
-                                                    }
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            label: "Process 2",
-                                            data: {
-                                                info: ""
-                                            },
-                                            children: [
-                                                {
-                                                    label: "Result 1",
-                                                    data: {
-                                                        info: ""
-                                                    }
-                                                },
-                                                {
-                                                    label: "Result 2",
-                                                    data: {
-                                                        info: ""
-                                                    }
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    label: "SLO3",
-                                    data: {
-                                        info: ""
-                                    },
-                                    children: [
-                                        {
-                                            label: "Process 1",
-                                            data: {
-                                                info: ""
-                                            },
-                                            children: [
-                                                {
-                                                    label: "Result",
-                                                    data: {
-                                                        info: ""
-                                                    }
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            label: "Process 2",
-                                            data: {
-                                                info: ""
-                                            },
-                                            children: [
-                                                {
-                                                    label: "Result",
-                                                    data: {
-                                                        info: ""
+                                                        info: "possesses the core content knowledge of the discipline as well as an awareness of the ethical and social implications of computing technology.",
+                                                        type: "result"
                                                     }
                                                 }
                                             ]
@@ -381,12 +70,49 @@
             ]
         }
     };
+
+
     var mainController = function($scope, genService, $sce, Upload){
         
         var tree = $scope.my_tree = {};
-        console.log(tree)
+        console.log(tree);
+        $scope.goalHide = true;
+        $scope.sloHide = true;
+        $scope.toolHide = true;
+        $scope.resultHide = true;
+        $scope.missionHide = true;
         $scope.tree_handler = function(branch){
-            console.log(branch.data.type)
+            if(branch.data.type == "mission"){
+                $scope.goalHide = true;
+                $scope.sloHide = true;
+                $scope.toolHide = true;
+                $scope.resultHide = true;
+                $scope.missionHide = true;
+            }
+            if(branch.data.type == "goal"){
+                $scope.missionHide = false;
+                $scope.goalHide = true;
+                $scope.missionData = branch.data.info;
+            }
+            else if(branch.data.type == "slo"){
+                $scope.missionHide = true;
+                $scope.goalHide = false;
+                $scope.sloHide = true;
+                $scope.goalData = branch.data.info;
+                
+            }
+            else if(branch.data.type == "tool"){
+                $scope.goalHide = false;
+                $scope.sloHide = false;
+                $scope.toolHide = true;
+                $scope.sloData = branch.data.info;
+            }
+            else if(branch.data.type == "result"){
+                $scope.goalHide = false;
+                $scope.sloHide = false;
+                $scope.toolHide = false;
+                $scope.toolData = branch.data.info;
+            }
         }
         $scope.message = $sce.trustAsHtml($scope.message);
         $scope.treedata_avm = genService.report;

@@ -1,6 +1,6 @@
 ( function()
 {
-    angular.module("assessment", ['angularBootstrapNavTree', 'ngAnimate', 'ngQuill', 'ngRoute']); /* add fileUpload later */
+    angular.module("assessment", ['angularBootstrapNavTree', 'ngRoute', 'ngAnimate', 'ngQuill', 'ngRoute']); /* add fileUpload later */
     var genService = function(){
         return ["pizza", "pasta", "potatoes", "carrots"]
     };
@@ -137,7 +137,13 @@
      };
      */
 
- 
+var routingConfig = function ($routeProvider) {
+		$routeProvider
+		.when('/', {
+			templateUrl: 'templates/login.html',
+			controller: 'loginController'
+		});
+	};
 
     var sloDirective = function () {
 		return {
@@ -176,7 +182,7 @@
         
         .service("genService", genService)
         .config(['ngQuillConfigProvider', function(ngQuillConfigProvider){
-            ngQuillConfigProvider.set(null, null, 'custom placeholder')
+            ngQuillConfigProvider.set(null, null, 'custom placeholder');
     
         }])
         .directive("apDirective",apDirective)

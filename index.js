@@ -415,7 +415,7 @@
     var routingConfig = function($routeProvider){
         $routeProvider
         .when("/", {
-            templateUrl: "mission.html"
+            templateUrl: "ngviews/slo-view.html"
         })
         .when("/goal", {
             templateUrl: "goal.html",
@@ -468,10 +468,7 @@
         
         .service("genService", genService)
         .config(['ngQuillConfigProvider', function(ngQuillConfigProvider){
-
             ngQuillConfigProvider.set(null, null, 'custom placeholder')
-
-    
         }])
         .directive("apDirective",apDirective)
         .directive("resultsDirective",resultsDirective)

@@ -1,6 +1,8 @@
 ( function()
 {
+
     angular.module("assessment", ['angularBootstrapNavTree', 'ngAnimate', 'ngQuill', 'ngRoute', 'ngFileUpload']);
+
     var genService = function(){
         return {
             department: "Computer Science",
@@ -115,7 +117,9 @@
             }
         }
         $scope.message = $sce.trustAsHtml($scope.message);
+
         $scope.treedata_avm = genService.report;
+
         $scope.add_branch = function() {
           var b;
           b = tree.get_selected_branch();
@@ -128,6 +132,7 @@
           });
         };
     }
+
     
     var treeView =  function($scope, $routeParams, $location){
         
@@ -136,7 +141,7 @@
     var routingConfig = function($routeProvider){
         $routeProvider
         .when("/", {
-            templateUrl: "mission.html"
+            templateUrl: "ngviews/slo-view.html"
         })
         .when("/goal", {
             templateUrl: "goal.html",
@@ -144,6 +149,7 @@
         })
         .otherwise({redirectTo: "/bad.html"})
     }
+
 
 
     var sloDirective = function () {
@@ -176,6 +182,11 @@
 			templateUrl: 'directives/actionplanDirective.html'
 		};
 	};
+    var missionDirective = function () {
+		return {
+			templateUrl: 'directives/missionDirective.html'
+		};
+	};
     
     angular
         .module("assessment")
@@ -184,15 +195,16 @@
         .service("genService", genService)
         .config(['ngQuillConfigProvider', function(ngQuillConfigProvider){
             ngQuillConfigProvider.set(null, null, 'custom placeholder')
-    
         }])
         .directive("apDirective",apDirective)
         .directive("resultsDirective",resultsDirective)
         .directive("sloDirective",sloDirective)
         .directive("assessmentDirective",assessmentDirective)
         .directive("toolDirective", toolDirective)
+        .directive("missionDirective", missionDirective)
         .directive("goalDirective",goalDirective)
         .config(["$routeProvider", routingConfig]);
+
 
      
 })

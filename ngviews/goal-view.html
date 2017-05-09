@@ -1,0 +1,78 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 no-col-padding">
+            <nav class="navbar nav-left">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                  <a class="navbar-brand" href="#">Computer Science</a>
+                </div>
+              </div>
+            </nav>
+            <abn-tree 
+                tree-data="treedata_avm"
+                on-select="tree_handler(branch)"
+                tree-control="my_tree"
+                icon-leaf="fa fa-file"
+                icon-expand="fa fa-caret-down"
+                icon-collapse="fa fa-caret-up"
+                expand-level= "3" class="dark_gray"
+                initial-selection = "Mission Statement">
+            </abn-tree>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <nav class="navbar navbar-default">
+                  <div class="container-fluid">
+                    <ul class="nav navbar-nav">
+                      <li class="active"><a href="#">Assess</a></li>
+                      <li><a href="#">Evaluate</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Out</a></li>
+                    </ul>
+                  </div>
+                </nav>
+                <div class="col-md-9 no-col-padding middle-col">
+                   <goal-directive></goal-directive>
+                </div>
+                <div class="col-md-3 right-col no-col-padding">
+<!--                            <ng-quill-editor theme="bubble" ng-model="message" read-only="true"></ng-quill-editor>-->
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <h4 class="panel-title">
+                              <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Goal</a>
+                            </h4>
+                          </div>
+                          <div id="collapse1" class="panel-collapse collapse in">
+                            <div class="panel-body">possesses the core content knowledge of the discipline as well as an awareness of the ethical and social implications of computing technology.
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <h4 class="panel-title">
+                              <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Tool</a>
+                            </h4>
+                          </div>
+                          <div id="collapse2" class="panel-collapse collapse">
+                            <div class="panel-body">We use several tools for measuring students’ knowledge in the core curriculum. The ETS exam gives us a method of evaluating our students’ knowledge of the core curriculum (except for the social and ethical issues) and of comparing their performance to a larger group.  Secondly, using an online anonymous survey, we ask the seniors to reflect on how much they have learned during their course of study to gauge their confidence in their preparation. (This includes a question on the social and ethical issues.)  The alumni evaluation of their experience in the computer science program is also relevant here.</div>
+                          </div>
+                        </div>
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <h4 class="panel-title">
+                              <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Process</a>
+                            </h4>
+                          </div>
+                          <div id="collapse3" class="panel-collapse collapse">
+                            <div class="panel-body">To assess the students’ ability to carry out a significant project, we first make sure that all students complete a project course at Centre (currently CSC 336, Software Engineering or CSC 410 Database Systems).  On the online senior survey, we ask questions about their preparation for the project course and their ability to carry out a project once they have completed the course.  Finally, we ask the instructor to complete an evaluation of the projects which addresses the interaction with clients, the adherence to an appropriate development process and the submission of a functional piece of software.
+</div>
+                          </div>
+                        </div>
+                      </div> 
+                </div>
+            </div>
+        </div>    
+    </div>
+</div>

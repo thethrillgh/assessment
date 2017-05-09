@@ -5,6 +5,10 @@
 
     var genService = function(){
         return {
+            currentBranch: {
+                label: "Mission Statement",
+                data: ""
+            },
             department: "Computer Science",
             user: "",
             changedGoal: false,
@@ -74,46 +78,42 @@
     };
 
 
-    var mainController = function($scope, genService, $sce, Upload){
-        
+    var mainController = function($scope, genService, $sce, Upload, $location, $routeParams){
         var tree = $scope.my_tree = {};
-        console.log(tree);
-        $scope.goalHide = true;
-        $scope.sloHide = true;
-        $scope.toolHide = true;
-        $scope.resultHide = true;
-        $scope.missionHide = true;
+        $scope.goalHide = $scope.sloHide = $scope.toolHide = $scope.resultHide = $scope.missionHide = true;
+        function branchInitialize(type, branch){
+            genService.currentBranch.label = branch.label;
+            genService.currentBranch.data = branch.data;
+            $scope.label = genService.currentBranch.label;
+            $location.path(type+'/'+branch.label);
+        }
         $scope.tree_handler = function(branch){
             if(branch.data.type == "mission"){
-                $scope.goalHide = true;
-                $scope.sloHide = true;
-                $scope.toolHide = true;
-                $scope.resultHide = true;
-                $scope.missionHide = true;
+                $scope.goalHide = $scope.sloHide = $scope.toolHide = $scope.resultHide = $scope.missionHide = true;
             }
             if(branch.data.type == "goal"){
                 $scope.missionHide = false;
                 $scope.goalHide = true;
                 $scope.missionData = branch.data.info;
+                branchInitialize("goal", branch)
             }
             else if(branch.data.type == "slo"){
-                $scope.missionHide = true;
+                $scope.missionHide = $scope.sloHide = true;
                 $scope.goalHide = false;
-                $scope.sloHide = true;
                 $scope.goalData = branch.data.info;
+                branchInitialize("slo", branch);
                 
             }
             else if(branch.data.type == "tool"){
-                $scope.goalHide = false;
-                $scope.sloHide = false;
+                $scope.goalHide = $scope.sloHide = false;
                 $scope.toolHide = true;
                 $scope.sloData = branch.data.info;
+                branchInitialize("tool", branch);
             }
             else if(branch.data.type == "result"){
-                $scope.goalHide = false;
-                $scope.sloHide = false;
-                $scope.toolHide = false;
+                $scope.goalHide = $scope.sloHide = $scope.toolHide = false;
                 $scope.toolData = branch.data.info;
+                branchInitialize("result", branch);
             }
         }
         $scope.message = $sce.trustAsHtml($scope.message);
@@ -141,11 +141,25 @@
     var routingConfig = function($routeProvider){
         $routeProvider
         .when("/", {
+            templateUrl: "ngviews/mission-view.html"
+        })
+        .when("/goal/:branch", {
+            templateUrl: "ngviews/goal-view.html"
+        })
+        .when("/slo/:branch", {
             templateUrl: "ngviews/slo-view.html"
         })
-        .when("/goal", {
-            templateUrl: "goal.html",
-            controller: "goalController"
+        .when("/tool/:branch", {
+            templateUrl: "ngviews/tool-view.html"
+        })
+        .when("/actionplan/:branch", {
+            templateUrl: "ngviews/actionplan-view.html"
+        })
+        .when("/result/:branch", {
+            templateUrl: "ngviews/results-view.html"
+        })
+        .when("/mission/:branch", {
+            templateUrl: "ngviews/mission-view.html"
         })
         .otherwise({redirectTo: "/bad.html"})
     }

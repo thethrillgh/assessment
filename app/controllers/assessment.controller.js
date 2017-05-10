@@ -8,9 +8,46 @@ var strings = require('../../config/strings');
  */
 exports.create = function(req, res, next) {
 	//Init object for the evaluation with the given year
-	var evaluationObj = req.body;
+	var evaluationObj = {year: req.body.year};
 
 	if (req.user) {
+		var evaluationObj = req.body;
+		if (evaluationObj.year) {
+			var id = mongoose.Types.ObjectId();
+			evaluationObj._id = id;
+
+			//Init the empty evaluation object that will be passed to Angular
+			evaluationObj.evaluation = {
+				label: 'Mission Statement',
+				data: {
+					info: ''
+				}
+			};
+
+			//Get the department from the database, add the new evaluation to the evaluations arr, and save
+			Assessment.findOne({
+				department: req.user.department
+			}, 'evaluations', function (err, assessment) {
+				if (err) {
+					next(err);
+				} else {
+					assessment.evaluations.push(evaluationObj);
+					assessment.save(function (err) {
+						if (err) {
+							next(err);
+						} else {
+							res.json(success({assessmentId: id}));
+						}
+					});
+				}
+			});
+		} else {
+			res.json(error(strings.noEvaluationYearGiven));
+		}
+	} else {
+		res.json(error(strings.notLoggedIn))
+	}
+};
 		Assessment.findOne({
 			department: req.user.department
 		}, 'evaluations', function (err, assessment) {

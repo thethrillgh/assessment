@@ -26,13 +26,25 @@ var AssessmentSchema = new Schema({
 						children: [ //Student Learning Objectives
 							{
 								label: String,
-								data: { //All info for SLO
-									info: String,
-									tool: String,
-									target: String,
-									result: String,
-									targetAchieved: Boolean
-								}
+								data: {
+									info: String
+								},
+								children: [ //Processes and results
+									{
+										label: String, //Process
+										data: {
+											info: String
+										},
+										children: [ //Results
+											{
+												label: String,
+												data: {
+													info: String
+												}
+											}
+										]
+									}
+								]
 							}
 						]
 					}

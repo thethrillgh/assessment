@@ -449,6 +449,614 @@ exports.createSLO = function(req, res, next) {
 };
 
 /**
+ * Updates a Student Learning Objective
+ */
+exports.updateSLO = function (req, res, next) {
+	//Get all the needed parameters for the SLO update
+	var assessmentId = req.body.assessmentId;
+	var goalId = req.body.goalId;
+	var sloId = req.body.sloId;
+	var updatedSLO = req.body.updatedSLO;
+
+	//Make sure they are all set
+	if (!assessmentId) {
+		res.json(error(strings.noEvaluationIdGiven));
+		return;
+	}
+
+	if (!goalId) {
+		res.json(error(strings.noGoalIdGiven));
+		return;
+	}
+
+	if (!sloId) {
+		res.json(error(strings.noSLOIdGiven));
+		return;
+	}
+
+	if (!updatedSLO) {
+		res.json(error(strings.noSLOGiven));
+		return;
+	}
+
+	//Mission Statement > Goals > SLOs > Processes and Results
+
+	//Make sure the user is logged in
+	if (req.user) {
+		//Get the department object from the database
+		Assessment.findOne({
+			department: req.user.department
+		}, 'evaluations', function (err, department) {
+			if (err) {
+				next(err);
+			} else {
+				//Find the evaluation for the wanted year
+				var evaluations = department.evaluations;
+				var evaluationForYear = evaluations.find(function (elem) {
+					return elem.id === assessmentId;
+				});
+
+				//Make sure the evaluation is found
+				if (evaluationForYear) {
+					var evaluationObj = evaluationForYear.evaluation;
+
+					//Find the goal object
+					var goals = evaluationObj.children;
+					var goal = goals.find(function (elem) {
+						return elem.id === goalId;
+					});
+
+					//Make sure the goal is found
+					if (goal) {
+						//Find the SLO object
+						var slos = goal.children;
+						var slo = slos.find(function (elem) {
+							return elem.id === sloId;
+						});
+
+						//Make sure the SLO is found
+						if (slo) {
+							//Update the info of the SLO
+							slo.data.info = updatedSLO;
+
+							//Save it back to the database
+							department.save(function (err) {
+								if (err) {
+									next(err);
+								} else {
+									res.json(success());
+								}
+							})
+						} else {
+							res.json(error(strings.noSLOFound));
+						}
+					} else {
+						res.json(error(strings.noGoalFound));
+					}
+				} else {
+					res.json(error(strings.noEvaluationFound));
+				}
+			}
+		});
+	} else {
+		res.json(error(strings.notLoggedIn));
+	}
+};
+
+/**
+ * Deletes a Student Learning Objective from the database
+ */
+exports.deleteSLO = function (req, res, next) {
+	//Get the assessment, goal, and SLO id
+	var assessmentId = req.body.assessmentId;
+	var goalId = req.body.goalId;
+	var sloId = req.body.sloId;
+
+	//Make sure all of these are set
+	if (!assessmentId) {
+		res.json(error(strings.noEvaluationIdGiven));
+	}
+
+	if (!goalId) {
+		res.json(error(strings.noGoalIdGiven));
+	}
+
+	if (!sloId) {
+		res.json(error(strings.noSLOIdGiven));
+	}
+
+	//Make sure the user is logged in
+	if (req.user) {
+		//Get the department object from the database
+		Assessment.findOne({
+			department: req.user.department
+		}, 'evaluations', function (err, department) {
+			if (err) {
+				next(err);
+			} else {
+				//Find the evaluation for the wanted year
+				var evaluations = department.evaluations;
+				var evaluationForYear = evaluations.find(function (elem) {
+					return elem.id === assessmentId;
+				});
+
+				//Make sure the evaluation is found
+				if (evaluationForYear) {
+					var evaluationObj = evaluationForYear.evaluation;
+
+					//Find the goal object
+					var goals = evaluationObj.children;
+					var goal = goals.find(function (elem) {
+						return elem.id === goalId;
+					});
+
+					//Make sure the goal is found
+					if (goal) {
+						//Find the index of the SLO to delete
+						var slos = goal.children;
+						var i1;
+						for (i1 = 0; i1 < slos.length; i1++) {
+							if (slos[i1].id === sloId) {
+								break;
+							}
+						}
+
+						//Make sure the index is found for the SLO, and delete it
+						if (i1 !== slos.length) {
+							slos.splice(i1, 1);
+
+							//Save the department back to the database
+							department.save(function (err) {
+								if (err) {
+									next(err);
+								} else {
+									res.json(success());
+								}
+							});
+						} else {
+							res.json(error(strings.noSLOFound));
+						}
+					} else {
+						res.json(error(strings.noGoalFound));
+					}
+				} else {
+					res.json(error(strings.noEvaluationFound));
+				}
+			}
+		});
+	} else {
+		res.json(error(strings.notLoggedIn));
+	}
+};
+
+/**
+ * Creates a new process and result under a SLO
+ */
+exports.createProcess = function (req, res, next) {
+	//Get the assessment, goal, and SLO id
+	var assessmentId = req.body.assessmentId;
+	var goalId = req.body.goalId;
+	var sloId = req.body.sloId;
+
+	//Make sure all required parameters were sent
+	if (!assessmentId) {
+		res.json(error(strings.noEvaluationIdGiven));
+		return;
+	}
+
+	if (!goalId) {
+		res.json(error(strings.noGoalIdGiven));
+		return;
+	}
+
+	if (!sloId) {
+		res.json(error(strings.noSLOIdGiven));
+		return;
+	}
+
+	//Create empty process and result object with id
+	var id = mongoose.Types.ObjectId();
+
+	var processObj = {
+		_id: id,
+		label: 'Process',
+		data: {
+			info: ''
+		},
+		children: [
+			{
+				label: 'Result',
+				data: {
+					info: ''
+				}
+			}
+		]
+	};
+
+	//Make sure the user is logged in
+	if (req.user) {
+		//Get the department object
+		Assessment.findOne({
+			department: req.user.department
+		}, 'evaluations', function (err, department) {
+			if (err) {
+				next(err);
+			} else {
+				//Find the evaluation for the year (for the given id)
+				var evaluations = department.evaluations;
+				var evaluationForYear = evaluations.find(function (elem) {
+					return elem.id === assessmentId;
+				});
+
+				//Make sure the evaluation is found
+				if (evaluationForYear) {
+					var evaluationObj = evaluationForYear.evaluation;
+
+					//Find the goal for the id
+					var goals = evaluationObj.children;
+					var goal = goals.find(function (elem) {
+						return elem.id === goalId;
+					});
+
+					//Make sure the goal is found
+					if (goal) {
+						//Find the SLO for the id
+						var slos = goal.children;
+						var slo = slos.find(function (elem) {
+							return elem.id === sloId;
+						});
+
+						//Push the process object onto the SLO's children
+						var processes = slo.children;
+						processes.push(processObj);
+
+						//Save it back to the database
+						department.save(function (err) {
+							if (err) {
+								next(err);
+							} else {
+								res.json(success({processId: id}));
+							}
+						})
+					} else {
+						res.json(error(strings.noGoalFound));
+					}
+				} else {
+					res.json(error(strings.noEvaluationFound));
+				}
+			}
+		});
+	} else {
+		res.json(error(strings.notLoggedIn));
+	}
+};
+
+/**
+ * Updates a process
+ */
+exports.updateProcess = function (req, res, next) {
+	//Get all the needed ids
+	var assessmentId = req.body.assessmentId;
+	var goalId = req.body.goalId;
+	var sloId = req.body.sloId;
+	var processId = req.body.processId;
+	var updatedProcess = req.body.updatedProcess;
+
+	//Make sure everything is sent correctly
+	if (!assessmentId) {
+		res.json(error(strings.noEvaluationIdGiven));
+		return;
+	}
+
+	if (!goalId) {
+		res.json(error(strings.noGoalIdGiven));
+		return;
+	}
+
+	if (!sloId) {
+		res.json(error(strings.noSLOIdGiven));
+		return;
+	}
+
+	if (!processId) {
+		res.json(error(strings.noProcessIdGiven));
+		return;
+	}
+
+	if (!updatedProcess) {
+		res.json(error(strings.noProcessGiven));
+		return;
+	}
+
+	//Make sure the user is logged in
+	if (req.user) {
+		//Get the department object from the database
+		Assessment.findOne({
+			department: req.user.department
+		}, 'evaluations', function (err, department) {
+			if (err) {
+				next(err);
+			} else {
+				//Find the evaluation for this year (for the given id)
+				var evaluations = department.evaluations;
+				var evaluationForYear = evaluations.find(function (elem) {
+					return elem.id === assessmentId;
+				});
+
+				//Make sure the evaluation object is found
+				if (evaluationForYear) {
+					var evaluationObj = evaluationForYear.evaluation;
+
+					//Find the goal object
+					var goals = evaluationObj.children;
+					var goal = goals.find(function (elem) {
+						return elem.id === goalId;
+					});
+
+					//Make sure the goal is found
+					if (goal) {
+						//Find the slo object
+						var slos = goal.children;
+						var slo = slos.find(function (elem) {
+							return elem.id === sloId;
+						});
+
+						//Make sure the slo is found
+						if (slo) {
+							//Find the process to update
+							var processes = slo.children;
+							var proces = processes.find(function (elem) {
+								return elem.id === processId;
+							});
+
+							//Update the process
+							proces.data.info = updatedProcess;
+
+							//Save it back to the database
+							department.save(function (err) {
+								if (err) {
+									next(err);
+								} else {
+									res.json(success());
+								}
+							});
+						} else {
+							res.json(error(strings.noSLOFound));
+						}
+					} else {
+						res.json(error(strings.noGoalFound));
+					}
+				} else {
+					res.json(error(strings.noEvaluationFound));
+				}
+			}
+		});
+	} else {
+		res.json(error(strings.notLoggedIn));
+	}
+};
+
+/**
+ * Deletes a process from the database
+ */
+exports.deleteProcess = function (req, res, next) {
+	//Get all the needed ids
+	var assessmentId = req.body.assessmentId;
+	var goalId = req.body.goalId;
+	var sloId = req.body.sloId;
+	var processId = req.body.processId;
+
+	//Make sure everything is sent properly
+	if (!assessmentId) {
+		res.json(error(strings.noEvaluationIdGiven));
+		return;
+	}
+
+	if (!goalId) {
+		res.json(error(strings.noGoalIdGiven));
+		return;
+	}
+
+	if (!sloId) {
+		res.json(error(strings.noSLOIdGiven));
+		return;
+	}
+
+	if (!processId) {
+		res.json(error(strings.noProcessIdGiven));
+		return;
+	}
+
+	//Make sure the user is logged in
+	if (req.user) {
+		//Get the department object from the database
+		Assessment.findOne({
+			department: req.user.department
+		}, 'evaluations', function (err, department) {
+			if (err) {
+				next(err);
+			} else {
+				//Find the evaluation for this year (for the given id)
+				var evaluations = department.evaluations;
+				var evaluationForYear = evaluations.find(function (elem) {
+					return elem.id === assessmentId;
+				});
+
+				//Make sure the evaluation is found
+				if (evaluationForYear) {
+					var evaluationObj = evaluationForYear.evaluation;
+
+					//Find the goal object
+					var goals = evaluationObj.children;
+					var goal = goals.find(function (elem) {
+						return elem.id === goalId;
+					});
+
+					//Make sure the goal is found
+					if (goal) {
+						//Find the SLO object
+						var slos = goal.children;
+						var slo = slos.find(function (elem) {
+							return elem.id === sloId;
+						});
+
+						//Make sure the SLO is found
+						if (slo) {
+							//Find the index of the process to delete
+							var processes = slo.children;
+							var i1;
+							for (i1 = 0; i1 < processes.length; i1++) {
+								if (processes[i1].id === processId) {
+									break;
+								}
+							}
+
+							//Make sure the process is found, and delete it
+							if (i1 !== processes.length) {
+								processes.splice(i1, 1);
+
+								//Save it back to the database
+								department.save(function (err) {
+									if (err) {
+										next(err);
+									} else {
+										res.json(success());
+									}
+								})
+							} else {
+								res.json(error(strings.noProcessFound));
+							}
+						} else {
+							res.json(error(strings.noSLOFound));
+						}
+					} else {
+						res.json(error(strings.noGoalFound));
+					}
+				} else {
+					res.json(error(strings.noEvaluationFound));
+				}
+			}
+		});
+	} else {
+		res.json(error(strings.notLoggedIn));
+	}
+};
+
+/**
+ * Updates a result for a process
+ */
+exports.updateResult = function (req, res, next) {
+	//Get all the needed ids and the update
+	var assessmentId = req.body.assessmentId;
+	var goalId = req.body.goalId;
+	var sloId = req.body.sloId;
+	var processId = req.body.processId;
+	var updatedResult = req.body.updatedResult;
+
+	//Make sure everything was sent
+	if (!assessmentId) {
+		res.json(error(strings.noEvaluationIdGiven));
+		return;
+	}
+
+	if (!goalId) {
+		res.json(error(strings.noGoalIdGiven));
+		return;
+	}
+
+	if (!sloId) {
+		res.json(error(strings.noSLOIdGiven));
+		return;
+	}
+
+	if (!processId) {
+		res.json(error(strings.noProcessIdGiven));
+		return;
+	}
+
+	if (!updatedResult) {
+		res.json(error(strings.noResultGiven));
+		return;
+	}
+
+	//Make sure the user is logged in
+	if (req.user) {
+		//Get the department object from the database
+		Assessment.findOne({
+			department: req.user.department
+		}, 'evaluations', function (err, department) {
+			if (err) {
+				next(err);
+			} else {
+				//Find the evaluation object for this year (for the given id)
+				var evaluations = department.evaluations;
+				var evaluationForYear = evaluations.find(function (elem) {
+					return elem.id === assessmentId;
+				});
+
+				//Make sure the evaluation is found
+				if (evaluationForYear) {
+					var evaluationObj = evaluationForYear.evaluation;
+
+					//Find the goal object
+					var goals = evaluationObj.children;
+					var goal = goals.find(function (elem) {
+						return elem.id === goalId;
+					});
+
+					//Make sure the goal is found
+					if (goal) {
+						//Find the SLO object
+						var slos = goal.children;
+						var slo = slos.find(function (elem) {
+							return elem.id === sloId;
+						});
+
+						//Make sure the SLO is found
+						if (slo) {
+							//Find the process object
+							var processes = slo.children;
+							var proces = processes.find(function (elem) {
+								return elem.id === processId;
+							});
+
+							//Make sure the process is found
+							if (proces) {
+								//Get the result object
+								var resultArr = proces.children;
+								var result = resultArr[0];
+
+								//Update the result
+								result.data.info = updatedResult;
+
+								//Save it back to the database
+								department.save(function (err) {
+									if (err) {
+										next(err);
+									} else {
+										res.json(success());
+									}
+								})
+							} else {
+								res.json(error(strings.noProcessFound));
+							}
+						} else {
+							res.json(error(strings.noSLOFound));
+						}
+					} else {
+						res.json(error(strings.noGoalFound));
+					}
+				} else {
+					res.json(error(strings.noEvaluationFound));
+				}
+			}
+		});
+	} else {
+		res.json(error(strings.notLoggedIn));
+	}
+};
+
+/**
  * Gets the list of years for the logged in user's department
  */
 exports.readAssessments = function (req, res, next) {

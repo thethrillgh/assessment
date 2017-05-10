@@ -221,33 +221,84 @@ exports.delete = function(req, res, next) {
 		res.json(error(strings.notLoggedIn));
 	}
 };
+
+/**
+ * Updates the information for a goal
+ */
+exports.updateGoal = function (req, res, next) {
+	//Find the three things from the body needed
+	var assessmentId = req.body.assessmentId;
+	var goalId = req.body.goalId;
+	var goalUpdate = req.body.goal;
+
+	//Make sure each of these three things are given
+	if (!assessmentId) {
+		res.json(error(strings.noEvaluationIdGiven));
+		return;
+	}
+
+	if (!goalId) {
+		res.json(error(strings.noGoalIdGiven));
+		return;
+	}
+
+	if (!goalUpdate) {
+		res.json(error(strings.noGoalGiven));
+		return;
+	}
+
+	//Make sure the user is logged in
 	if (req.user) {
+		//Get the department object from the database
 		Assessment.findOne({
-			department: 'Anthropology/Sociology' //req.user.department
+			department: req.user.department
 		}, 'evaluations', function (err, department) {
 			if (err) {
 				next(err);
 			} else {
 				var evaluations = department.evaluations;
 
-				//Find the evaluation for the given year
+				//Find the evaluation for this year (for the id given)
 				var evaluationForYear = evaluations.find(function (elem) {
-					return elem.year === year;
+					return elem.id === assessmentId;
 				});
 
-				//Make sure the evaluation for given year exists
+				//Make sure the evaluation is found
 				if (evaluationForYear) {
 					var evaluationObj = evaluationForYear.evaluation;
+
 					var goals = evaluationObj.children;
 
-					var goalsLen = goals.push(goalObj);
-					department.save(function (err) {
-						if (err) {
-							next(err);
-						} else {
-							res.json(success({goalId: id}));
-						}
+					//Find the goal with the given id
+					var goal = goals.find(function (elem) {
+						return elem.id === goalId;
 					});
+
+					//Make sure the goal is found
+					if (goal) {
+						//Set the goal
+						goal.data.info = goalUpdate;
+
+						//Save it back to the database
+						department.save(function (err) {
+							if (err) {
+								next(err);
+							} else {
+								res.json(success());
+							}
+						});
+					} else {
+						res.json(error(strings.noGoalFound));
+					}
+				} else {
+					res.json(error(strings.noEvaluationFound));
+				}
+			}
+		});
+	} else {
+		res.json(error(strings.notLoggedIn));
+	}
+};
 				} else {
 					res.json(error(strings.noEvaluationFound));
 				}

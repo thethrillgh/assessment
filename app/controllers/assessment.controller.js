@@ -299,6 +299,68 @@ exports.updateGoal = function (req, res, next) {
 		res.json(error(strings.notLoggedIn));
 	}
 };
+
+/**
+ * Deletes a goal from the database for an assessment
+ */
+exports.deleteGoal = function (req, res, next) {
+	//Get the assessment and goal ids
+	var assessmentId = req.body.assessmentId;
+	var goalId = req.body.goalId;
+
+	//Make sure they are set correctly
+	if (!assessmentId) {
+		res.json(error(strings.noEvaluationIdGiven));
+		return;
+	}
+
+	if (!goalId) {
+		res.json(error(strings.noGoalIdGiven));
+		return;
+	}
+
+	//Make sure the user is logged in
+	if (req.user) {
+		//Get the department object from the database
+		Assessment.findOne({
+			department: req.user.department
+		}, 'evaluations', function (err, department) {
+			if (err) {
+				next(err);
+			} else {
+				//Find the evaluation for that year (for the id given)
+				var evaluations = department.evaluations;
+				var evaluationForYear = evaluations.find(function (elem) {
+					return elem.id === assessmentId;
+				});
+
+				if (evaluationForYear) {
+					var evaluationObj = evaluationForYear.evaluation;
+
+					//Find the id of the goal to delete
+					var goals = evaluationObj.children;
+					var i1;
+					for (i1 = 0; i1 < goals.length; i1++) {
+						if (goals[i1].id === goalId) {
+							break;
+						}
+					}
+
+					//Make sure the goal is found, and delete it
+					if (i1 !== goals.length) {
+						goals.splice(i1, 1);
+
+						//Save it back to the database
+						department.save(function (err) {
+							if (err) {
+								next(err);
+							} else {
+								res.json(success());
+							}
+						});
+					} else {
+						res.json(error(strings.noGoalFound));
+					}
 				} else {
 					res.json(error(strings.noEvaluationFound));
 				}

@@ -105,6 +105,55 @@ exports.updateMissionStatement = function (req, res, next) {
 		res.json(error(strings.notLoggedIn));
 	}
 };
+
+/**
+ * Deletes an assessment for a given year
+ */
+exports.delete = function(req, res, next) {
+	//Get the id of the assessment to delete
+	var assessmentId = req.body.assessmentId;
+
+	//Make sure it is defined and was sent
+	if (!assessmentId) {
+		res.json(error(strings.noEvaluationIdGiven));
+		return;
+	}
+
+	//Make sure the user is logged in
+	if (req.user) {
+		//Get the department's object from the database
+		Assessment.findOne({
+			department: req.user.department
+		}, 'evaluations', function (err, department) {
+			if (err) {
+				next(err);
+			} else {
+				//Find the index of the evaluation with the given id
+				var evaluations = department.evaluations;
+				var i1;
+				for (i1 = 0; i1 < evaluations.length; i1++) {
+					if (evaluations[i1].id === assessmentId) {
+						break;
+					}
+				}
+
+				//Make sure the index was found. If found, delete the assessment and save
+				if (i1 !== evaluations.length) {
+					evaluations.splice(i1, 1);
+					department.save(function (err) {
+						if (err) {
+							next(err);
+						} else {
+							res.json(success());
+						}
+					});
+				} else {
+					res.json(error(strings.noEvaluationFound));
+				}
+			}
+		});
+	} else {
+		res.json(error(strings.notLoggedIn));
 	}
 };
 

@@ -160,21 +160,67 @@ exports.delete = function(req, res, next) {
 /**
  * Creates a new empty goal with an id for a given evaluation year
  */
-exports.createGoal = function(req, res, next) {
-	var year = req.body.year;
+ exports.createGoal = function(req, res, next) {
+ 	var assessmentId = req.body.assessmentId;
 
-	//Go ahead and generate id for the goal
-	var id = mongoose.Types.ObjectId();
+	//Go ahead and generate id for the goal, so it can easily be returned
+	var goalId = mongoose.Types.ObjectId();
 
-	//Init goal object with an empty label
+	//Init goal object with empty body info
 	var goalObj = {
-		_id: id,
-		label: '',
+		_id: goalId,
+		label: 'Goal',
 		data: {
 			info: ''
 		}
 	};
 
+	//Make sure the user is logged in
+	if (req.user) {
+		//Make sure the assessment id was sent correctly
+		if (assessmentId) {
+			//Get the department object from the database
+			Assessment.findOne({
+				department: req.user.department
+			}, 'evaluations', function (err, department) {
+				if (err) {
+					next(err);
+				} else {
+					var evaluations = department.evaluations;
+
+					//Find the evaluation for the given year
+					var evaluationForYear = evaluations.find(function (elem) {
+						return elem.id === assessmentId;
+					});
+
+					//Make sure the evaluation for given year exists
+					if (evaluationForYear) {
+						var evaluationObj = evaluationForYear.evaluation;
+
+						//Push the new goal onto the goals array
+						var goals = evaluationObj.children;
+						goals.push(goalObj);
+
+						//Save it to the database
+						department.save(function (err) {
+							if (err) {
+								next(err);
+							} else {
+								res.json(success({goalId: goalId}));
+							}
+						});
+					} else {
+						res.json(error(strings.noEvaluationFound));
+					}
+				}
+			});
+		} else {
+			res.json(error(strings.noEvaluationIdGiven));
+		}
+	} else {
+		res.json(error(strings.notLoggedIn));
+	}
+};
 	if (req.user) {
 		Assessment.findOne({
 			department: 'Anthropology/Sociology' //req.user.department

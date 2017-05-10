@@ -371,46 +371,64 @@ exports.deleteGoal = function (req, res, next) {
 	}
 };
 
+/**
+ * Creates a new empty SLO for a given year and goal id, and sends the SLO id back to the client
+ */
 exports.createSLO = function(req, res, next) {
-	var year = req.body.year;
+	//Get the assessment and goal id to create the slo for
+	var assessmentId = req.body.assessmentId;
 	var goalId = req.body.goalId;
 
+	//Make sure they are sent correctly
+	if (!assessmentId) {
+		res.json(strings.noEvaluationIdGiven);
+		return;
+	}
+
+	if (!goalId) {
+		res.json(strings.noGoalIdGiven);
+		return;
+	}
+
+	//Generate the id and the slo object to be added
 	var id = mongoose.Types.ObjectId();
 
 	var sloObj = {
 		_id: id,
-		label: '',
+		label: 'SLO',
 		data: {
-			info: '',
-			tool: '',
-			target: '',
-			result: '',
-			targetAchieved: true
+			info: ''
 		}
 	};
 
+	//Make sure the user is logged in
 	if (req.user) {
+		//Get the department object from the database
 		Assessment.findOne({
 			department: req.user.department
 		}, 'evaluations', function (err, department) {
+			//Find the evaluation object for this year
 			var evaluations = department.evaluations;
-
 			var evaluationForYear = evaluations.find(function (elem) {
-				return elem.year === year;
+				return elem.id === assessmentId;
 			});
 
 			if (evaluationForYear) {
 				var evaluationObj = evaluationForYear.evaluation;
-				var goals = evaluationObj.children;
 
+				//Find the goal object
+				var goals = evaluationObj.children;
 				var goal = goals.find(function (elem) {
 					return elem.id === goalId;
 				});
 
+				//Make sure the goal is found
 				if (goal) {
+					//Add the SLO to the array
 					var slos = goal.children;
 					slos.push(sloObj);
 
+					//Save it back to the database
 					department.save(function (err) {
 						if (err) {
 							next(err);

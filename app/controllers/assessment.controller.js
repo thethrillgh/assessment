@@ -48,24 +48,63 @@ exports.create = function(req, res, next) {
 		res.json(error(strings.notLoggedIn))
 	}
 };
+
+/**
+ * Updates the logged in department's mission statement for a specific assessment
+ */
+exports.updateMissionStatement = function (req, res, next) {
+	//Get the assessment id and mission statement parameters
+	var assessmentId = req.body.assessmentId;
+	var missionStatement = req.body.missionStatement;
+
+	//Make sure both of these were sent and are defined
+	if (!assessmentId) {
+		res.json(error(strings.noEvaluationIdGiven));
+		return;
+	}
+
+	if (!missionStatement) {
+		res.json(error(strings.noMissionStatementFound));
+		return;
+	}
+
+	//Make sure the user is logged in
+	if (req.user) {
+		//Get the department's object from the database
 		Assessment.findOne({
 			department: req.user.department
-		}, 'evaluations', function (err, assessment) {
+		}, 'evaluations', function (err, department) {
 			if (err) {
 				next(err);
 			} else {
-				assessment.evaluations.push(evaluationObj);
-				assessment.save(function (err) {
-					if (err) {
-						next(err);
-					} else {
-						res.json(success());
-					}
+				//Find the evaluation for this year
+				var evaluations = department.evaluations;
+				var evaluationForYear = evaluations.find(function (elem) {
+					return elem.id === assessmentId;
 				});
+
+				if (evaluationForYear) {
+					var evaluationObj = evaluationForYear.evaluation;
+
+					//Set the mission statement and save the object back to the database
+					evaluationObj.data.info = missionStatement;
+
+					department.save(function (err) {
+						if (err) {
+							next(err);
+						} else {
+							res.json(success());
+						}
+					});
+				} else {
+					res.json(error(strings.noEvaluationFound));
+				}
 			}
 		});
 	} else {
-		res.json(error(strings.notLoggedIn))
+		res.json(error(strings.notLoggedIn));
+	}
+};
 	}
 };
 

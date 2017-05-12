@@ -1,3 +1,45 @@
+#wrapper {
+  padding-right: 250px;
+  padding-left: 250px;
+}
+
+
+#sidebar-wrapper {
+  margin-left: -250px;
+  left: 250px;
+  width: 250px;
+  background: #242424;
+  position: fixed;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+#sidebar-wrapper2 {
+  margin-right: -250px;
+  right: 250px;
+  width: 250px;
+  background: #242424;
+  position: fixed;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+#page-content-wrapper {
+  margin: auto;
+  width: 98.5%;
+}
+
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  width: 250px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 .tree-icon{
     margin-right: 5px;
 }
@@ -10,9 +52,8 @@
     display: block;
 }
 
-ng-quill-editor > div:first-child{
-    height: 350px;
-    width: 90%;
+div.ql-container.ql-snow{
+    max-height: 300px;
 }
 
 ng-quill-editor.ng-invalid .ql-container {
@@ -133,4 +174,8 @@ a{
 
 .imagestuff{
     word-wrap: break-word;
+}
+
+.add-slo{
+    margin-top: 20px;
 }

@@ -70,6 +70,56 @@
                                     ]
                                 }
                             ]
+                        },
+                        {
+                            label: "Goal 2",
+                            data: {
+                                info: "possesses the core content knowledge of the discipline as well as an awareness of the ethical and social implications of computing technology.",
+                                type: "goal"
+                            },
+                            children: [
+                                {
+                                    label: "SLO2",
+                                    data: {
+                                        info: "possesses the core content knowledge of the discipline as well as an awareness of the ethical and social implications of computing technology.",
+                                        type: "slo"
+                                    },
+                                    children: [
+                                        {
+                                            label: "Tool 1",
+                                            data: {
+                                                info: "We use several tools for measuring students’ knowledge in the core curriculum. The ETS exam gives us a method of evaluating our students’ knowledge of the core curriculum (except for the social and ethical issues) and of comparing their performance to a larger group.  Secondly, using an online anonymous survey, we ask the seniors to reflect on how much they have learned during their course of study to gauge their confidence in their preparation. (This includes a question on the social and ethical issues.)  The alumni evaluation of their experience in the computer science program is also relevant here.",
+                                                type: "tool"
+                                            },
+                                            children: [
+                                                {
+                                                    label: "Result",
+                                                    data: {
+                                                        info: "possesses the core content knowledge of the discipline as well as an awareness of the ethical and social implications of computing technology.",
+                                                        type: "result"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            label: "Tool 2",
+                                            data: {
+                                                info: "possesses the core content knowledge of the discipline as well as an awareness of the ethical and social implications of computing technology.",
+                                                type: "tool"
+                                            },
+                                            children: [
+                                                {
+                                                    label: "Result",
+                                                    data: {
+                                                        info: "possesses the core content knowledge of the discipline as well as an awareness of the ethical and social implications of computing technology.",
+                                                        type: "result"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ]
                 }
@@ -123,13 +173,44 @@
         $scope.add_branch = function() {
           var b;
           b = tree.get_selected_branch();
-          return tree.add_branch(b, {
-            label: 'New Branch',
-            data: {
-              something: 42,
-              "else": 43
-            }
-          });
+          console.log(b)
+          var obj;
+          genService.report[0].children.forEach(function(item){
+              console.log(item)
+              if(item.uid == b.uid){
+                  if(item.data.type=="goal"){
+                      obj = {
+                          label: "New SLO",
+                          data: {
+                              info: "",
+                              type: "slo"
+                          },
+                          children: []
+                      }
+                  }
+                  else if(item.data.type=="slo"){
+                      obj = {
+                          label: "New Tool",
+                          data: {
+                              info: "",
+                              type: "tool"
+                          },
+                          children: []
+                      }
+                  }
+                  else if(item.data.type=="tool"){
+                      obj = {
+                          label: "New Result",
+                          data: {
+                              info: "",
+                              type: "result"
+                          },
+                          children: []
+                      }
+                  }
+              }
+          })
+          return tree.add_branch(b, obj);
         };
     }
 
@@ -160,6 +241,9 @@
         })
         .when("/mission/:branch", {
             templateUrl: "ngviews/mission-view.html"
+        })
+        .when("/test", {
+            templateUrl: "ngviews/test.html"
         })
         .otherwise({redirectTo: "/bad.html"})
     }

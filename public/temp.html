@@ -1,0 +1,56 @@
+<div id="sidebar-wrapper2">
+    <div class="panel-group" id="accordion">
+    <div class="panel panel-default" ng-hide="missionHide">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Mission Statement</a>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse in">
+        <div class="panel-body"> MISSION {{missionData}} </div>
+      </div>
+    </div>
+    <div class="panel panel-default" ng-hide="goalHide">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Goal</a>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse in">
+        <div class="panel-body"> GOAL {{goalData}} </div>
+      </div>
+    </div>
+    <div class="panel panel-default" ng-hide="sloHide">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Student Learning Objective</a>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse in">
+        <div class="panel-body"> SLO {{sloData}} </div>
+      </div>
+    </div>
+    <div class="panel panel-default" ng-hide="toolHide">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Tool</a>
+        </h4>
+      </div>
+      <div id="collapse2" class="panel-collapse collapse">
+        <div class="panel-body"> TOOL {{toolData}} </div>
+      </div>
+    </div>
+<!--
+    <div class="panel panel-default" ng-hide="resultHide">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Result</a>
+        </h4>
+      </div>
+      <div id="collapse3" class="panel-collapse collapse">
+        <div class="panel-body"> {{branchData}} </div>
+      </div>
+    </div>
+-->
+</div>
+</div>

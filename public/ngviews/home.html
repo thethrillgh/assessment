@@ -1,0 +1,22 @@
+<div id="wrapper">
+    <div id="sidebar-wrapper">
+        <nav class="navbar nav-left">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#">Computer Science</a>
+            </div>
+          </div>
+        </nav>
+        <abn-tree 
+            tree-data="treedata_avm"
+            on-select="tree_handler(branch)"
+            tree-control="my_tree"
+            icon-leaf="fa fa-file"
+            icon-expand="fa fa-caret-down"
+            icon-collapse="fa fa-caret-up"
+            expand-level= "3" class="dark_gray"
+            initial-selection = "Mission Statement">
+        </abn-tree>
+    </div>
+    <div ui-view></div>   
+</div>

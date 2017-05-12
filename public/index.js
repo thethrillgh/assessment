@@ -1,7 +1,7 @@
 ( function()
 {
 
-    angular.module("assessment", ['angularBootstrapNavTree', 'ngAnimate', 'ngQuill', 'ngRoute', 'ngFileUpload']);
+    angular.module("assessment", ['angularBootstrapNavTree', 'ngAnimate', 'ngQuill', 'ui.router', 'ngFileUpload']);
 
     var genService = function(){
         return {
@@ -128,40 +128,29 @@
     };
 
 
-    var mainController = function($scope, genService, $sce, Upload, $location, $routeParams){
+    var mainController = function($scope, genService, $sce, Upload, $state){
         var tree = $scope.my_tree = {};
-        $scope.goalHide = $scope.sloHide = $scope.toolHide = $scope.resultHide = $scope.missionHide = true;
         function branchInitialize(type, branch){
-            genService.currentBranch.label = branch.label;
-            genService.currentBranch.data = branch.data;
-            $scope.label = genService.currentBranch.label;
-            $location.path(type+'/'+branch.label);
+            $state.go("home."+type);
         }
         $scope.tree_handler = function(branch){
             if(branch.data.type == "mission"){
-                $scope.goalHide = $scope.sloHide = $scope.toolHide = $scope.resultHide = $scope.missionHide = true;
+                branchInitialize("mission", branch)
             }
-            if(branch.data.type == "goal"){
-                $scope.missionHide = false;
-                $scope.goalHide = true;
+            else if(branch.data.type == "goal"){
                 $scope.missionData = branch.data.info;
                 branchInitialize("goal", branch)
             }
             else if(branch.data.type == "slo"){
-                $scope.missionHide = $scope.sloHide = true;
-                $scope.goalHide = false;
                 $scope.goalData = branch.data.info;
                 branchInitialize("slo", branch);
                 
             }
             else if(branch.data.type == "tool"){
-                $scope.goalHide = $scope.sloHide = false;
-                $scope.toolHide = true;
                 $scope.sloData = branch.data.info;
                 branchInitialize("tool", branch);
             }
             else if(branch.data.type == "result"){
-                $scope.goalHide = $scope.sloHide = $scope.toolHide = false;
                 $scope.toolData = branch.data.info;
                 branchInitialize("result", branch);
             }
@@ -213,39 +202,35 @@
           return tree.add_branch(b, obj);
         };
     }
-
     
-    var treeView =  function($scope, $routeParams, $location){
-        
-    }
-    
-    var routingConfig = function($routeProvider){
-        $routeProvider
-        .when("/", {
-            templateUrl: "ngviews/mission-view.html"
-        })
-        .when("/goal/:branch", {
-            templateUrl: "ngviews/goal-view.html"
-        })
-        .when("/slo/:branch", {
-            templateUrl: "ngviews/slo-view.html"
-        })
-        .when("/tool/:branch", {
-            templateUrl: "ngviews/tool-view.html"
-        })
-        .when("/actionplan/:branch", {
-            templateUrl: "ngviews/actionplan-view.html"
-        })
-        .when("/result/:branch", {
-            templateUrl: "ngviews/results-view.html"
-        })
-        .when("/mission/:branch", {
-            templateUrl: "ngviews/mission-view.html"
-        })
-        .when("/test", {
-            templateUrl: "ngviews/test.html"
-        })
-        .otherwise({redirectTo: "/bad.html"})
+    var routingConfig = function($stateProvider, $urlRouterProvider){
+        $stateProvider
+            .state('home', {
+                url: '/home',
+                templateUrl: 'ngviews/home.html'
+            })
+            .state('home.mission', {
+                url: '/mission',
+                templateUrl: 'ngviews/mission-view.html'
+            })
+            .state('home.goal', {
+                url: '/goal',
+                templateUrl: 'ngviews/goal-view.html'
+            })
+            .state('home.slo', {
+                url: '/slo',
+                templateUrl: 'ngviews/slo-view.html'
+            })
+            .state('home.tool', {
+                url: '/tool',
+                templateUrl: 'ngviews/tool-view.html'
+            })
+            .state('home.result', {
+                url: '/result',
+                templateUrl: 'ngviews/results-view.html'
+            });
+        $urlRouterProvider.otherwise('/404');
+        $urlRouterProvider.when('', '/home');
     }
 
 
@@ -289,7 +274,6 @@
     angular
         .module("assessment")
         .controller("mainController", mainController)
-        
         .service("genService", genService)
         .config(['ngQuillConfigProvider', function(ngQuillConfigProvider){
             ngQuillConfigProvider.set(null, null, 'custom placeholder')
@@ -301,7 +285,7 @@
         .directive("toolDirective", toolDirective)
         .directive("missionDirective", missionDirective)
         .directive("goalDirective",goalDirective)
-        .config(["$routeProvider", routingConfig]);
+        .config(routingConfig);
 
 
      

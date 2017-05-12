@@ -1,98 +1,42 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-3 no-col-padding">
-            <nav class="navbar nav-left">
-              <div class="container-fluid">
-                <div class="navbar-header">
-                  <a class="navbar-brand" href="#">Computer Science</a>
-                </div>
-              </div>
-            </nav>
-            <abn-tree 
-                tree-data="treedata_avm"
-                on-select="tree_handler(branch)"
-                tree-control="my_tree"
-                icon-leaf="fa fa-file"
-                icon-expand="fa fa-caret-down"
-                icon-collapse="fa fa-caret-up"
-                expand-level= "3" class="dark_gray"
-                initial-selection = "{{label}}">
-            </abn-tree>
+<div id="sidebar-wrapper2">
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Goal</a>
+            </h4>
+          </div>
+          <div id="collapse1" class="panel-collapse collapse in">
+            <div class="panel-body"> GOAL {{goalData}} </div>
+          </div>
         </div>
-        <div class="col-md-9">
-            <div class="row">
-                <nav class="navbar navbar-default">
-                  <div class="container-fluid">
-                    <ul class="nav navbar-nav">
-                      <li class="active"><a href="#">Assess</a></li>
-                      <li><a href="#">Evaluate</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Out</a></li>
-                    </ul>
-                  </div>
-                </nav>
-                <div class="col-md-9 no-col-padding middle-col">
-                   <tool-directive></tool-directive>
-                </div>
-                <div class="col-md-3 right-col no-col-padding">
-<!--                            <ng-quill-editor theme="bubble" ng-model="message" read-only="true"></ng-quill-editor>-->
-                    <div class="panel-group" id="accordion">
-                        <div class="panel panel-default" ng-hide="missionHide">
-                          <div class="panel-heading">
-                            <h4 class="panel-title">
-                              <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Mission Statement</a>
-                            </h4>
-                          </div>
-                          <div id="collapse1" class="panel-collapse collapse in">
-                            <div class="panel-body"> MISSION {{missionData}} </div>
-                          </div>
-                        </div>
-                        <div class="panel panel-default" ng-hide="goalHide">
-                          <div class="panel-heading">
-                            <h4 class="panel-title">
-                              <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Goal</a>
-                            </h4>
-                          </div>
-                          <div id="collapse1" class="panel-collapse collapse in">
-                            <div class="panel-body"> GOAL {{goalData}} </div>
-                          </div>
-                        </div>
-                        <div class="panel panel-default" ng-hide="sloHide">
-                          <div class="panel-heading">
-                            <h4 class="panel-title">
-                              <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Student Learning Objective</a>
-                            </h4>
-                          </div>
-                          <div id="collapse1" class="panel-collapse collapse in">
-                            <div class="panel-body"> SLO {{sloData}} </div>
-                          </div>
-                        </div>
-                        <div class="panel panel-default" ng-hide="toolHide">
-                          <div class="panel-heading">
-                            <h4 class="panel-title">
-                              <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Tool</a>
-                            </h4>
-                          </div>
-                          <div id="collapse2" class="panel-collapse collapse">
-                            <div class="panel-body"> TOOL {{toolData}} </div>
-                          </div>
-                        </div>
-<!--
-                        <div class="panel panel-default" ng-hide="resultHide">
-                          <div class="panel-heading">
-                            <h4 class="panel-title">
-                              <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Result</a>
-                            </h4>
-                          </div>
-                          <div id="collapse3" class="panel-collapse collapse">
-                            <div class="panel-body"> {{branchData}} </div>
-                          </div>
-                        </div>
--->
-                      </div> 
-                </div>
-            </div>
-        </div>    
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Student Learning Objective</a>
+            </h4>
+          </div>
+          <div id="collapse2" class="panel-collapse collapse in">
+            <div class="panel-body"> SLO {{sloData}} </div>
+          </div>
+        </div>
     </div>
 </div>
+<div id="page-content-wrapper">
+    <div class="row">
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Assess</a></li>
+              <li><a href="#">Evaluate</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Out</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class="middle-col">
+           <tool-directive></tool-directive>
+        </div>
+    </div>
+</div> 

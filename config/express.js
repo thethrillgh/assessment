@@ -33,7 +33,7 @@ module.exports = function () {
 	app.use(passport.initialize());
 	app.use(passport.session());
 
-	require('../app/routes/index.routes')(app);
+//	require('../app/routes/index.routes')(app);
 	require('../app/routes/assessment.routes')(app);
 	require('../app/routes/authentication.routes')(app);
 

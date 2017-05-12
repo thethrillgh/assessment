@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%=title %></title>
+</head>
+<body>
+	<% if (loggedIn) { %>
+		Welcome back, <%=user.department %>
+		<br>
+		<% for (var i in user.evaluations) { %>
+		<div><%=user.evaluations[i].year %></div>
+		<% } %>
+		<a href="logout">Logout</a>
+	<% } else { %>
+		<a href="signin">Login</a>
+	<% } %>
+</body>
+</html>

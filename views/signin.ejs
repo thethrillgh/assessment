@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%=title %></title>
+	<style type="text/css">
+		.error {
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<% for (var i in messages) { %>
+	<div class="error"><%=messages[i] %></div>
+	<% } %>
+
+	<form action="/signin" method="post">
+		<select name="department">
+			<% for (var i in departments) { %>
+			<option name="<%=departments[i]._id %>"><%=departments[i].department %></option>
+			<% } %>
+		</select>
+		<br>
+		<input type="password" name="password">
+		<br>
+		<input type="submit" value="Login">
+	</form>
+</body>
+</html>

@@ -37,7 +37,7 @@ exports.signin = function (req, res, next) {
 };
 
 exports.getDepartments = function (req, res, next) {
-	Assessment.find({}, '-evaluations -password -salt', function (err, departments) {
+	Assessment.find({}, '-evaluations -password -salt', {sort: {department: 1}}, function (err, departments) {
 		res.json(utilities.success({departments: departments}));
 	});
 };

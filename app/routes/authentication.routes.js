@@ -7,6 +7,8 @@ module.exports = function (app) {
 		.get(authentication.renderSignin)
 		.post(authentication.signin);
 
+	app.get('/departments', authentication.getDepartments);
+
 	/* app.post('/signin', passport.authenticate('local', function (err, user, info) {
 		if (err) {
 			return next(err);

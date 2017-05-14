@@ -3,8 +3,11 @@
 
     angular.module("assessment", ['angularBootstrapNavTree', 'ngAnimate', 'ngQuill', 'ui.router', 'ngFileUpload']);
 
-    var genService = function(){
-        return {
+    var genService = function($http){
+        var get = function(){
+            return $http.get("/getAll");
+        }
+        var oldData = {
             currentBranch: {
                 label: "Mission Statement",
                 data: ""
@@ -124,11 +127,22 @@
                     ]
                 }
             ]
+        };
+        var login = function(data){
+            return $http.post("/signin", data)
+        }
+        return {
+            getData: get,
+            data: oldData,
+            login: login
         }
     };
 
 
     var mainController = function($scope, genService, $sce, Upload, $state){
+        genService.getData().then(function(data){
+            console.log(data.data)
+        })
         var tree = $scope.my_tree = {};
         function branchInitialize(type, branch){
             $state.go("home."+type);
@@ -157,14 +171,14 @@
         }
         $scope.message = $sce.trustAsHtml($scope.message);
 
-        $scope.treedata_avm = genService.report;
+        $scope.treedata_avm = genService.data.report;
 
         $scope.add_branch = function() {
           var b;
           b = tree.get_selected_branch();
           console.log(b)
           var obj;
-          genService.report[0].children.forEach(function(item){
+          genService.data.report[0].children.forEach(function(item){
               console.log(item)
               if(item.uid == b.uid){
                   if(item.data.type=="goal"){

@@ -4,21 +4,28 @@
   "description": "The Node.js server for the Centre College Assessment project for CSC 336",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -u bdd -R spec -t 1000 --recursive"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-  	"express": "~4.8.8",
-  	"morgan": "~1.3.0",
-  	"compression": "~1.0.11",
-  	"body-parser": "~1.8.0",
-  	"method-override": "~2.2.0",
-  	"express-session": "~1.7.6",
-  	"ejs": "~1.0.0",
+    "express": "~4.8.8",
+    "morgan": "~1.3.0",
+    "compression": "~1.0.11",
+    "body-parser": "~1.8.0",
+    "method-override": "~2.2.0",
+    "express-session": "~1.7.6",
+    "ejs": "~1.0.0",
     "mongoose": "~3.8.15",
     "passport": "~0.2.1",
     "passport-local": "~1.0.0",
     "connect-flash": "~0.1.1"
+  },
+  "devDependencies": {
+    "should": "~4.0.4",
+      "supertest": "~0.13.0",
+      "mocha":"^1.20.1",
+      "chai":"^1.9.1",
+      "chai-http":"~3.0.0"
   }
 }

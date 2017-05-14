@@ -3,6 +3,8 @@ var Assessment = mongoose.model('Assessment');
 
 var strings = require('../../config/strings');
 
+var utilities = require('../utilities');
+
 /**
  * Creates a new evaluation for a given year
  */
@@ -36,16 +38,16 @@ exports.create = function(req, res, next) {
 						if (err) {
 							next(err);
 						} else {
-							res.json(success({assessmentId: id}));
+							res.json(utilities.success({assessmentId: id}));
 						}
 					});
 				}
 			});
 		} else {
-			res.json(error(strings.noEvaluationYearGiven));
+			res.json(utilities.error(strings.noEvaluationYearGiven));
 		}
 	} else {
-		res.json(error(strings.notLoggedIn))
+		res.json(utilities.error(strings.notLoggedIn))
 	}
 };
 
@@ -59,12 +61,12 @@ exports.updateMissionStatement = function (req, res, next) {
 
 	//Make sure both of these were sent and are defined
 	if (!assessmentId) {
-		res.json(error(strings.noEvaluationIdGiven));
+		res.json(utilities.error(strings.noEvaluationIdGiven));
 		return;
 	}
 
 	if (!missionStatement) {
-		res.json(error(strings.noMissionStatementFound));
+		res.json(utilities.error(strings.noMissionStatementFound));
 		return;
 	}
 
@@ -93,16 +95,16 @@ exports.updateMissionStatement = function (req, res, next) {
 						if (err) {
 							next(err);
 						} else {
-							res.json(success());
+							res.json(utilities.success());
 						}
 					});
 				} else {
-					res.json(error(strings.noEvaluationFound));
+					res.json(utilities.error(strings.noEvaluationFound));
 				}
 			}
 		});
 	} else {
-		res.json(error(strings.notLoggedIn));
+		res.json(utilities.error(strings.notLoggedIn))
 	}
 };
 
@@ -115,7 +117,7 @@ exports.delete = function(req, res, next) {
 
 	//Make sure it is defined and was sent
 	if (!assessmentId) {
-		res.json(error(strings.noEvaluationIdGiven));
+		res.json(utilities.error(strings.noEvaluationIdGiven));
 		return;
 	}
 
@@ -144,16 +146,16 @@ exports.delete = function(req, res, next) {
 						if (err) {
 							next(err);
 						} else {
-							res.json(success());
+							res.json(utilities.success());
 						}
 					});
 				} else {
-					res.json(error(strings.noEvaluationFound));
+					res.json(utilities.error(strings.noEvaluationFound));
 				}
 			}
 		});
 	} else {
-		res.json(error(strings.notLoggedIn));
+		res.json(utilities.error(strings.notLoggedIn));
 	}
 };
 
@@ -206,19 +208,19 @@ exports.delete = function(req, res, next) {
 							if (err) {
 								next(err);
 							} else {
-								res.json(success({goalId: goalId}));
+								res.json(utilities.success({goalId: goalId}));
 							}
 						});
 					} else {
-						res.json(error(strings.noEvaluationFound));
+						res.json(utilities.error(strings.noEvaluationFound));
 					}
 				}
 			});
 		} else {
-			res.json(error(strings.noEvaluationIdGiven));
+			res.json(utilities.error(strings.noEvaluationIdGiven));
 		}
 	} else {
-		res.json(error(strings.notLoggedIn));
+		res.json(utilities.error(strings.notLoggedIn));
 	}
 };
 
@@ -233,17 +235,17 @@ exports.updateGoal = function (req, res, next) {
 
 	//Make sure each of these three things are given
 	if (!assessmentId) {
-		res.json(error(strings.noEvaluationIdGiven));
+		res.json(utilities.error(strings.noEvaluationIdGiven));
 		return;
 	}
 
 	if (!goalId) {
-		res.json(error(strings.noGoalIdGiven));
+		res.json(utilities.error(strings.noGoalIdGiven));
 		return;
 	}
 
 	if (!goalUpdate) {
-		res.json(error(strings.noGoalGiven));
+		res.json(utilities.error(strings.noGoalGiven));
 		return;
 	}
 
@@ -268,7 +270,6 @@ exports.updateGoal = function (req, res, next) {
 					var evaluationObj = evaluationForYear.evaluation;
 
 					var goals = evaluationObj.children;
-
 					//Find the goal with the given id
 					var goal = goals.find(function (elem) {
 						return elem.id === goalId;
@@ -284,19 +285,19 @@ exports.updateGoal = function (req, res, next) {
 							if (err) {
 								next(err);
 							} else {
-								res.json(success());
+								res.json(utilities.success());
 							}
 						});
 					} else {
-						res.json(error(strings.noGoalFound));
+						res.json(utilities.error(strings.noGoalFound));
 					}
 				} else {
-					res.json(error(strings.noEvaluationFound));
+					res.json(utilities.error(strings.noEvaluationFound));
 				}
 			}
 		});
 	} else {
-		res.json(error(strings.notLoggedIn));
+		res.json(utilities.error(strings.notLoggedIn));
 	}
 };
 
@@ -310,12 +311,12 @@ exports.deleteGoal = function (req, res, next) {
 
 	//Make sure they are set correctly
 	if (!assessmentId) {
-		res.json(error(strings.noEvaluationIdGiven));
+		res.json(utilities.error(strings.noEvaluationIdGiven));
 		return;
 	}
 
 	if (!goalId) {
-		res.json(error(strings.noGoalIdGiven));
+		res.json(utilities.error(strings.noGoalIdGiven));
 		return;
 	}
 
@@ -355,19 +356,19 @@ exports.deleteGoal = function (req, res, next) {
 							if (err) {
 								next(err);
 							} else {
-								res.json(success());
+								res.json(utilities.success());
 							}
 						});
 					} else {
-						res.json(error(strings.noGoalFound));
+						res.json(utilities.error(strings.noGoalFound));
 					}
 				} else {
-					res.json(error(strings.noEvaluationFound));
+					res.json(utilities.error(strings.noEvaluationFound));
 				}
 			}
 		});
 	} else {
-		res.json(error(strings.notLoggedIn));
+		res.json(utilities.error(strings.notLoggedIn));
 	}
 };
 
@@ -433,18 +434,18 @@ exports.createSLO = function(req, res, next) {
 						if (err) {
 							next(err);
 						} else {
-							res.json(success({sloId: id}));
+							res.json(utilities.success({sloId: id}));
 						}
 					});
 				} else {
-					res.json(error(strings.noGoalFound));
+					res.json(utilities.error(strings.noGoalFound));
 				}
 			} else {
-				res.json(error(strings.noEvaluationFound));
+				res.json(utilities.error(strings.noEvaluationFound));
 			}
 		});
 	} else {
-		res.json(error(strings.notLoggedIn));
+		res.json(utilities.error(strings.notLoggedIn));
 	}
 };
 
@@ -460,22 +461,22 @@ exports.updateSLO = function (req, res, next) {
 
 	//Make sure they are all set
 	if (!assessmentId) {
-		res.json(error(strings.noEvaluationIdGiven));
+		res.json(utilities.error(strings.noEvaluationIdGiven));
 		return;
 	}
 
 	if (!goalId) {
-		res.json(error(strings.noGoalIdGiven));
+		res.json(utilities.error(strings.noGoalIdGiven));
 		return;
 	}
 
 	if (!sloId) {
-		res.json(error(strings.noSLOIdGiven));
+		res.json(utilities.error(strings.noSLOIdGiven));
 		return;
 	}
 
 	if (!updatedSLO) {
-		res.json(error(strings.noSLOGiven));
+		res.json(utilities.error(strings.noSLOGiven));
 		return;
 	}
 
@@ -524,22 +525,22 @@ exports.updateSLO = function (req, res, next) {
 								if (err) {
 									next(err);
 								} else {
-									res.json(success());
+									res.json(utilities.success());
 								}
 							})
 						} else {
-							res.json(error(strings.noSLOFound));
+							res.json(utilities.error(strings.noSLOFound));
 						}
 					} else {
-						res.json(error(strings.noGoalFound));
+						res.json(utilities.error(strings.noGoalFound));
 					}
 				} else {
-					res.json(error(strings.noEvaluationFound));
+					res.json(utilities.error(strings.noEvaluationFound));
 				}
 			}
 		});
 	} else {
-		res.json(error(strings.notLoggedIn));
+		res.json(utilities.error(strings.notLoggedIn));
 	}
 };
 
@@ -554,15 +555,15 @@ exports.deleteSLO = function (req, res, next) {
 
 	//Make sure all of these are set
 	if (!assessmentId) {
-		res.json(error(strings.noEvaluationIdGiven));
+		res.json(utilities.error(strings.noEvaluationIdGiven));
 	}
 
 	if (!goalId) {
-		res.json(error(strings.noGoalIdGiven));
+		res.json(utilities.error(strings.noGoalIdGiven));
 	}
 
 	if (!sloId) {
-		res.json(error(strings.noSLOIdGiven));
+		res.json(utilities.error(strings.noSLOIdGiven));
 	}
 
 	//Make sure the user is logged in
@@ -610,22 +611,22 @@ exports.deleteSLO = function (req, res, next) {
 								if (err) {
 									next(err);
 								} else {
-									res.json(success());
+									res.json(utilities.success());
 								}
 							});
 						} else {
-							res.json(error(strings.noSLOFound));
+							res.json(utilities.error(strings.noSLOFound));
 						}
 					} else {
-						res.json(error(strings.noGoalFound));
+						res.json(utilities.error(strings.noGoalFound));
 					}
 				} else {
-					res.json(error(strings.noEvaluationFound));
+					res.json(utilities.error(strings.noEvaluationFound));
 				}
 			}
 		});
 	} else {
-		res.json(error(strings.notLoggedIn));
+		res.json(utilities.error(strings.notLoggedIn));
 	}
 };
 
@@ -640,17 +641,17 @@ exports.createProcess = function (req, res, next) {
 
 	//Make sure all required parameters were sent
 	if (!assessmentId) {
-		res.json(error(strings.noEvaluationIdGiven));
+		res.json(utilities.error(strings.noEvaluationIdGiven));
 		return;
 	}
 
 	if (!goalId) {
-		res.json(error(strings.noGoalIdGiven));
+		res.json(utilities.error(strings.noGoalIdGiven));
 		return;
 	}
 
 	if (!sloId) {
-		res.json(error(strings.noSLOIdGiven));
+		res.json(utilities.error(strings.noSLOIdGiven));
 		return;
 	}
 
@@ -715,19 +716,19 @@ exports.createProcess = function (req, res, next) {
 							if (err) {
 								next(err);
 							} else {
-								res.json(success({processId: id}));
+								res.json(utilities.success({processId: id}));
 							}
 						})
 					} else {
-						res.json(error(strings.noGoalFound));
+						res.json(utilities.error(strings.noGoalFound));
 					}
 				} else {
-					res.json(error(strings.noEvaluationFound));
+					res.json(utilities.error(strings.noEvaluationFound));
 				}
 			}
 		});
 	} else {
-		res.json(error(strings.notLoggedIn));
+		res.json(utilities.error(strings.notLoggedIn));
 	}
 };
 
@@ -744,27 +745,27 @@ exports.updateProcess = function (req, res, next) {
 
 	//Make sure everything is sent correctly
 	if (!assessmentId) {
-		res.json(error(strings.noEvaluationIdGiven));
+		res.json(utilities.error(strings.noEvaluationIdGiven));
 		return;
 	}
 
 	if (!goalId) {
-		res.json(error(strings.noGoalIdGiven));
+		res.json(utilities.error(strings.noGoalIdGiven));
 		return;
 	}
 
 	if (!sloId) {
-		res.json(error(strings.noSLOIdGiven));
+		res.json(utilities.error(strings.noSLOIdGiven));
 		return;
 	}
 
 	if (!processId) {
-		res.json(error(strings.noProcessIdGiven));
+		res.json(utilities.error(strings.noProcessIdGiven));
 		return;
 	}
 
 	if (!updatedProcess) {
-		res.json(error(strings.noProcessGiven));
+		res.json(utilities.error(strings.noProcessGiven));
 		return;
 	}
 
@@ -817,22 +818,22 @@ exports.updateProcess = function (req, res, next) {
 								if (err) {
 									next(err);
 								} else {
-									res.json(success());
+									res.json(utilities.success());
 								}
 							});
 						} else {
-							res.json(error(strings.noSLOFound));
+							res.json(utilities.error(strings.noSLOFound));
 						}
 					} else {
-						res.json(error(strings.noGoalFound));
+						res.json(utilities.error(strings.noGoalFound));
 					}
 				} else {
-					res.json(error(strings.noEvaluationFound));
+					res.json(utilities.error(strings.noEvaluationFound));
 				}
 			}
 		});
 	} else {
-		res.json(error(strings.notLoggedIn));
+		res.json(utilities.error(strings.notLoggedIn));
 	}
 };
 
@@ -848,22 +849,22 @@ exports.deleteProcess = function (req, res, next) {
 
 	//Make sure everything is sent properly
 	if (!assessmentId) {
-		res.json(error(strings.noEvaluationIdGiven));
+		res.json(utilities.error(strings.noEvaluationIdGiven));
 		return;
 	}
 
 	if (!goalId) {
-		res.json(error(strings.noGoalIdGiven));
+		res.json(utilities.error(strings.noGoalIdGiven));
 		return;
 	}
 
 	if (!sloId) {
-		res.json(error(strings.noSLOIdGiven));
+		res.json(utilities.error(strings.noSLOIdGiven));
 		return;
 	}
 
 	if (!processId) {
-		res.json(error(strings.noProcessIdGiven));
+		res.json(utilities.error(strings.noProcessIdGiven));
 		return;
 	}
 
@@ -920,25 +921,25 @@ exports.deleteProcess = function (req, res, next) {
 									if (err) {
 										next(err);
 									} else {
-										res.json(success());
+										res.json(utilities.success());
 									}
 								})
 							} else {
-								res.json(error(strings.noProcessFound));
+								res.json(utilities.error(strings.noProcessFound));
 							}
 						} else {
-							res.json(error(strings.noSLOFound));
+							res.json(utilities.error(strings.noSLOFound));
 						}
 					} else {
-						res.json(error(strings.noGoalFound));
+						res.json(utilities.error(strings.noGoalFound));
 					}
 				} else {
-					res.json(error(strings.noEvaluationFound));
+					res.json(utilities.error(strings.noEvaluationFound));
 				}
 			}
 		});
 	} else {
-		res.json(error(strings.notLoggedIn));
+		res.json(utilities.error(strings.notLoggedIn));
 	}
 };
 
@@ -955,27 +956,27 @@ exports.updateResult = function (req, res, next) {
 
 	//Make sure everything was sent
 	if (!assessmentId) {
-		res.json(error(strings.noEvaluationIdGiven));
+		res.json(utilities.error(strings.noEvaluationIdGiven));
 		return;
 	}
 
 	if (!goalId) {
-		res.json(error(strings.noGoalIdGiven));
+		res.json(utilities.error(strings.noGoalIdGiven));
 		return;
 	}
 
 	if (!sloId) {
-		res.json(error(strings.noSLOIdGiven));
+		res.json(utilities.error(strings.noSLOIdGiven));
 		return;
 	}
 
 	if (!processId) {
-		res.json(error(strings.noProcessIdGiven));
+		res.json(utilities.error(strings.noProcessIdGiven));
 		return;
 	}
 
 	if (!updatedResult) {
-		res.json(error(strings.noResultGiven));
+		res.json(utilities.error(strings.noResultGiven));
 		return;
 	}
 
@@ -1034,25 +1035,25 @@ exports.updateResult = function (req, res, next) {
 									if (err) {
 										next(err);
 									} else {
-										res.json(success());
+										res.json(utilities.success());
 									}
 								})
 							} else {
-								res.json(error(strings.noProcessFound));
+								res.json(utilities.error(strings.noProcessFound));
 							}
 						} else {
-							res.json(error(strings.noSLOFound));
+							res.json(utilities.error(strings.noSLOFound));
 						}
 					} else {
-						res.json(error(strings.noGoalFound));
+						res.json(utilities.error(strings.noGoalFound));
 					}
 				} else {
-					res.json(error(strings.noEvaluationFound));
+					res.json(utilities.error(strings.noEvaluationFound));
 				}
 			}
 		});
 	} else {
-		res.json(error(strings.notLoggedIn));
+		res.json(utilities.error(strings.notLoggedIn));
 	}
 };
 
@@ -1061,9 +1062,18 @@ exports.updateResult = function (req, res, next) {
  */
 exports.readAssessments = function (req, res, next) {
 	if (req.user) {
-		res.json(req.user.evaluations);
+		Assessment.findOne({
+			department: req.user.department
+		}, 'evaluations', function (err, department) {
+			if (err) {
+				next(err);
+			} else {
+				var evaluations = department.evaluations;
+				res.json(utilities.success({evaluations: evaluations}));
+			}
+		});
 	} else {
-		res.json(error(strings.notLoggedIn));
+		res.json(utilities.error(strings.notLoggedIn));
 	}
 };
 
@@ -1086,27 +1096,13 @@ exports.readAssessment = function (req, res, next) {
 					return elem.id === id;
 				});
 				if (eval) {
-					res.json(eval);
+					res.json(utilities.success({evaluation: eval}));
 				} else {
-					res.json(error(strings.noEvaluationFound));
+					res.json(utilities.error('No evaluation found for the given year'));
 				}
 			}
 		});
 	} else {
-		res.json(error(strings.notLoggedIn));
+		res.json(utilities.error(strings.notLoggedIn));
 	}
 };
-
-var success = function (data) {
-	return {
-		success: true,
-		data: data || null
-	};
-}
-
-var error = function (message) {
-	return {
-		success: false,
-		message: message
-	};
-}

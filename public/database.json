@@ -1,0 +1,685 @@
+{
+        "_id" : ObjectId("590f3c7fcc68a006c8eceae0"),
+        "salt" : "28AxlZ0d9557Db3nkfKrCw==",
+        "department" : "Spanish",
+        "password" : "xinN/URst1np63HFjdNTORAwe04x0bRd/BxUjPb0Xj5SsnealSW/Sn1hJ8MlOuYpg/HQo77uQU/temkW/D67og==",
+        "evaluations" : [ ],
+        "__v" : 0
+}
+{
+        "_id" : ObjectId("590f3c7fcc68a006c8eceac9"),
+        "salt" : "CGMkKJyG3tcIp6ElYVAiCw==",
+        "department" : "Art History",
+        "password" : "uwvXzTv8Rsz4zuYAvhPG/Ro9yxxrnLKE3qtxyyBgsa799pUUYQuCLK7Gh0rBHQS9PTVda7rA5zLjqwC/47V3+g==",
+        "evaluations" : [ ],
+        "__v" : 0
+}
+{
+        "_id" : ObjectId("590f3c7fcc68a006c8eceaca"),
+        "salt" : "qG2NMeGmYFzVi2BgI6x0Pw==",
+        "department" : "Behavioral Neuroscience",
+        "password" : "qjEJKp5xT8AS9DZr7jn28LniS1JCvaHaP0tHhKjMyv5QmznpWRdOjNXT6qIqrPW3jNuO8TH+/kZfYLeAh954fw==",
+        "evaluations" : [ ],
+        "__v" : 0
+}
+{
+        "_id" : ObjectId("590f3c7fcc68a006c8eceacc"),
+        "salt" : "ITCmcH6rn8zRZrXbxG4vEQ==",
+        "department" : "Biology",
+        "password" : "Aecyx4B/JpFvN1u+TNheOQxXOeZG5UmsUN4zd3nUmtgCfgXUuYnH48jCkNUQR8pJcJx9Uhn8KMJicl/42Y0e8A==",
+        "evaluations" : [ ],
+        "__v" : 0
+}
+{
+        "_id" : ObjectId("590f3c7fcc68a006c8eceacb"),
+        "salt" : "v9jqDukl556kWhD6oI9CUA==",
+        "department" : "Biochemistry & Molecular Biology",
+        "password" : "DyEkV8WFOsIHmuBuYuNHl6qDNAr4se5iHgHVf2QpEZbBYv+Ixg7VM9XyTcxVm+R1Hubu4W0csIKF1EhTWH6lJw==",
+        "evaluations" : [ ],
+        "__v" : 0
+}
+{
+        "_id" : ObjectId("590f3c7fcc68a006c8eceace"),
+        "salt" : "7t+Acjd2Hh6SOuHnWlORjA==",
+        "department" : "Chemistry",
+        "password" : "7EAAMOHyaaQa5tKp3mkMZvxeepkLvUy4y0NMIZBPcS4agqzTSI7jlHN8TKc0gUAY9M0roJje0WUK3ifeVAAEPQ==",
+        "evaluations" : [ ],
+        "__v" : 0
+}
+{
+        "_id" : ObjectId("590f3c7fcc68a006c8eceacd"),
+        "salt" : "V9kD07HhRgeNaKcmAGq3gw==",
+        "department" : "Chemical Physics",
+        "password" : "srbN133zQFSZWMmGB8sL4ut5qc6LXE84PNoPc3tZKBfBgK9yVr+bTDezhJvPFIdpbzWnkoWJXciHp9TwvQu6lg==",
+        "evaluations" : [ ],
+        "__v" : 0
+}
+{
+        "_id" : ObjectId("590f3c7fcc68a006c8eceacf"),
+        "salt" : "5uNKUztGTJBPnlYmrc8OXg==",
+        "department" : "Classical Studies",
+        "password" : "zkRLMIoUMrwG/Yj7sWelf5la5m1rlER4C16bWteo4Vj9kBegQhupgHnbOMB8clq+o/Lj3do9lzUQghQ2GnemRw==",
+        "evaluations" : [ ],
+        "__v" : 0
+}
+{
+        "_id" : ObjectId("590f3c7fcc68a006c8ecead1"),
+        "salt" : "BMgt/iE9MdkHJGWWekwhIw==",
+        "department" : "Dramatic Arts",
+        "password" : "sK1lMwP1x1mDqEz2lCyyvg8BFY5IDhN7N+B/9B0fkt2LowNzgm7AnjVASWscGJGY529F86ZMJcd2FiC4hEZAwA==",
+        "evaluations" : [ ],
+        "__v" : 0
+}
+{
+        "_id" : ObjectId("590f3c7fcc68a006c8ecead4"),
+        "salt" : "QnX6ImYDeKNBCRQY7Hmg7A==",
+        "department" : "Environmental Studies",
+        "password" : "eGyiGJ68h2jGbPkP1mq8ZNfnGO5ujfw3cyXI7k6Sgyvey3UwIkAPa5WlGmGx+nbOrT+AWwWtrz1XUuAzzq/pWg==",
+        "evaluations" : [ ],
+        "__v" : 0
+}
+{
+        "_id" : ObjectId("590f3c7fcc68a006c8ecead2"),
+        "salt" : "/dn3Jq15EFFPQa04wqMscw==",
+        "department" : "Economics and Finance",
+        "password" : "RUgT0ZWVHuS0GKy1gli7mstkaNsC86hTax405Z7JKTI1yh2Du5hoibBacdTfIbU7w7A0N8k4U4L7Qm26e7ontg==",
+        "evaluations" : [ ],
+        "__v" : 0
+}
+{
+        "_id" : ObjectId("590f3c7fcc68a006c8ecead5"),
+        "salt" : "jlRWltc+OcvTz5gGjYf35A==",
+        "department" : "French",
+        "password" : "KXNouzReNwJvptHYcFhQ6FLpwt9pmNP/BVHXh+g/sMcEHXIGrjrCEgMMwCN+Sj6bh2/ZPiipn+DOrfdW9Yv8fQ==",
+        "evaluations" : [ ],
+        "__v" : 0
+}
+{
+        "_id" : ObjectId("590f3c7fcc68a006c8ecead3"),
+        "salt" : "+zpBa7fTptkGm2ozjY1tRw==",
+        "department" : "English",
+        "password" : "pMyc2N4SbAAHG36z02BQs2Fg74otjESf3eZuNv3XBal8O5B5Zx2h+AHOwdzTUNf29djb9kZubkEIzwWO2N8yqQ==",
+        "evaluations" : [ ],
+        "__v" : 0
+}
+{
+        "_id" : ObjectId("590f3c7fcc68a006c8ecead6"),
+        "salt" : "5ylQtjvsjDa7fZvJsz1VtA==",
+        "department" : "German Studies",
+        "password" : "iLLlQkOjNmFr+29+YK5YhUi+yMqLlmcjJNdjJjtoY/qz350WVjni7fAxQLPckaSze7vuYx5CsUCqXN710Rz1tQ==",
+        "evaluations" : [ ],
+        "__v" : 0
+}
+{
+        "_id" : ObjectId("590f3c7fcc68a006c8ecead7"),
+        "salt" : "aaNgURc+s1XGCopbrKgGdg==",
+        "department" : "History",
+        "password" : "BSdEhsn5OFPxVm6NsySInwkZxby8n4Vppg3S5Lflx6jxNm4F7Vj8ctYWy6m0pFe0t/hJS5jKQomXBJw0WNwaUQ==",
+        "evaluations" : [ ],
+        "__v" : 0
+}
+{
+        "_id" : ObjectId("590f3c7fcc68a006c8ecead8"),
+        "salt" : "fIcpJfp60TBjv3c5/TgG3Q==",
+        "department" : "International Studies",
+        "password" : "pnizQUE0XMi965TteW8p2IK/4zI1U02n0BkUL+v+e7jZBSmD7nBVgL0H573lfbsMdiq48DybQtw5NUH3qai7/A==",
+        "evaluations" : [ ],
+        "__v" : 0
+}
+{
+        "_id" : ObjectId("590f3c7fcc68a006c8ecead9"),
+        "salt" : "DD51wtbylJ/1uiiCthZhzQ==",
+        "department" : "Mathematics",
+        "password" : "1WgwCsmnxgdIZk5bqnzTp4ZP6UAZFqeTgRWngWCWyvcKSvqeiGsgpLcGXgHDKch6XAED3C6JFX4dVWXRVzFSsQ==",
+        "evaluations" : [ ],
+        "__v" : 0
+}
+{
+        "_id" : ObjectId("590f3c7fcc68a006c8eceada"),
+        "salt" : "auErJlWJkA/SBKtY/1cFwg==",
+        "department" : "Music",
+        "password" : "BSZpp8RooYRS2ZgHoIzCYjz9cCXn1G3mqT4U5gk52G2nHjQhPskEeBaBhaDfYLpPW57/KpYPAQSpzmfg2R07PA==",
+        "evaluations" : [ ],
+        "__v" : 0
+}
+{
+        "_id" : ObjectId("590f3c7fcc68a006c8eceadb"),
+        "salt" : "vGv4o7spSUPIBW4fDvo9yA==",
+        "department" : "Philosophy",
+        "password" : "vTXCKkoyRze8C35jfll2cD/+a0J8bLNybhv0ARgaQIImy3MzGVUk8a0BTjAKhImZXPZLnxSaMRY2QZP2aLs8DQ==",
+        "evaluations" : [ ],
+        "__v" : 0
+}
+{
+        "_id" : ObjectId("590f3c7fcc68a006c8eceadc"),
+        "salt" : "N3rhAZMfRtGcakDkFZxaAg==",
+        "department" : "Physics",
+        "password" : "HNVeyijYb8JZTZLiNNHAdp053kTwy8cqyHP1VnmNtJ2hbLK9hP8ysiNKiewaI/i5qCvAtNcRY5n7uBF/0dZgSA==",
+        "evaluations" : [ ],
+        "__v" : 0
+}
+{
+        "_id" : ObjectId("590f3c7fcc68a006c8eceadd"),
+        "salt" : "RQ6+Ih5DA1nYVcfWdSyQcw==",
+        "department" : "Politics",
+        "password" : "lyy+sMjXXQBOxmICp/5247jtVpYZBngD5dS4TFCE1GMKaaJLU+xKNoFlquD941S6x+gq8wNr1LavdaZYv+adtw==",
+        "evaluations" : [ ],
+        "__v" : 0
+}
+{
+        "_id" : ObjectId("590f3c7fcc68a006c8eceade"),
+        "salt" : "ojfdFiLW6OM2rsDfeV739w==",
+        "department" : "Psychology",
+        "password" : "jGaYtOiUo7dHTaxWk5tdJupxJabel72h2xtSmC0gXblsu6e+lD51hLxkqDLCOZJMjGTyVQMB5Poj46E34ZZwhg==",
+        "evaluations" : [ ],
+        "__v" : 0
+}
+{
+        "_id" : ObjectId("590f3c7fcc68a006c8eceadf"),
+        "salt" : "7K8SjvbPpMM5IhBbFJ8/6Q==",
+        "department" : "Religion",
+        "password" : "TuYgNYNlhvQR5RqoJwoxkHDD8cOWc7uuq4dKoJs/fQJ1ZkoYOa46jnPBlGqAKWd0K4zj02E6vx7BQK/3kHThXA==",
+        "evaluations" : [ ],
+        "__v" : 0
+}
+{
+        "_id" : ObjectId("590f3c7fcc68a006c8eceae1"),
+        "salt" : "DfIkH1ZsOIKAtnjVP7/P4w==",
+        "department" : "Studio Art",
+        "password" : "in6i446kh9Pgqp092c3XBwihMDwvuasGLtPm6w55/1bnnzl1PseQtIH0Tf4CjlUdoESE+ZM9A5GHgHCVGINb1A==",
+        "evaluations" : [ ],
+        "__v" : 0
+}
+{
+        "_id" : ObjectId("590f3c7fcc68a006c8eceac8"),
+        "salt" : "zMGKHglo19qMr0q8pOmBsw==",
+        "department" : "Anthropology/Sociology",
+        "password" : "RMYg5d4Oawlmmz+tDdnnvIZklceMWQxlVPUY2gV+HrnK0PNIXtQOCOTfcrI9Rkjb0XnYq6QPQGAisZkU/o1eug==",
+        "evaluations" : [
+                {
+                        "year" : "2016-2017",
+                        "_id" : ObjectId("591657bce8975f363d172031"),
+                        "evaluation" : {
+                                "label" : "Mission Statement",
+                                "children" : [
+                                        {
+                                                "_id" : ObjectId("591657bce8975f363d172032"),
+                                                "label" : "Goal",
+                                                "children" : [
+                                                        {
+                                                                "_id" : ObjectId("591657bde8975f363d172035"),
+                                                                "label" : "SLO",
+                                                                "children" : [ ],
+                                                                "data" : {
+                                                                        "info" : "Students will have an appropriate foundation in the core knowledge areas"
+                                                                }
+                                                        },
+                                                        {
+                                                                "_id" : ObjectId("591657bde8975f363d172036"),
+                                                                "label" : "SLO",
+                                                                "children" : [
+                                                                        {
+                                                                                "_id" : ObjectId("591657bee8975f363d17203c"),
+                                                                                "label" : "Process",
+                                                                                "children" : [
+                                                                                        {
+                                                                                                "label" : "Result",
+                                                                                                "_id" : ObjectId("591657bee8975f363d17203d"),
+                                                                                                "data" : {
+                                                                                                    "info" : "100% of the graduates completed a project course"
+                                                                                                }
+                                                                                        }
+                                                                                ],
+                                                                                "data" : {
+                                                                                        "info" : "To assess the students’ ability to carry out a significant project, we first make sure that all students complete a project course at Centre (currently CSC 336, Software Engineering or CSC 410 Database Systems)"
+                                                                                }
+                                                                        }
+                                                                ],
+                                                                "data" : {
+                                                                        "info" : "Students will be able to successfully implement a significant programming project from needs analysis to implementation and testing"
+                                                                }
+                                                        }
+                                                ],
+                                                "data" : {
+                                                        "info" : "possesses the core content knowledge of the discipline as well as an awareness of the ethical and social implications of computing technology"
+                                                }
+                                        },
+                                        {
+                                                "_id" : ObjectId("591657bce8975f363d172033"),
+                                                "label" : "Goal",
+                                                "children" : [
+                                                        {
+                                                                "_id" : ObjectId("591657bde8975f363d172037"),
+                                                                "label" : "SLO",
+                                                                "children" : [
+                                                                        {
+                                                                                "_id" : ObjectId("591657bee8975f363d17203e"),
+                                                                                "label" : "Process",
+                                                                                "children" : [
+                                                                                        {
+                                                                                                "label" : "Result",
+                                                                                                "_id" : ObjectId("591657bee8975f363d17203f"),
+                                                                                                "data" : {
+                                                                                                    "info" : "In the online survey, question 25:, 93% agreed"
+                                                                                                }
+                                                                                        }
+                                                                                ],
+                                                                                "data" : {
+                                                                                        "info" : "To assess students’ ability to work collaboratively, we ask a question"
+                                                                                }
+                                                                        }
+                                                                ],
+                                                                "data" : {
+                                                                        "info" : "Students will be able to work collaboratively on a group project"
+                                                                }
+                                                        },
+                                                        {
+                                                                "_id" : ObjectId("591657bde8975f363d172038"),
+                                                                "label" : "SLO",
+                                                                "children" : [
+                                                                        {
+                                                                                "_id" : ObjectId("591657bee8975f363d172040"),
+                                                                                "label" : "Process",
+                                                                                "children" : [
+                                                                                        {
+                                                                                                "label" : "Result",
+                                                                                                "_id" : ObjectId("591657bee8975f363d172041"),
+                                                                                                "data" : {
+                                                                                                    "info" : "Online survey, 86% agreed or strongly agreed"
+                                                                                                }
+                                                                                        }
+                                                                                ],
+                                                                                "data" : {
+                                                                                        "info" : "To assess the ability of students to communicate both in writing and orally..."
+                                                                                }
+                                                                        }
+                                                                ],
+                                                                "data" : {
+                                                                        "info" : "Students will be able to clearly and effectively communicate technical material both orally and in writing"
+                                                                }
+                                                        }
+                                                ],
+                                                "data" : {
+                                                        "info" : "develops the capacities to learn independently, work collaboratively, and communicate effectively"
+                                                }
+                                        },
+                                        {
+                                                "_id" : ObjectId("591657bce8975f363d172034"),
+                                                "label" : "Goal",
+                                                "children" : [
+                                                        {
+                                                                "_id" : ObjectId("591657bde8975f363d172039"),
+                                                                "label" : "SLO",
+                                                                "children" : [
+                                                                        {
+                                                                                "_id" : ObjectId("591657bee8975f363d172042"),
+                                                                                "label" : "Process",
+                                                                                "children" : [
+                                                                                        {
+                                                                                                "label" : "Result",
+                                                                                                "_id" : ObjectId("591657bee8975f363d172043"),
+                                                                                                "data" : {
+                                                                                                    "info" : "The Centre College Center for Career and Professional Development was able to report information on eight of the nine 2015 graduates"
+                                                                                                }
+                                                                                        }
+                                                                                ],
+                                                                                "data" : {
+                                                                                        "info" : "We want our students to be prepared to enter professional careers as computer scientists or software engineers..."
+                                                                                }
+                                                                        }
+                                                                ],
+                                                                "data" : {
+                                                                        "info" : "Students will be prepared to enter graduate or professional school or to begin a career in a computing-related field"
+                                                                }
+                                                        }
+                                                ],
+                                                "data" : {
+                                                        "info" : "is prepared to function as a professional computer scientist or to enter graduate school"
+                                                }
+                                        }
+                                ],
+                                "data" : {
+                                        "info" : "The Computer Science Program seeks to produce graduates who are able to research and analyze ..."
+                                }
+                        }
+                }
+        ],
+        "__v" : 0
+}
+{
+        "_id" : ObjectId("590f3c7fcc68a006c8ecead0"),
+        "salt" : "kLOlFxOUfDVYMc3NSRxPuw==",
+        "department" : "Computer Science",
+        "password" : "g+6SPYuSsTRfM7eUMjqwLnzRTY9dSN/UU5JFzc192VCXGUMk5VTvIa6Dfd0F0mYJq0IyzZP6VNAbjw85iZL0WQ==",
+        "evaluations" : [
+                {
+                        "year" : "2016-2017",
+                        "_id" : ObjectId("59174f08ccdef0db2899ca21"),
+                        "evaluation" : {
+                                "label" : "Mission Statement",
+                                "children" : [
+                                        {
+                                                "_id" : ObjectId("59174f09ccdef0db2899ca23"),
+                                                "label" : "Goal",
+                                                "children" : [
+                                                        {
+                                                                "_id" : ObjectId("59174f0accdef0db2899ca29"),
+                                                                "label" : "SLO",
+                                                                "children" : [
+                                                                        {
+                                                                                "_id" : ObjectId("59174f0cccdef0db2899ca33"),
+                                                                                "label" : "Process",
+                                                                                "children" : [
+                                                                                        {
+                                                                                                "label" : "Result",
+                                                                                                "_id" : ObjectId("59174f0cccdef0db2899ca34"),
+                                                                                                "data" : {
+                                                                                                    "info" : "The following table gives the results for the last five years:......"
+                                                                                                }
+                                                                                        }
+                                                                                ],
+                                                                                "data" : {
+                                                                                        "info" : "We use several tools for measuring students’ knowledge in the core curriculum. The ETS exam..."
+                                                                                }
+                                                                        }
+                                                                ],
+                                                                "data" : {
+                                                                        "info" : "Students will have an appropriate foundation in the core knowledge areas"
+                                                                }
+                                                        },
+                                                        {
+                                                                "_id" : ObjectId("59174f0accdef0db2899ca2a"),
+                                                                "label" : "SLO",
+                                                                "children" : [
+                                                                        {
+                                                                                "_id" : ObjectId("59174f0cccdef0db2899ca35"),
+                                                                                "label" : "Process",
+                                                                                "children" : [
+                                                                                        {
+                                                                                                "label" : "Result",
+                                                                                                "_id" : ObjectId("59174f0cccdef0db2899ca36"),
+                                                                                                "data" : {
+                                                                                                    "info" : "100% of the graduates completed a project course"
+                                                                                                }
+                                                                                        }
+                                                                                ],
+                                                                                "data" : {
+                                                                                        "info" : "To assess the students’ ability to carry out a significant project, we first make sure that all students complete a project course at Centre (currently CSC 336, Software Engineering or CSC 410 Database Systems)"
+                                                                                }
+                                                                        }
+                                                                ],
+                                                                "data" : {
+                                                                        "info" : "Students will be able to successfully implement a significant programming project from needs analysis to implementation and testing"
+                                                                }
+                                                        }
+                                                ],
+                                                "data" : {
+                                                        "info" : "possesses the core content knowledge of the discipline as well as an awareness of the ethical and social implications of computing technology"
+                                                }
+                                        },
+                                        {
+                                                "_id" : ObjectId("59174f09ccdef0db2899ca24"),
+                                                "label" : "Goal",
+                                                "children" : [
+                                                        {
+                                                                "_id" : ObjectId("59174f0accdef0db2899ca2b"),
+                                                                "label" : "SLO",
+                                                                "children" : [
+                                                                        {
+                                                                                "_id" : ObjectId("59174f0dccdef0db2899ca37"),
+                                                                                "label" : "Process",
+                                                                                "children" : [
+                                                                                        {
+                                                                                                "label" : "Result",
+                                                                                                "_id" : ObjectId("59174f0dccdef0db2899ca38"),
+                                                                                                "data" : {
+                                                                                                    "info" : "In the online survey, question 25:, 93% agreed"
+                                                                                                }
+                                                                                        }
+                                                                                ],
+                                                                                "data" : {
+                                                                                        "info" : "To assess students’ ability to work collaboratively, we ask a question"
+                                                                                }
+                                                                        }
+                                                                ],
+                                                                "data" : {
+                                                                        "info" : "Students will be able to work collaboratively on a group project"
+                                                                }
+                                                        },
+                                                        {
+                                                                "_id" : ObjectId("59174f0accdef0db2899ca2c"),
+                                                                "label" : "SLO",
+                                                                "children" : [
+                                                                        {
+                                                                                "_id" : ObjectId("59174f0dccdef0db2899ca39"),
+                                                                                "label" : "Process",
+                                                                                "children" : [
+                                                                                        {
+                                                                                                "label" : "Result",
+                                                                                                "_id" : ObjectId("59174f0dccdef0db2899ca3a"),
+                                                                                                "data" : {
+                                                                                                    "info" : "Online survey, 86% agreed or strongly agreed"
+                                                                                                }
+                                                                                        }
+                                                                                ],
+                                                                                "data" : {
+                                                                                        "info" : "To assess the ability of students to communicate both in writing and orally..."
+                                                                                }
+                                                                        }
+                                                                ],
+                                                                "data" : {
+                                                                        "info" : "Students will be able to clearly and effectively communicate technical material both orally and in writing"
+                                                                }
+                                                        }
+                                                ],
+                                                "data" : {
+                                                        "info" : "develops the capacities to learn independently, work collaboratively, and communicate effectively"
+                                                }
+                                        },
+                                        {
+                                                "_id" : ObjectId("59174f09ccdef0db2899ca25"),
+                                                "label" : "Goal",
+                                                "children" : [
+                                                        {
+                                                                "_id" : ObjectId("59174f0accdef0db2899ca2d"),
+                                                                "label" : "SLO",
+                                                                "children" : [
+                                                                        {
+                                                                                "_id" : ObjectId("59174f0dccdef0db2899ca3b"),
+                                                                                "label" : "Process",
+                                                                                "children" : [
+                                                                                        {
+                                                                                                "label" : "Result",
+                                                                                                "_id" : ObjectId("59174f0dccdef0db2899ca3c"),
+                                                                                                "data" : {
+                                                                                                    "info" : "The Centre College Center for Career and Professional Development was able to report information on eight of the nine 2015 graduates"
+                                                                                                }
+                                                                                        }
+                                                                                ],
+                                                                                "data" : {
+                                                                                        "info" : "We want our students to be prepared to enter professional careers as computer scientists or software engineers..."
+                                                                                }
+                                                                        }
+                                                                ],
+                                                                "data" : {
+                                                                        "info" : "Students will be prepared to enter graduate or professional school or to begin a career in a computing-related field"
+                                                                }
+                                                        }
+                                                ],
+                                                "data" : {
+                                                        "info" : "is prepared to function as a professional computer scientist or to enter graduate school"
+                                                }
+                                        }
+                                ],
+                                "data" : {
+                                        "info" : "The Computer Science Program seeks to produce graduates who are able to research and analyze ..."
+                                }
+                        }
+                },
+                {
+                        "year" : "2015-2016",
+                        "_id" : ObjectId("59174f08ccdef0db2899ca22"),
+                        "evaluation" : {
+                                "label" : "Mission Statement",
+                                "children" : [
+                                        {
+                                                "_id" : ObjectId("59174f09ccdef0db2899ca26"),
+                                                "label" : "Goal",
+                                                "children" : [
+                                                        {
+                                                                "_id" : ObjectId("59174f0accdef0db2899ca2e"),
+                                                                "label" : "SLO",
+                                                                "children" : [
+                                                                        {
+                                                                                "_id" : ObjectId("59174f0dccdef0db2899ca3d"),
+                                                                                "label" : "Process",
+                                                                                "children" : [
+                                                                                        {
+                                                                                                "label" : "Result",
+                                                                                                "_id" : ObjectId("59174f0dccdef0db2899ca3e"),
+                                                                                                "data" : {
+                                                                                                    "info" : "The following table gives the results for the last five years:......"
+                                                                                                }
+                                                                                        }
+                                                                                ],
+                                                                                "data" : {
+                                                                                        "info" : "We use several tools for measuring students’ knowledge in the core curriculum. The ETS exam..."
+                                                                                }
+                                                                        }
+                                                                ],
+                                                                "data" : {
+                                                                        "info" : "Students will have an appropriate foundation in the core knowledge areas"
+                                                                }
+                                                        },
+                                                        {
+                                                                "_id" : ObjectId("59174f0bccdef0db2899ca2f"),
+                                                                "label" : "SLO",
+                                                                "children" : [
+                                                                        {
+                                                                                "_id" : ObjectId("59174f0dccdef0db2899ca3f"),
+                                                                                "label" : "Process",
+                                                                                "children" : [
+                                                                                        {
+                                                                                                "label" : "Result",
+                                                                                                "_id" : ObjectId("59174f0dccdef0db2899ca40"),
+                                                                                                "data" : {
+                                                                                                    "info" : "100% of the graduates completed a project course"
+                                                                                                }
+                                                                                        }
+                                                                                ],
+                                                                                "data" : {
+                                                                                        "info" : "To assess the students’ ability to carry out a significant project, we first make sure that all students complete a project course at Centre (currently CSC 336, Software Engineering or CSC 410 Database Systems)"
+                                                                                }
+                                                                        }
+                                                                ],
+                                                                "data" : {
+                                                                        "info" : "Students will be able to successfully implement a significant programming project from needs analysis to implementation and testing"
+                                                                }
+                                                        }
+                                                ],
+                                                "data" : {
+                                                        "info" : "possesses the core content knowledge of the discipline as well as an awareness of the ethical and social implications of computing technology"
+                                                }
+                                        },
+                                        {
+                                                "_id" : ObjectId("59174f09ccdef0db2899ca27"),
+                                                "label" : "Goal",
+                                                "children" : [
+                                                        {
+                                                                "_id" : ObjectId("59174f0bccdef0db2899ca30"),
+                                                                "label" : "SLO",
+                                                                "children" : [
+                                                                        {
+                                                                                "_id" : ObjectId("59174f0dccdef0db2899ca41"),
+                                                                                "label" : "Process",
+                                                                                "children" : [
+                                                                                        {
+                                                                                                "label" : "Result",
+                                                                                                "_id" : ObjectId("59174f0dccdef0db2899ca42"),
+                                                                                                "data" : {
+                                                                                                    "info" : "In the online survey, question 25:, 93% agreed"
+                                                                                                }
+                                                                                        }
+                                                                                ],
+                                                                                "data" : {
+                                                                                        "info" : "To assess students’ ability to work collaboratively, we ask a question"
+                                                                                }
+                                                                        }
+                                                                ],
+                                                                "data" : {
+                                                                        "info" : "Students will be able to work collaboratively on a group project"
+                                                                }
+                                                        },
+                                                        {
+                                                                "_id" : ObjectId("59174f0bccdef0db2899ca31"),
+                                                                "label" : "SLO",
+                                                                "children" : [
+                                                                        {
+                                                                                "_id" : ObjectId("59174f0dccdef0db2899ca43"),
+                                                                                "label" : "Process",
+                                                                                "children" : [
+                                                                                        {
+                                                                                                "label" : "Result",
+                                                                                                "_id" : ObjectId("59174f0dccdef0db2899ca44"),
+                                                                                                "data" : {
+                                                                                                    "info" : "Online survey, 86% agreed or strongly agreed"
+                                                                                                }
+                                                                                        }
+                                                                                ],
+                                                                                "data" : {
+                                                                                        "info" : "To assess the ability of students to communicate both in writing and orally..."
+                                                                                }
+                                                                        }
+                                                                ],
+                                                                "data" : {
+                                                                        "info" : "Students will be able to clearly and effectively communicate technical material both orally and in writing"
+                                                                }
+                                                        }
+                                                ],
+                                                "data" : {
+                                                        "info" : "develops the capacities to learn independently, work collaboratively, and communicate effectively"
+                                                }
+                                        },
+                                        {
+                                                "_id" : ObjectId("59174f09ccdef0db2899ca28"),
+                                                "label" : "Goal",
+                                                "children" : [
+                                                        {
+                                                                "_id" : ObjectId("59174f0bccdef0db2899ca32"),
+                                                                "label" : "SLO",
+                                                                "children" : [
+                                                                        {
+                                                                                "_id" : ObjectId("59174f0dccdef0db2899ca45"),
+                                                                                "label" : "Process",
+                                                                                "children" : [
+                                                                                        {
+                                                                                                "label" : "Result",
+                                                                                                "_id" : ObjectId("59174f0dccdef0db2899ca46"),
+                                                                                                "data" : {
+                                                                                                    "info" : "The Centre College Center for Career and Professional Development was able to report information on eight of the nine 2015 graduates"
+                                                                                                }
+                                                                                        }
+                                                                                ],
+                                                                                "data" : {
+                                                                                        "info" : "We want our students to be prepared to enter professional careers as computer scientists or software engineers..."
+                                                                                }
+                                                                        }
+                                                                ],
+                                                                "data" : {
+                                                                        "info" : "Students will be prepared to enter graduate or professional school or to begin a career in a computing-related field"
+                                                                }
+                                                        }
+                                                ],
+                                                "data" : {
+                                                        "info" : "is prepared to function as a professional computer scientist or to enter graduate school"
+                                                }
+                                        }
+                                ],
+                                "data" : {
+                                        "info" : "The Computer Science Program seeks to produce graduates who are able to research and analyze ..."
+                                }
+                        }
+                }
+        ],
+        "__v" : 0
+}

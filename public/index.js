@@ -24,6 +24,12 @@
         var updateSLO = function(data){
             return $http.put('/slo', data)
         }
+        var createGoal = function(data){
+            return $http.post('/goal', data)
+        }
+        var createSLO = function(data){
+            return $http.post('/slo', data)
+        }
         
         var oldData = {
             currentBranch: {
@@ -84,7 +90,9 @@
             logout: logout,
             updateMission: updateMission,
             updateGoal: updateGoal,
-            updateSLO: updateSLO
+            updateSLO: updateSLO,
+            createGoal: createGoal,
+            createSLO: createSLO
         }
     };
 
@@ -110,8 +118,8 @@
             var text = $scope.slo || "<h1>Hello World</h1>"
             editor.clipboard.dangerouslyPasteHTML(text);
         }
-//        console.log(info.data.data.evaluations[0].evaluation);
-        $scope.saveText = function(data, type){
+//        console.log(info.data.data.evaluations[0]);
+        $scope.saveText = function(data, type, name){
             var selectBranch = tree.get_selected_branch();
             if(type == "mission"){
                 genService.updateMission(
@@ -121,30 +129,41 @@
                     }
                 ).then(function(data){
                     console.log(data)
+                    if(data.data.success){
+                        $state.reload();
+                    }
                 })
             }
             else if(type == "goal"){
                 genService.updateGoal(
                     {
-                        goal: data, 
+                        goal: data,
+                        goalName: name,
                         assessmentId: info.data.data.evaluations[0]._id,
                         goalId: selectBranch._id
                     }
                 ).then(function(data){
-                    console.log(data)
+                    console.log(data);
+                    if(data.data.success){
+                        $state.reload();
+                    }
                 })
             }
             else if(type == "slo"){
                 var branch = tree.get_parent_branch(selectBranch);
                 genService.updateSLO(
                     {
-                        updatedSLO: data, 
+                        updatedSLO: data,
+                        sloName: name,
                         assessmentId: info.data.data.evaluations[0]._id,
                         goalId: branch._id,
                         sloId: selectBranch._id
                     }
                 ).then(function(data){
                     console.log(data)
+                    if(data.data.success){
+                        $state.reload();
+                    }
                 })
             }
         }
@@ -157,14 +176,17 @@
             } else if (branch.data.type == "goal" || branch.label == "Goal") {
                 $scope.missionData = tree.get_parent_branch(branch).data.info;
                 $scope.goal = branch.data.info;
+                $scope.goalName = branch.label;
                 branchInitialize("goal", branch);
             } else if (branch.data.type == "slo" || branch.label == "SLO") {
                 $scope.goalData = tree.get_parent_branch(branch).data.info;
+                $scope.sloName = branch.label;
                 $scope.slo = branch.data.info;
                 branchInitialize("slo", branch);
 
             } else if (branch.data.type == "tool" || branch.label == "Process") {
                 $scope.sloData = tree.get_parent_branch(branch).data.info;
+                $scope.toolName = branch.label;
                 branchInitialize("tool", branch);
             } else if (branch.data.type == "result" || branch.label == "Result") {
                 $scope.toolData = tree.get_parent_branch(branch).data.info;
@@ -173,45 +195,35 @@
         }
         $scope.treedata_avm = [info.data.data.evaluations[0].evaluation] || genService.data.report;
         
-        $scope.add_branch = function () {
+        $scope.add_branch = function(type){
+            var selectBranch = tree.get_selected_branch();
             var b;
             b = tree.get_selected_branch();
-            console.log(b)
-            var obj;
-            genService.data.report[0].children.forEach(function (item) {
-                console.log(item)
-                if (item.uid == b.uid) {
-                    if (item.data.type == "goal") {
-                        obj = {
-                            label: "New SLO",
-                            data: {
-                                info: "",
-                                type: "slo"
-                            },
-                            children: []
-                        }
-                    } else if (item.data.type == "slo") {
-                        obj = {
-                            label: "New Tool",
-                            data: {
-                                info: "",
-                                type: "tool"
-                            },
-                            children: []
-                        }
-                    } else if (item.data.type == "tool") {
-                        obj = {
-                            label: "New Result",
-                            data: {
-                                info: "",
-                                type: "result"
-                            },
-                            children: []
-                        }
+            var obj = {
+                label: "",
+                data: {
+                    info: "",
+                    type: ""
+                },
+                children: []
+            }
+            if(type=="goal"){
+                genService.createGoal({assessmentId: info.data.data.evaluations[0]._id}).then(function(data){
+                    console.log(data)
+                    if(data.data.success){
+                        $state.reload()
                     }
-                }
-            })
-            return tree.add_branch(b, obj);
+                })
+            }
+            else if(type=="slo"){
+                genService.createSLO({assessmentId: info.data.data.evaluations[0]._id, goalId: selectBranch._id}).then(function(data){
+                    console.log(data)
+                    if(data.data.success){
+                        $state.reload()
+                    }
+                })
+                
+            }            
         };
     }
 

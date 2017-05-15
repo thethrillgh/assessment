@@ -8,13 +8,12 @@
         <button type="button" class="btn btn-default">No</button>
     </div>
     <h3>Name your SLO</h3>
-    <input>
-    <button class="btn btn-success">Save</button>
+    <input ng-model="sloName">
     <h3>Describe your SLO</h3>
     <ng-quill-editor on-editor-created="editorCreatedSlo(editor)" ng-model="slo"></ng-quill-editor>
     <br>
     <div class="col-md-2 col-md-offset-5">
-        <button class="btn btn-success" ng-click="saveText(slo, 'slo')">Save Text</button>
+        <button class="btn btn-success" ng-click="saveText(slo, 'slo')">Save Work</button>
     </div>
     <br>
     <div class="row">

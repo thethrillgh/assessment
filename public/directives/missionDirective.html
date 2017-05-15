@@ -15,7 +15,12 @@
     <ng-quill-editor on-editor-created="editorCreated(editor)" ng-model="missionStatement"></ng-quill-editor>
     <br>
     <div class="col-md-2 col-md-offset-5">
-        <button class="btn btn-success" ng-click="saveText(missionStatement, 'mission')">Save Text</button>
+        <button class="btn btn-success" ng-click="saveText(missionStatement, 'mission')">Save Work</button>
     </div>
     <br>
+    <div class="row">
+        <div class="col-md-2 col-md-offset-5" ng-click="add_branch('goal')">
+            <button class="btn btn-primary add-slo">Add Goal</button>
+        </div>
+    </div>
 </div>

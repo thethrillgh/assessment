@@ -1076,6 +1076,16 @@ exports.readAssessments = function (req, res, next) {
 		res.json(utilities.error(strings.notLoggedIn));
 	}
 };
+/**
+ * Gets current department
+ */
+exports.getDepartment = function (req, res, next) {
+	if (req.user) {
+		res.json(req.user.department)
+	} else {
+		res.json(utilities.error(strings.notLoggedIn));
+	}
+};
 
 /**
  * Gets all the information for the evaluation for a specific year

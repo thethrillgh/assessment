@@ -2,14 +2,19 @@
     <div class="center">Mission Statement</div>
 </div>
 <div class="mycontainer">
-    <p class="same_slo">Centre College’s mission is to prepare students for lives of learning, leadership, and service.</p>
-    <p class="same_slo">Has your Program Mission Statement been revised from last year?</p>
+    <p class="same_slo">{{my_tree.get_selected_branch().data.info}}</p>
+    <hr></hr>
+    <p class="same_slo">Has your Program Mission Statement been revised from last year?
+    </p>
     <div class="btn-group">
         <button type="button" class="btn btn-default">Yes</button>
         <button type="button" class="btn btn-default">No</button>
     </div>
- 
-    <button class="btn btn-success">Save</button>
+    <hr></hr>
     <h3>Enter your Program Mission Statement</h3>
-    <ng-quill-editor ng-model="message"></ng-quill-editor>
+    <ng-quill-editor on-editor-created="editorCreated(editor)" ng-model="missionStatement"></ng-quill-editor>
+    <br>
+    <div class="col-md-2 col-md-offset-5">
+        <button class="btn btn-success" ng-click="saveText(missionStatement)">Save Text</button>
+    </div>
 </div>

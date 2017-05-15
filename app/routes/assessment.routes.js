@@ -3,6 +3,7 @@ var assessment = require('../controllers/assessment.controller');
 module.exports = function (app) {
 	app.get('/assessments', assessment.readAssessments);
 	app.get('/assessment/:id', assessment.readAssessment);
+	app.get('/dpt', assessment.getDepartment);
 
 	app.route('/assessment')
 		.post(assessment.create)

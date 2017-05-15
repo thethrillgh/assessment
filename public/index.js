@@ -3,8 +3,17 @@
     angular.module("assessment", ['angularBootstrapNavTree', 'ngAnimate', 'ngQuill', 'ui.router', 'ngFileUpload']);
 
     var genService = function ($http) {
-        var getDepartments = function () {
+        var getDepartments = function (){
             return $http.get('/departments');
+        }
+        var currentDpt = function (){
+            return $http.get('/dpt');
+        }
+        var getAssessments = function(){
+            return $http.get('/assessments')
+        }
+        var logout = function(){
+            return $http.get('/logout')
         }
         var oldData = {
             currentBranch: {
@@ -46,63 +55,6 @@
                                             type: "result"
                                         }
                                     }]
-                                },
-                                {
-                                    label: "Tool 2",
-                                    data: {
-                                        info: "possesses the core content knowledge of the discipline as well as an awareness of the ethical and social implications of computing technology.",
-                                        type: "tool"
-                                    },
-                                    children: [{
-                                        label: "Result",
-                                        data: {
-                                            info: "possesses the core content knowledge of the discipline as well as an awareness of the ethical and social implications of computing technology.",
-                                            type: "result"
-                                        }
-                                    }]
-                                }
-                            ]
-                        }]
-                    },
-                    {
-                        label: "Goal 2",
-                        data: {
-                            info: "possesses the core content knowledge of the discipline as well as an awareness of the ethical and social implications of computing technology.",
-                            type: "goal"
-                        },
-                        children: [{
-                            label: "SLO2",
-                            data: {
-                                info: "possesses the core content knowledge of the discipline as well as an awareness of the ethical and social implications of computing technology.",
-                                type: "slo"
-                            },
-                            children: [{
-                                    label: "Tool 1",
-                                    data: {
-                                        info: "We use several tools for measuring students’ knowledge in the core curriculum. The ETS exam gives us a method of evaluating our students’ knowledge of the core curriculum (except for the social and ethical issues) and of comparing their performance to a larger group.  Secondly, using an online anonymous survey, we ask the seniors to reflect on how much they have learned during their course of study to gauge their confidence in their preparation. (This includes a question on the social and ethical issues.)  The alumni evaluation of their experience in the computer science program is also relevant here.",
-                                        type: "tool"
-                                    },
-                                    children: [{
-                                        label: "Result",
-                                        data: {
-                                            info: "possesses the core content knowledge of the discipline as well as an awareness of the ethical and social implications of computing technology.",
-                                            type: "result"
-                                        }
-                                    }]
-                                },
-                                {
-                                    label: "Tool 2",
-                                    data: {
-                                        info: "possesses the core content knowledge of the discipline as well as an awareness of the ethical and social implications of computing technology.",
-                                        type: "tool"
-                                    },
-                                    children: [{
-                                        label: "Result",
-                                        data: {
-                                            info: "possesses the core content knowledge of the discipline as well as an awareness of the ethical and social implications of computing technology.",
-                                            type: "result"
-                                        }
-                                    }]
                                 }
                             ]
                         }]
@@ -115,40 +67,54 @@
         }
         return {
             getDepartments: getDepartments,
+            currentDpt: currentDpt,
+            getAssessments: getAssessments,
             data: oldData,
-            login: login
+            login: login,
+            logout: logout
         }
     };
 
 
     //Controllers
-    var mainController = function ($scope, genService, $sce, Upload, $state) {
+    var mainController = function ($scope, genService, $sce, Upload, $state, info, currentdpt) {
         var tree = $scope.my_tree = {};
-
+        $scope.dpt = currentdpt.data;
+//        $scope.dpt = $state.params.obj;
+        $scope.logout = function(){
+            genService.logout()
+        } 
+        $scope.editorCreated = function(editor){
+            var text = $scope.missionStatement || "<h1>Hello World</h1>"
+            editor.clipboard.dangerouslyPasteHTML(text);
+        }
+        console.log(info.data.data.evaluations);
+        
         function branchInitialize(type, branch) {
             $state.go("home." + type);
         }
         $scope.tree_handler = function (branch) {
-            if (branch.data.type == "mission") {
+            if (branch.data.type == "mission" || branch.label == "Mission Statement") {
                 branchInitialize("mission", branch)
-            } else if (branch.data.type == "goal") {
+            } else if (branch.data.type == "goal" || branch.label == "Goal") {
                 $scope.missionData = branch.data.info;
                 branchInitialize("goal", branch)
-            } else if (branch.data.type == "slo") {
+            } else if (branch.data.type == "slo" || branch.label == "SLO") {
                 $scope.goalData = branch.data.info;
                 branchInitialize("slo", branch);
 
-            } else if (branch.data.type == "tool") {
+            } else if (branch.data.type == "tool" || branch.label == "Process") {
                 $scope.sloData = branch.data.info;
                 branchInitialize("tool", branch);
-            } else if (branch.data.type == "result") {
+            } else if (branch.data.type == "result" || branch.label == "Result") {
                 $scope.toolData = branch.data.info;
                 branchInitialize("result", branch);
             }
         }
         $scope.message = $sce.trustAsHtml($scope.message);
 
-        $scope.treedata_avm = genService.data.report;
+        $scope.treedata_avm = [info.data.data.evaluations[0].evaluation];
+//        $scope.treedata_avm = genService.data.report;
 
         $scope.add_branch = function () {
             var b;
@@ -192,39 +158,22 @@
         };
     }
 
-    var loginController = function ($scope, $http, genService) {
+    var loginController = function ($scope, $http, genService, departments, $state) {
         // Display list of departments
-        genService.getDepartments().then(function (data) {
-            if (data.success) {
-                $scope.departments = data.departments;
-            };
-        });
-        $scope.departments = [
-             {
-                "_id": "590f3c7fcc68a006c8eceada",
-                "department": "Music",
-                "__v": 0,
-                "id": "590f3c7fcc68a006c8eceada"
-              },
-              {
-                "_id": "590f3c7fcc68a006c8eceadb",
-                "department": "Philosophy",
-                "__v": 0,
-                "id": "590f3c7fcc68a006c8eceadb"
-              }
-        ]
+        $scope.departments = departments.data.data.departments;
+        
         //Verify password
         $scope.signin = function () {
+            console.log($scope.department, $scope.password)
               genService.login({
                   department: $scope.department,
                   password: $scope.password
               }).then(function (data) {
-                  if (data.success) {
-                      $http.redirectTo('/home');
-                  } else {
-                      var msg = data.message;
-                      alert(msg);
-                      //Do something with the error message
+                  if(data.data.success){
+                      $state.go('home', {obj: $scope.department});
+                  }
+                  else{
+                      $state.reload()                      
                   }
               });
         };
@@ -237,15 +186,34 @@
             .state('login', {
                 url: '/login',
                 templateUrl: 'login.html',
-                controller: "loginController"
+                controller: "loginController",
+                resolve: {
+                    departments: function(genService){
+                        return genService.getDepartments();
+                    }
+                }
             })
             .state('home', {
                 url: '/home',
+                params: {
+                  obj: null
+                },
                 templateUrl: 'ngviews/home.html',
-                controller: "mainController"
+                controller: "mainController",
+                resolve: {
+                    info: function(genService){
+                        return genService.getAssessments();
+                    },
+                    currentdpt: function(genService){
+                        return genService.currentDpt();
+                    }
+                }
             })
             .state('home.mission', {
                 url: '/mission',
+                params: {
+                  obj: null
+                },
                 templateUrl: 'ngviews/mission-view.html'
             })
             .state('home.goal', {

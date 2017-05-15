@@ -3,14 +3,9 @@
     angular.module("assessment", ['angularBootstrapNavTree', 'ngAnimate', 'ngQuill', 'ui.router', 'ngFileUpload']);
 
     var genService = function ($http) {
-        var get = function () {
-            return $http.get("/getAll");
-        }
-        
         var getDepartments = function () {
             return $http.get('/departments');
         }
-        
         var oldData = {
             currentBranch: {
                 label: "Mission Statement",
@@ -119,7 +114,6 @@
             return $http.post("/signin", data)
         }
         return {
-            getData: get,
             getDepartments: getDepartments,
             data: oldData,
             login: login
@@ -129,9 +123,6 @@
 
     //Controllers
     var mainController = function ($scope, genService, $sce, Upload, $state) {
-        genService.getData().then(function (data) {
-            console.log(data.data)
-        })
         var tree = $scope.my_tree = {};
 
         function branchInitialize(type, branch) {
@@ -208,6 +199,20 @@
                 $scope.departments = data.departments;
             };
         });
+        $scope.departments = [
+             {
+                "_id": "590f3c7fcc68a006c8eceada",
+                "department": "Music",
+                "__v": 0,
+                "id": "590f3c7fcc68a006c8eceada"
+              },
+              {
+                "_id": "590f3c7fcc68a006c8eceadb",
+                "department": "Philosophy",
+                "__v": 0,
+                "id": "590f3c7fcc68a006c8eceadb"
+              }
+        ]
         //Verify password
         $scope.signin = function () {
               genService.login({
@@ -231,11 +236,13 @@
         $stateProvider
             .state('login', {
                 url: '/login',
-                templateUrl: '/login.html'
+                templateUrl: 'login.html',
+                controller: "loginController"
             })
             .state('home', {
                 url: '/home',
-                templateUrl: 'ngviews/home.html'
+                templateUrl: 'ngviews/home.html',
+                controller: "mainController"
             })
             .state('home.mission', {
                 url: '/mission',

@@ -28,6 +28,8 @@ module.exports = function (app) {
 
 	app.put('/result', assessment.updateResult);
 
+	app.get('/print/:id', assessment.print);
+
 
 
 	/* app.post('/assessment', assessment.create);

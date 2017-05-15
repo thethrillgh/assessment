@@ -1116,3 +1116,88 @@ exports.readAssessment = function (req, res, next) {
 		res.json(utilities.error(strings.notLoggedIn));
 	}
 };
+
+/**
+ * Shows a page with all the information for the given assessment, and shows a print dialog
+ */
+exports.print = function (req, res, next) {
+	var assessmentId = req.params.id;
+
+	//Make sure the user is logged in
+	if (req.user) {
+		//Get the department object from the database
+		Assessment.findOne({
+			department: req.user.department
+		}, 'evaluations', function (err, department) {
+			if (err) {
+				next(err);
+			} else {
+				var evaluations = department.evaluations;
+
+				var evaluationObj = evaluations.find(function (elem) {
+					return elem.id === assessmentId;
+				});
+
+				//Basically, go through everything in the evaluation object for the given id
+				//and add it to a string to be printed out. Could have done this with an .ejs
+				//view file, or Angular, but this works fine
+				var result = '';
+
+				var year = evaluationObj.year;
+				result += '<h2><center>' + req.user.department + ' Department Assessment<br>' + year + '</center></h2>';
+
+				var evaluation = evaluationObj.evaluation;
+
+				var missionStatement = evaluation.data.info;
+				result += '<h3>Mission Statement:</h3><div>' + missionStatement + '</div>';
+
+				//Go through all the goals and put them in an unordered list
+				var goals = evaluation.children;
+				result += '<ul>';
+				for (var i1 = 0; i1 < goals.length; i1++) {
+					var goal = goals[i1];
+					var slos = goal.children;
+
+					result += '<li>';
+					result += '<b>Goal</b>: ' + goal.data.info;
+					
+					//Go through all the SLOs and put them in a sublist
+					result += '<ul>';
+					for (var i2 = 0; i2 < slos.length; i2++) {
+						var slo = slos[i2];
+						var processes = slo.children;
+
+						result += '<li>';
+						result += '<b>Student Learning Objective</b>: ' + slo.data.info;
+
+						//Go through all the processes and results and put them in a sublist
+						result += '<ul>';
+						for (var i3 = 0; i3 < processes.length; i3++) {
+							var proces = processes[i3];
+							var result_ = proces.children[0];
+
+							result += '<li>';
+							result += '<b>Process</b>: ' + proces.data.info;
+							result += '</li><li>';
+							result += '<b>Result</b>: ' + result_.data.info;
+							result += '</li><br>';
+						}
+						result += '</ul>';
+
+						result += '</li>';
+					}
+					result += '</ul>';
+					
+					result += '</li><br>';
+				}
+				result += '</ul>';
+
+				result += '<script>print()</script>';
+
+				res.send(result);
+			}
+		});
+	} else {
+		res.json(utilities.error(strings.notLoggedIn));
+	}
+};

@@ -2,7 +2,7 @@
     <div class="center">Mission Statement</div>
 </div>
 <div class="mycontainer">
-    <p class="same_slo">{{my_tree.get_selected_branch().data.info}}</p>
+    <p class="same_slo1" ng-bind-html="missionStatement | trustedhtml"></p>
     <hr></hr>
     <p class="same_slo">Has your Program Mission Statement been revised from last year?
     </p>
@@ -15,6 +15,7 @@
     <ng-quill-editor on-editor-created="editorCreated(editor)" ng-model="missionStatement"></ng-quill-editor>
     <br>
     <div class="col-md-2 col-md-offset-5">
-        <button class="btn btn-success" ng-click="saveText(missionStatement)">Save Text</button>
+        <button class="btn btn-success" ng-click="saveText(missionStatement, 'mission')">Save Text</button>
     </div>
+    <br>
 </div>

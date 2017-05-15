@@ -15,6 +15,16 @@
         var logout = function(){
             return $http.get('/logout')
         }
+        var updateMission = function(data){
+            return $http.put('/missionStatement', data)
+        }
+        var updateGoal = function(data){
+            return $http.put('/goal', data)
+        }
+        var updateSLO = function(data){
+            return $http.put('/slo', data)
+        }
+        
         var oldData = {
             currentBranch: {
                 label: "Mission Statement",
@@ -71,25 +81,73 @@
             getAssessments: getAssessments,
             data: oldData,
             login: login,
-            logout: logout
+            logout: logout,
+            updateMission: updateMission,
+            updateGoal: updateGoal,
+            updateSLO: updateSLO
         }
     };
 
 
     //Controllers
-    var mainController = function ($scope, genService, $sce, Upload, $state, info, currentdpt) {
+    var mainController = function ($scope, genService, Upload, $state, info, currentdpt) {
         var tree = $scope.my_tree = {};
         $scope.dpt = currentdpt.data;
 //        $scope.dpt = $state.params.obj;
         $scope.logout = function(){
             genService.logout()
         } 
+        $scope.missionStatement = info.data.data.evaluations[0].evaluation.data.info;
         $scope.editorCreated = function(editor){
             var text = $scope.missionStatement || "<h1>Hello World</h1>"
             editor.clipboard.dangerouslyPasteHTML(text);
         }
-        console.log(info.data.data.evaluations);
-        
+        $scope.editorCreatedGoal = function(editor){
+            var text = $scope.goal || "<h1>Hello World</h1>"
+            editor.clipboard.dangerouslyPasteHTML(text);
+        }
+        $scope.editorCreatedSlo = function(editor){
+            var text = $scope.slo || "<h1>Hello World</h1>"
+            editor.clipboard.dangerouslyPasteHTML(text);
+        }
+//        console.log(info.data.data.evaluations[0].evaluation);
+        $scope.saveText = function(data, type){
+            var selectBranch = tree.get_selected_branch();
+            if(type == "mission"){
+                genService.updateMission(
+                    {
+                        missionStatement: data,
+                        assessmentId: info.data.data.evaluations[0]._id
+                    }
+                ).then(function(data){
+                    console.log(data)
+                })
+            }
+            else if(type == "goal"){
+                genService.updateGoal(
+                    {
+                        goal: data, 
+                        assessmentId: info.data.data.evaluations[0]._id,
+                        goalId: selectBranch._id
+                    }
+                ).then(function(data){
+                    console.log(data)
+                })
+            }
+            else if(type == "slo"){
+                var branch = tree.get_parent_branch(selectBranch);
+                genService.updateSLO(
+                    {
+                        updatedSLO: data, 
+                        assessmentId: info.data.data.evaluations[0]._id,
+                        goalId: branch._id,
+                        sloId: selectBranch._id
+                    }
+                ).then(function(data){
+                    console.log(data)
+                })
+            }
+        }
         function branchInitialize(type, branch) {
             $state.go("home." + type);
         }
@@ -97,25 +155,24 @@
             if (branch.data.type == "mission" || branch.label == "Mission Statement") {
                 branchInitialize("mission", branch)
             } else if (branch.data.type == "goal" || branch.label == "Goal") {
-                $scope.missionData = branch.data.info;
-                branchInitialize("goal", branch)
+                $scope.missionData = tree.get_parent_branch(branch).data.info;
+                $scope.goal = branch.data.info;
+                branchInitialize("goal", branch);
             } else if (branch.data.type == "slo" || branch.label == "SLO") {
-                $scope.goalData = branch.data.info;
+                $scope.goalData = tree.get_parent_branch(branch).data.info;
+                $scope.slo = branch.data.info;
                 branchInitialize("slo", branch);
 
             } else if (branch.data.type == "tool" || branch.label == "Process") {
-                $scope.sloData = branch.data.info;
+                $scope.sloData = tree.get_parent_branch(branch).data.info;
                 branchInitialize("tool", branch);
             } else if (branch.data.type == "result" || branch.label == "Result") {
-                $scope.toolData = branch.data.info;
+                $scope.toolData = tree.get_parent_branch(branch).data.info;
                 branchInitialize("result", branch);
             }
         }
-        $scope.message = $sce.trustAsHtml($scope.message);
-
-        $scope.treedata_avm = [info.data.data.evaluations[0].evaluation];
-//        $scope.treedata_avm = genService.data.report;
-
+        $scope.treedata_avm = [info.data.data.evaluations[0].evaluation] || genService.data.report;
+        
         $scope.add_branch = function () {
             var b;
             b = tree.get_selected_branch();
@@ -164,7 +221,6 @@
         
         //Verify password
         $scope.signin = function () {
-            console.log($scope.department, $scope.password)
               genService.login({
                   department: $scope.department,
                   password: $scope.password
@@ -289,7 +345,12 @@
         .directive("toolDirective", toolDirective)
         .directive("missionDirective", missionDirective)
         .directive("goalDirective", goalDirective)
-        .config(routingConfig);
+        .config(routingConfig)
+        .filter('trustedhtml', 
+           function($sce) { 
+              return $sce.trustAsHtml; 
+           }
+        );
 
 
 

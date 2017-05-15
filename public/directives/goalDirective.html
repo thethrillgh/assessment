@@ -1,6 +1,4 @@
-<div class="slo-header">
-    Goal
-</div>
+<div class="slo-header center"> Goal </div>
 <div class="mycontainer">
     <p class="same_slo">Has your Goal been revised from last year?</p>
     <div class="btn-group">
@@ -11,10 +9,15 @@
     <input>
     <button class="btn btn-success">Save</button>
     <h3>Describe your Goal</h3>
-    <ng-quill-editor ng-model="message"></ng-quill-editor>
+    <ng-quill-editor on-editor-created="editorCreatedGoal(editor)" ng-model="goal"></ng-quill-editor>
+    <br>
+    <div class="col-md-2 col-md-offset-5">
+        <button class="btn btn-success" ng-click="saveText(goal, 'goal')">Save Text</button>
+    </div>
+    <br>
     <div class="row">
-        <div class="col-md-4 col-md-offset-4" ng-click="add_branch()">
-            <button class="btn btn-success add-slo">Add Student Learning Objective</button>
+        <div class="col-md-2 col-md-offset-5" ng-click="add_branch()">
+            <button class="btn btn-primary add-slo">Add SLO</button>
         </div>
     </div>
 </div>

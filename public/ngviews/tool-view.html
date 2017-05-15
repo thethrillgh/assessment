@@ -7,7 +7,7 @@
             </h4>
           </div>
           <div id="collapse1" class="panel-collapse collapse in">
-            <div class="panel-body"> GOAL {{goalData}} </div>
+            <div class="panel-body" ng-bind-html="goalData | trustedhtml"> </div>
           </div>
         </div>
         <div class="panel panel-default">
@@ -17,7 +17,7 @@
             </h4>
           </div>
           <div id="collapse2" class="panel-collapse collapse in">
-            <div class="panel-body"> SLO {{sloData}} </div>
+            <div class="panel-body" ng-bind-html="sloData | trustedhtml"></div>
           </div>
         </div>
     </div>

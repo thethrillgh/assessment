@@ -138,6 +138,11 @@ a{
     letter-spacing: 2px;
     font-size: 24px;
 }
+.same_slo1{
+    padding-left: 15px;
+    letter-spacing: 1.5px;
+    font-size: 20px;
+}
 
 .mycontainer > .btn-group{
     margin-left: 33%;
@@ -171,7 +176,10 @@ a{
 }
 
 .add-slo{
+    width: 88.5px;
     margin-top: 20px;
+    text-align: center;
+    margin-left: 2px;
 }
 
 .center{

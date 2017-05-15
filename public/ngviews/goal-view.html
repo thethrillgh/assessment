@@ -7,7 +7,7 @@
             </h4>
           </div>
           <div id="collapse1" class="panel-collapse collapse in">
-            <div class="panel-body"> MISSION {{missionData}} </div>
+            <div class="panel-body" ng-bind-html="missionData | trustedhtml"></div>
           </div>
         </div>
     </div>

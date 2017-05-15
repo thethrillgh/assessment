@@ -6,6 +6,11 @@
         var get = function () {
             return $http.get("/getAll");
         }
+        
+        var getDepartments = function () {
+            return $http.get('/departments');
+        }
+        
         var oldData = {
             currentBranch: {
                 label: "Mission Statement",
@@ -115,6 +120,7 @@
         }
         return {
             getData: get,
+            getDepartments: getDepartments,
             data: oldData,
             login: login
         }
@@ -195,10 +201,29 @@
         };
     }
 
-    var loginController = function ($scope, genService) {
+    var loginController = function ($scope, $http, genService) {
         // Display list of departments
-
+        genService.getDepartments().then(function (data) {
+            if (data.success) {
+                $scope.departments = data.departments;
+            };
+        });
         //Verify password
+        $scope.signin = function () {
+              genService.login({
+                  department: $scope.department,
+                  password: $scope.password
+              }).then(function (data) {
+                  if (data.success) {
+                      $http.redirectTo('/home');
+                  } else {
+                      var msg = data.message;
+                      alert(msg);
+                      //Do something with the error message
+                  }
+              });
+        };
+
     }
 
     // Routing
@@ -233,7 +258,7 @@
                 templateUrl: 'ngviews/results-view.html'
             });
         $urlRouterProvider.otherwise('/404');
-        $urlRouterProvider.when('', '/home');
+        $urlRouterProvider.when('', '/login');
     }
 
 

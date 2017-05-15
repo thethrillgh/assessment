@@ -33,14 +33,14 @@
                             Choose your department. . . <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" ng-repeat="dpt in departments">
-                                <li> {{dpt}} </li>
+                                <li> {{dpt.department}} </li>
                             </ul>
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-control" id="password" placeholder="Enter department password here">
                         </div>
                         <!-- <a class="btn btn-default btn-confirm btn-align" href="index.html">Login</a> -->
-                        <button class="btn btn-default btn-confirm btn-align" href="index.html">Login</button>
+                        <button class="btn btn-default btn-confirm btn-align" href="/index.html" ng-click="signin()" >Login</button>
                     </form>
                 </div>
             </div>

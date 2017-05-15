@@ -173,6 +173,7 @@ exports.delete = function(req, res, next) {
 		_id: goalId,
 		label: 'Goal',
 		data: {
+			name: '',
 			info: ''
 		}
 	};
@@ -231,6 +232,7 @@ exports.updateGoal = function (req, res, next) {
 	//Find the three things from the body needed
 	var assessmentId = req.body.assessmentId;
 	var goalId = req.body.goalId;
+	var goalName = req.body.goalName;
 	var goalUpdate = req.body.goal;
 
 	//Make sure each of these three things are given
@@ -241,6 +243,11 @@ exports.updateGoal = function (req, res, next) {
 
 	if (!goalId) {
 		res.json(utilities.error(strings.noGoalIdGiven));
+		return;
+	}
+
+	if (!goalName) {
+		res.json(utilities.error(strings.noGoalNameGiven));
 		return;
 	}
 
@@ -279,6 +286,7 @@ exports.updateGoal = function (req, res, next) {
 					if (goal) {
 						//Set the goal
 						goal.data.info = goalUpdate;
+						goal.data.name = goalName;
 
 						//Save it back to the database
 						department.save(function (err) {
@@ -398,6 +406,7 @@ exports.createSLO = function(req, res, next) {
 		_id: id,
 		label: 'SLO',
 		data: {
+			name: '',
 			info: ''
 		}
 	};
@@ -457,6 +466,7 @@ exports.updateSLO = function (req, res, next) {
 	var assessmentId = req.body.assessmentId;
 	var goalId = req.body.goalId;
 	var sloId = req.body.sloId;
+	var sloName = req.body.sloName;
 	var updatedSLO = req.body.updatedSLO;
 
 	//Make sure they are all set
@@ -472,6 +482,11 @@ exports.updateSLO = function (req, res, next) {
 
 	if (!sloId) {
 		res.json(utilities.error(strings.noSLOIdGiven));
+		return;
+	}
+
+	if (!sloName) {
+		res.json(utilities.error(strings.noSLONameGiven));
 		return;
 	}
 
@@ -518,6 +533,7 @@ exports.updateSLO = function (req, res, next) {
 						//Make sure the SLO is found
 						if (slo) {
 							//Update the info of the SLO
+							slo.data.name = sloName;
 							slo.data.info = updatedSLO;
 
 							//Save it back to the database
@@ -662,12 +678,14 @@ exports.createProcess = function (req, res, next) {
 		_id: id,
 		label: 'Process',
 		data: {
+			name: '',
 			info: ''
 		},
 		children: [
 			{
 				label: 'Result',
 				data: {
+					name: '',
 					info: ''
 				}
 			}
@@ -741,6 +759,7 @@ exports.updateProcess = function (req, res, next) {
 	var goalId = req.body.goalId;
 	var sloId = req.body.sloId;
 	var processId = req.body.processId;
+	var processName = req.body.processName;
 	var updatedProcess = req.body.updatedProcess;
 
 	//Make sure everything is sent correctly
@@ -761,6 +780,11 @@ exports.updateProcess = function (req, res, next) {
 
 	if (!processId) {
 		res.json(utilities.error(strings.noProcessIdGiven));
+		return;
+	}
+
+	if (!processName) {
+		res.json(utilities.error(strings.noProcessNameGiven));
 		return;
 	}
 
@@ -811,6 +835,7 @@ exports.updateProcess = function (req, res, next) {
 							});
 
 							//Update the process
+							proces.data.name = processName;
 							proces.data.info = updatedProcess;
 
 							//Save it back to the database
@@ -952,6 +977,7 @@ exports.updateResult = function (req, res, next) {
 	var goalId = req.body.goalId;
 	var sloId = req.body.sloId;
 	var processId = req.body.processId;
+	var resultName = req.body.resultName;
 	var updatedResult = req.body.updatedResult;
 
 	//Make sure everything was sent
@@ -972,6 +998,11 @@ exports.updateResult = function (req, res, next) {
 
 	if (!processId) {
 		res.json(utilities.error(strings.noProcessIdGiven));
+		return;
+	}
+
+	if (!resultName) {
+		res.json(utilities.error(strings.noResultNameGiven));
 		return;
 	}
 
@@ -1028,6 +1059,7 @@ exports.updateResult = function (req, res, next) {
 								var result = resultArr[0];
 
 								//Update the result
+								result.data.name = resultName;
 								result.data.info = updatedResult;
 
 								//Save it back to the database

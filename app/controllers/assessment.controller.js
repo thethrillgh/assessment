@@ -56,7 +56,6 @@ exports.create = function(req, res, next) {
  */
 exports.updateMissionStatement = function (req, res, next) {
 	//Get the assessment id and mission statement parameters
-    console.log(JSON.stringify(req.body))
 	var assessmentId = req.body.assessmentId;
 	var missionStatement = req.body.missionStatement;
 

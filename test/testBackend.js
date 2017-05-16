@@ -304,7 +304,8 @@ describe("Assessment operations are working",function (){
 					.send({
 						assessmentId: elem.assessmentId,
 						goalId: goal.goalId,
-						goal: goal.goal
+						goal: goal.goal,
+						goalName: 'Goal'
 					}).end(function (err, res) {
 						expect(res).to.have.status(200);
 
@@ -351,7 +352,8 @@ describe("Assessment operations are working",function (){
 							assessmentId: elem.assessmentId,
 							goalId: goal.goalId,
 							sloId: slo.sloId,
-							updatedSLO: slo.slo
+							updatedSLO: slo.slo,
+							sloName: 'SLO'
 						}).end(function (err, res) {
 							expect(res).to.have.status(200);
 
@@ -404,7 +406,8 @@ describe("Assessment operations are working",function (){
 								goalId: goal.goalId,
 								sloId: slo.sloId,
 								processId: proces.processId,
-								updatedProcess: proces.process
+								updatedProcess: proces.process,
+								processName: 'Process'
 							}).end(function (err, res) {
 								expect(res).to.have.status(200);
 
@@ -430,7 +433,8 @@ describe("Assessment operations are working",function (){
 								goalId: goal.goalId,
 								sloId: slo.sloId,
 								processId: proces.processId,
-								updatedResult: proces.result
+								updatedResult: proces.result,
+								resultName: 'Result'
 							}).end(function (err, res) {
 								expect(res).to.have.status(200);
 

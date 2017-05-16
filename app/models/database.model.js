@@ -21,28 +21,28 @@ var AssessmentSchema = new Schema({
 					{
 						label: String,
 						data: {
-							name: String,
+							type_: String,
 							info: String
 						},
 						children: [ //Student Learning Objectives
 							{
 								label: String,
 								data: {
-									name: String,
+									type_: String,
 									info: String
 								},
 								children: [ //Processes and results
 									{
 										label: String, //Process
 										data: {
-											name: String,
+											type_: String,
 											info: String
 										},
 										children: [ //Results
 											{
 												label: String,
 												data: {
-													name: String,
+													type_: String,
 													info: String
 												}
 											}

@@ -679,14 +679,14 @@ exports.createProcess = function (req, res, next) {
 		_id: id,
 		label: 'Process',
 		data: {
-			type: 'process',
+			type_: 'process',
 			info: ''
 		},
 		children: [
 			{
 				label: 'Result',
 				data: {
-					type: 'result',
+					type_: 'result',
 					info: ''
 				}
 			}
@@ -1174,7 +1174,7 @@ exports.print = function (req, res, next) {
 				//Basically, go through everything in the evaluation object for the given id
 				//and add it to a string to be printed out. Could have done this with an .ejs
 				//view file, or Angular, but this works fine
-				var result = '';
+				var result = '<style>p {display: inline;}</style>';
 
 				var year = evaluationObj.year;
 				result += '<h2><center>' + req.user.department + ' Department Assessment<br>' + year + '</center></h2>';

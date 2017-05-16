@@ -173,7 +173,7 @@ exports.delete = function(req, res, next) {
 		_id: goalId,
 		label: 'Goal',
 		data: {
-			type: 'goal',
+			type_: 'goal',
 			info: ''
 		}
 	};
@@ -406,7 +406,7 @@ exports.createSLO = function(req, res, next) {
 		_id: id,
 		label: 'SLO',
 		data: {
-			type: 'slo',
+			type_: 'slo',
 			info: ''
 		}
 	};

@@ -12,11 +12,17 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: ['lib/angular.js',
-	'lib/angular-route.js',
 	"lib/angular-mocks.js",
+    "dist/ng-animate.js",
+    "dist/abn_tree_directive.js",
+    "dist/quill.js",
+    "dist/ng-quill.js",
 	'index.js',
 	'directives/*',
-	'test.js'
+    'ngviews/*',
+    'dist/ui-router.js',
+	'tests/test.js'
+
     ],
 
 

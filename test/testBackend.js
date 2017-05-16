@@ -552,7 +552,7 @@ describe("Assessment operations are working",function (){
 		});
 	});
 
-	/* assessments.forEach(function (elem) {
+	assessments.forEach(function (elem) {
 		elem.goals.forEach(function (goal) {
 			goal.slos.forEach(function (slo) {
 				slo.processes.forEach(function (proces) {
@@ -632,5 +632,5 @@ describe("Assessment operations are working",function (){
 					done();
 				});
 		});
-	}); */
+	});
 });

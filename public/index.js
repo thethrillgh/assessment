@@ -229,26 +229,27 @@
             $state.go("home." + type);
         }
         $scope.tree_handler = function (branch) {
+            console.log(branch.data);
             if (branch.label == "Mission Statement") {
                 branchInitialize("mission", branch)
-            } else if (branch.data.type == "goal") {
+            } else if (branch.data.type_ == "goal") {
                 $scope.missionData = tree.get_parent_branch(branch).data.info;
                 $scope.goal = branch.data.info;
                 $scope.goalName = branch.label;
                 branchInitialize("goal", branch);
-            } else if (branch.data.type == "slo") {
+            } else if (branch.data.type_ == "slo") {
                 console.log(branch)
                 $scope.goalData = tree.get_parent_branch(branch).data.info;
                 $scope.sloName = branch.label;
                 $scope.slo = branch.data.info;
                 branchInitialize("slo", branch);
 
-            } else if (branch.data.type == "process" || branch.label=="Process") {
+            } else if (branch.data.type_ == "process" || branch.label=="Process") {
                 $scope.sloData = tree.get_parent_branch(branch).data.info;
                 $scope.tool = branch.data.info;
                 $scope.toolName = branch.label;
                 branchInitialize("tool", branch);
-            } else if (branch.data.type == "result"){
+            } else if (branch.data.type_ == "result"){
                 $scope.toolData = tree.get_parent_branch(branch).data.info;
                 $scope.result = branch.data.info;
                 $scope.resultName = branch.label;

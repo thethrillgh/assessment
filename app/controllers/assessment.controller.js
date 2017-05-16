@@ -174,7 +174,7 @@ exports.delete = function(req, res, next) {
 		_id: goalId,
 		label: 'Goal',
 		data: {
-			name: '',
+			type: 'goal',
 			info: ''
 		}
 	};
@@ -286,8 +286,8 @@ exports.updateGoal = function (req, res, next) {
 					//Make sure the goal is found
 					if (goal) {
 						//Set the goal
+						goal.label = goalName;
 						goal.data.info = goalUpdate;
-						goal.data.name = goalName;
 
 						//Save it back to the database
 						department.save(function (err) {
@@ -407,7 +407,7 @@ exports.createSLO = function(req, res, next) {
 		_id: id,
 		label: 'SLO',
 		data: {
-			name: '',
+			type: 'slo',
 			info: ''
 		}
 	};
@@ -534,7 +534,7 @@ exports.updateSLO = function (req, res, next) {
 						//Make sure the SLO is found
 						if (slo) {
 							//Update the info of the SLO
-							slo.data.name = sloName;
+							slo.label = sloName;
 							slo.data.info = updatedSLO;
 
 							//Save it back to the database
@@ -679,14 +679,14 @@ exports.createProcess = function (req, res, next) {
 		_id: id,
 		label: 'Process',
 		data: {
-			name: '',
+			type: 'process',
 			info: ''
 		},
 		children: [
 			{
 				label: 'Result',
 				data: {
-					name: '',
+					type: 'result',
 					info: ''
 				}
 			}
@@ -836,7 +836,7 @@ exports.updateProcess = function (req, res, next) {
 							});
 
 							//Update the process
-							proces.data.name = processName;
+							proces.label = processName;
 							proces.data.info = updatedProcess;
 
 							//Save it back to the database
@@ -1060,7 +1060,7 @@ exports.updateResult = function (req, res, next) {
 								var result = resultArr[0];
 
 								//Update the result
-								result.data.name = resultName;
+								result.label = resultName;
 								result.data.info = updatedResult;
 
 								//Save it back to the database

@@ -4,7 +4,9 @@
   "description": "The Node.js server for the Centre College Assessment project for CSC 336",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -u bdd -R spec -t 1000 --recursive"
+    "test": "mocha -u bdd -R spec -t 1000 --recursive",
+	"webdriver": "webdriver-manager start",
+    	"protractor": "protractor conf.js"
   },
   "author": "",
   "license": "ISC",
@@ -26,6 +28,7 @@
       "supertest": "~0.13.0",
       "mocha":"^1.20.1",
       "chai":"^1.9.1",
-      "chai-http":"~3.0.0"
+      "chai-http":"~3.0.0",
+      "protractor": "^5.1.1"
   }
 }

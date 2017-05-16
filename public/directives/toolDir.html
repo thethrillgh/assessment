@@ -9,12 +9,21 @@
     </div>
 
     <h3>Name your tool</h3>
-    <input>
+    <input ng-model="toolName">
     
     <h3>What is your target?</h3>
     <input>
     <h3>Describe your tool as well as it's target</h3>
-    <ng-quill-editor ng-model="message"></ng-quill-editor>
-    
+    <ng-quill-editor on-editor-created="editorCreatedTool(editor)" ng-model="tool"></ng-quill-editor>
+    <br>
+    <div class="col-md-2 col-md-offset-5">
+        <button class="btn btn-success" ng-click="saveText(tool, 'tool', toolName)">Save Work</button>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-2 col-md-offset-5" ng-click="add_branch()">
+            <button class="btn btn-primary add-slo">Add Tool</button>
+        </div>
+    </div>
     
 </div>

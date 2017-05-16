@@ -24,11 +24,20 @@
         var updateSLO = function(data){
             return $http.put('/slo', data)
         }
+        var updateTool = function(data){
+            return $http.put('/process', data)
+        }
+        var updateResult = function(data){
+            return $http.put('/result', data)
+        }
         var createGoal = function(data){
             return $http.post('/goal', data)
         }
         var createSLO = function(data){
             return $http.post('/slo', data)
+        }
+        var createTool = function(data){
+            return $http.post('/process', data)
         }
         
         var oldData = {
@@ -91,7 +100,10 @@
             updateMission: updateMission,
             updateGoal: updateGoal,
             updateSLO: updateSLO,
+            updateTool: updateTool,
+            updateResult: updateResult,
             createGoal: createGoal,
+            createTool: createTool,
             createSLO: createSLO
         }
     };
@@ -116,6 +128,14 @@
         }
         $scope.editorCreatedSlo = function(editor){
             var text = $scope.slo || "<h1>Hello World</h1>"
+            editor.clipboard.dangerouslyPasteHTML(text);
+        }
+        $scope.editorCreatedTool = function(editor){
+            var text = $scope.tool || "<h1>Hello World</h1>"
+            editor.clipboard.dangerouslyPasteHTML(text);
+        }
+        $scope.editorCreatedResult = function(editor){
+            var text = $scope.result || "<h1>Hello World</h1>"
             editor.clipboard.dangerouslyPasteHTML(text);
         }
 //        console.log(info.data.data.evaluations[0]);
@@ -143,7 +163,6 @@
                         goalId: selectBranch._id
                     }
                 ).then(function(data){
-                    console.log(data);
                     if(data.data.success){
                         $state.reload();
                     }
@@ -166,30 +185,73 @@
                     }
                 })
             }
+            else if(type == "tool"){
+                var branch = tree.get_parent_branch(selectBranch);
+                var parentBranch = tree.get_parent_branch(branch);
+                genService.updateTool(
+                    {
+                        updatedProcess: data,
+                        processName: name,
+                        assessmentId: info.data.data.evaluations[0]._id,
+                        sloId: branch._id,
+                        processId: selectBranch._id,
+                        goalId: parentBranch._id
+                    }
+                ).then(function(data){
+                    console.log(data)
+                    if(data.data.success){
+                        $state.reload();
+                    }
+                })
+            }
+            else if(type == "result"){
+                var branch = tree.get_parent_branch(selectBranch);
+                var parentBranch = tree.get_parent_branch(branch);
+                var parentParentBranch = tree.get_parent_branch(parentBranch);
+                genService.updateResult(
+                    {
+                        updatedResult: data,
+                        resultName: name,
+                        assessmentId: info.data.data.evaluations[0]._id,
+                        sloId: parentBranch._id,
+                        processId: branch._id,
+                        goalId: parentParentBranch._id
+                    }
+                ).then(function(data){
+                    console.log(data)
+                    if(data.data.success){
+                        $state.reload();
+                    }
+                })
+            }
         }
         function branchInitialize(type, branch) {
             $state.go("home." + type);
         }
         $scope.tree_handler = function (branch) {
-            if (branch.data.type == "mission" || branch.label == "Mission Statement") {
+            if (branch.label == "Mission Statement") {
                 branchInitialize("mission", branch)
-            } else if (branch.data.type == "goal" || branch.label == "Goal") {
+            } else if (branch.data.type == "goal") {
                 $scope.missionData = tree.get_parent_branch(branch).data.info;
                 $scope.goal = branch.data.info;
                 $scope.goalName = branch.label;
                 branchInitialize("goal", branch);
-            } else if (branch.data.type == "slo" || branch.label == "SLO") {
+            } else if (branch.data.type == "slo") {
+                console.log(branch)
                 $scope.goalData = tree.get_parent_branch(branch).data.info;
                 $scope.sloName = branch.label;
                 $scope.slo = branch.data.info;
                 branchInitialize("slo", branch);
 
-            } else if (branch.data.type == "tool" || branch.label == "Process") {
+            } else if (branch.data.type == "process" || branch.label=="Process") {
                 $scope.sloData = tree.get_parent_branch(branch).data.info;
+                $scope.tool = branch.data.info;
                 $scope.toolName = branch.label;
                 branchInitialize("tool", branch);
-            } else if (branch.data.type == "result" || branch.label == "Result") {
+            } else if (branch.data.type == "result"){
                 $scope.toolData = tree.get_parent_branch(branch).data.info;
+                $scope.result = branch.data.info;
+                $scope.resultName = branch.label;
                 branchInitialize("result", branch);
             }
         }
@@ -197,16 +259,9 @@
         
         $scope.add_branch = function(type){
             var selectBranch = tree.get_selected_branch();
+            var parentBranch = tree.get_parent_branch(selectBranch);
             var b;
             b = tree.get_selected_branch();
-            var obj = {
-                label: "",
-                data: {
-                    info: "",
-                    type: ""
-                },
-                children: []
-            }
             if(type=="goal"){
                 genService.createGoal({assessmentId: info.data.data.evaluations[0]._id}).then(function(data){
                     console.log(data)
@@ -217,6 +272,15 @@
             }
             else if(type=="slo"){
                 genService.createSLO({assessmentId: info.data.data.evaluations[0]._id, goalId: selectBranch._id}).then(function(data){
+                    console.log(data)
+                    if(data.data.success){
+                        $state.reload()
+                    }
+                })
+                
+            } 
+            else if(type=="tool"){
+                genService.createTool({assessmentId: info.data.data.evaluations[0]._id, goalId: parentBranch._id, sloId: selectBranch._id}).then(function(data){
                     console.log(data)
                     if(data.data.success){
                         $state.reload()

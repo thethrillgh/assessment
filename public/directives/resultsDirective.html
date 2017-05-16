@@ -1,4 +1,4 @@
-<div class="slo-header">
+<div class="slo-header center">
     Results
 </div>
 <div class="mycontainer">
@@ -7,9 +7,14 @@
         <button type="button" class="btn btn-default">Yes</button>
         <button type="button" class="btn btn-default">No</button>
     </div>
-    <button class="btn btn-success">Save</button>
+    <h3>Name your tool</h3>
+    <input ng-model="resultName">
     <h3>Identify the results for this assessment process and what these results tell you about your effectiveness in achieving the particular student learning objective. Be as specific as possible.
-</h3>
-    <ng-quill-editor ng-model="message"></ng-quill-editor>
-    
+    </h3> <br><br>
+    <ng-quill-editor on-editor-created="editorCreatedResult(editor)" ng-model="result"></ng-quill-editor>
+    <br>
+    <div class="col-md-2 col-md-offset-5">
+        <button class="btn btn-success" ng-click="saveText(result, 'result', resultName)">Save Work</button>
+    </div>
+    <br>
 </div>

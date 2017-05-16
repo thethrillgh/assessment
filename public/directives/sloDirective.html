@@ -13,11 +13,11 @@
     <ng-quill-editor on-editor-created="editorCreatedSlo(editor)" ng-model="slo"></ng-quill-editor>
     <br>
     <div class="col-md-2 col-md-offset-5">
-        <button class="btn btn-success" ng-click="saveText(slo, 'slo')">Save Work</button>
+        <button class="btn btn-success" ng-click="saveText(slo, 'slo', sloName)">Save Work</button>
     </div>
     <br>
     <div class="row">
-        <div class="col-md-2 col-md-offset-5" ng-click="add_branch()">
+        <div class="col-md-2 col-md-offset-5" ng-click="add_branch('tool')">
             <button class="btn btn-primary add-slo">Add Tool</button>
         </div>
     </div>

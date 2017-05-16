@@ -13,4 +13,4 @@ var port = process.env.PORT;
 app.listen(port);
 module.exports = app;
 
-console.log('server running!');
+console.log("Server running on port "+port);

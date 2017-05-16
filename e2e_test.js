@@ -6,8 +6,8 @@ module.exports = require("./server.js");
 var clearAllData = function(done)
 {
     var mongoose = require("mongoose");
-    let accessmet = mongoose.model("Assessment");
-    accessmet.remove( {},done);
+    let accessment = mongoose.model('Assessment');
+    accessment.remove( {},done);
 
 };
 
